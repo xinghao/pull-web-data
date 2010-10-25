@@ -1355,3 +1355,99 @@ Migrating to CreateWebsourceTrackSimilarLastfms (20101022020938)
   [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW FIELDS FROM `websources`[0m
   [4;35;1mSQL (1.3ms)[0m   [0mdescribe `websources`[0m
   [4;36;1mSQL (5.9ms)[0m   [0;1mSHOW KEYS FROM `websources`[0m
+  [4;36;1mSQL (14.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (228.8ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (48.6ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreatePStats (20100922010458)
+Migrating to CreateRelateMusicbrainzs (20100922023028)
+Migrating to CreateWebsources (20100922071727)
+Migrating to CreateWebsourceLastfms (20100923021033)
+Migrating to CreateWebsourceYahoomusics (20100923021056)
+Migrating to CreateWebsourceMtvs (20100923021108)
+Migrating to CreateWebsourceEchonests (20100923071830)
+Migrating to CreateRelateMtvs (20100924035323)
+Migrating to CreateRelateLastfms (20100924052749)
+Migrating to CreateRelateYahoomusics (20100924052803)
+Migrating to CreateRelateEchonests (20100924052823)
+Migrating to CreateAStats (20100927031750)
+Migrating to CreateSimilarArtists (20100930045107)
+Migrating to CreatePopularPStats (20101006061104)
+Migrating to CreateWebsourceArtistPopularLastfms (20101006062147)
+Migrating to CreateWebsourceArtistPopularEchonests (20101007023819)
+Migrating to CreatePopularArtists (20101018032613)
+Migrating to CreatePopularPAlbumStats (20101021054138)
+Migrating to CreateWebsourceAlbumPopularLastfms (20101021065914)
+Migrating to CreateSimilarPTrackStats (20101022020827)
+Migrating to CreateWebsourceTrackSimilarLastfms (20101022020938)
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (62.8ms)[0m   [0;1mSHOW FIELDS FROM `a_stats`[0m
+  [4;35;1mSQL (14.6ms)[0m   [0mdescribe `a_stats`[0m
+  [4;36;1mSQL (20.0ms)[0m   [0;1mSHOW KEYS FROM `a_stats`[0m
+  [4;35;1mSQL (2.6ms)[0m   [0mSHOW FIELDS FROM `albums`[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mdescribe `albums`[0m
+  [4;35;1mSQL (1037.2ms)[0m   [0mSHOW KEYS FROM `albums`[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSHOW FIELDS FROM `artists`[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mdescribe `artists`[0m
+  [4;36;1mSQL (1063.4ms)[0m   [0;1mSHOW KEYS FROM `artists`[0m
+  [4;35;1mSQL (4.0ms)[0m   [0mSHOW FIELDS FROM `p_stats`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `p_stats`[0m
+  [4;35;1mSQL (72.5ms)[0m   [0mSHOW KEYS FROM `p_stats`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSHOW FIELDS FROM `popular_artists`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `popular_artists`[0m
+  [4;36;1mSQL (170.0ms)[0m   [0;1mSHOW KEYS FROM `popular_artists`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mSHOW FIELDS FROM `popular_p_album_stats`[0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1mdescribe `popular_p_album_stats`[0m
+  [4;35;1mSQL (39.5ms)[0m   [0mSHOW KEYS FROM `popular_p_album_stats`[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mSHOW FIELDS FROM `popular_p_stats`[0m
+  [4;35;1mSQL (3.0ms)[0m   [0mdescribe `popular_p_stats`[0m
+  [4;36;1mSQL (28.1ms)[0m   [0;1mSHOW KEYS FROM `popular_p_stats`[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mSHOW FIELDS FROM `relate_echonests`[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1mdescribe `relate_echonests`[0m
+  [4;35;1mSQL (83.5ms)[0m   [0mSHOW KEYS FROM `relate_echonests`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSHOW FIELDS FROM `relate_lastfms`[0m
+  [4;35;1mSQL (54.1ms)[0m   [0mdescribe `relate_lastfms`[0m
+  [4;36;1mSQL (32.1ms)[0m   [0;1mSHOW KEYS FROM `relate_lastfms`[0m
+  [4;35;1mSQL (2.5ms)[0m   [0mSHOW FIELDS FROM `relate_mtvs`[0m
+  [4;36;1mSQL (4.8ms)[0m   [0;1mdescribe `relate_mtvs`[0m
+  [4;35;1mSQL (28.3ms)[0m   [0mSHOW KEYS FROM `relate_mtvs`[0m
+  [4;36;1mSQL (23.7ms)[0m   [0;1mSHOW FIELDS FROM `relate_musicbrainzs`[0m
+  [4;35;1mSQL (7.6ms)[0m   [0mdescribe `relate_musicbrainzs`[0m
+  [4;36;1mSQL (79.6ms)[0m   [0;1mSHOW KEYS FROM `relate_musicbrainzs`[0m
+  [4;35;1mSQL (3.8ms)[0m   [0mSHOW FIELDS FROM `relate_yahoomusics`[0m
+  [4;36;1mSQL (15.7ms)[0m   [0;1mdescribe `relate_yahoomusics`[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `relate_yahoomusics`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mSHOW FIELDS FROM `similar_artists`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mdescribe `similar_artists`[0m
+  [4;36;1mSQL (6.9ms)[0m   [0;1mSHOW KEYS FROM `similar_artists`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mSHOW FIELDS FROM `similar_p_track_stats`[0m
+  [4;36;1mSQL (9.5ms)[0m   [0;1mdescribe `similar_p_track_stats`[0m
+  [4;35;1mSQL (18.0ms)[0m   [0mSHOW KEYS FROM `similar_p_track_stats`[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mSHOW FIELDS FROM `websource_album_popular_lastfms`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mdescribe `websource_album_popular_lastfms`[0m
+  [4;36;1mSQL (8.0ms)[0m   [0;1mSHOW KEYS FROM `websource_album_popular_lastfms`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSHOW FIELDS FROM `websource_artist_popular_echonests`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mdescribe `websource_artist_popular_echonests`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mSHOW KEYS FROM `websource_artist_popular_echonests`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `websource_artist_popular_lastfms`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mdescribe `websource_artist_popular_lastfms`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW KEYS FROM `websource_artist_popular_lastfms`[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSHOW FIELDS FROM `websource_echonests`[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mdescribe `websource_echonests`[0m
+  [4;35;1mSQL (15.9ms)[0m   [0mSHOW KEYS FROM `websource_echonests`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `websource_lastfms`[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mdescribe `websource_lastfms`[0m
+  [4;36;1mSQL (5.2ms)[0m   [0;1mSHOW KEYS FROM `websource_lastfms`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `websource_mtvs`[0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1mdescribe `websource_mtvs`[0m
+  [4;35;1mSQL (58.0ms)[0m   [0mSHOW KEYS FROM `websource_mtvs`[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mSHOW FIELDS FROM `websource_track_similar_lastfms`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `websource_track_similar_lastfms`[0m
+  [4;36;1mSQL (1.7ms)[0m   [0;1mSHOW KEYS FROM `websource_track_similar_lastfms`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mSHOW FIELDS FROM `websource_yahoomusics`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `websource_yahoomusics`[0m
+  [4;35;1mSQL (9.5ms)[0m   [0mSHOW KEYS FROM `websource_yahoomusics`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mSHOW FIELDS FROM `websources`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mdescribe `websources`[0m
+  [4;36;1mSQL (10.8ms)[0m   [0;1mSHOW KEYS FROM `websources`[0m

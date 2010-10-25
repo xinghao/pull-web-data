@@ -91,6 +91,26 @@ class DataSource
         end
    end #--end of album iteration 
   end
+
+  def getWebRawSimilarTrackData(iOffset, iLimit)
+   #album = Album.find(1)
+   icount = 0
+   #iOffset = 0
+   # iOffset = 30000
+   # iOffset = 60000
+   # iOffset = 90000
+   # iOffset = 120000
+   #iLimit = 30000
+   Track.find(:all, :offset => iOffset, :limit => iLimit).each do |track|
+        puts @DataSourceType + " processing(similar track raw data) :" + track.id.to_s
+        if (!alreadyHandled("similar track", @DataSourceType, @ReDo, track.id)) then
+          status = getSimilarTrackWebRawDataImp(track)
+          #status = 9
+          puts "status : "+ status.to_s
+          updatePstatus("similar track", @DataSourceType, status, track.id)
+        end
+   end #--end of album iteration 
+  end
   
   
   def analyzeRowData
@@ -308,7 +328,9 @@ class DataSource
     elsif (process_type == "artist popular")
       pStat = PopularPStat.find_by_altnet_id(id)
     elsif (process_type == "album popular")
-      pStat = PopularPAlbumStat.find_by_altnet_id(id)      
+      pStat = PopularPAlbumStat.find_by_altnet_id(id)
+    elsif (process_type == "similar artists")
+      pStat = SimilarPTrackStat.find_by_altnet_id(id)
     end
     
     if data_source_type == "mz"
@@ -332,7 +354,9 @@ class DataSource
     elsif (process_type == "artist popular")
       pStat = PopularPStat.find_by_altnet_id(id)
     elsif (process_type == "album popular")
-      pStat = PopularPAlbumStat.find_by_altnet_id(id)      
+      pStat = PopularPAlbumStat.find_by_altnet_id(id) 
+    elsif (process_type == "similar artists")
+      pStat = SimilarPTrackStat.find_by_altnet_id(id)
     end
     
     if (pStat == nil) 
@@ -343,7 +367,8 @@ class DataSource
         pStat = PopularPStat.new
       elsif (process_type == "album popular")
         pStat = PopularPAlbumStat.new 
-               
+      elsif (process_type == "similar artists")
+        pStat = SimilarPTrackStat.new               
       end
       
       pStat.altnet_id = id

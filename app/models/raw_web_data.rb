@@ -113,7 +113,7 @@ class RawWebData
     url = getLastFmSimilarTrackDataUrl(artist_name, album_name, track_name);
     puts url
     #url = "http://www.google.com"
-    html = open(url, "User-Agent" => getUseragent())#, :proxy=>getProxy())
+    html = open(url, "User-Agent" => getUseragent(), :proxy=>getProxy())
     begin    
       document = Hpricot(html)
       ar = document.search("//div[@class='skyWrap']").search("//table[@class='candyStriped chart']");

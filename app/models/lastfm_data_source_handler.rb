@@ -48,6 +48,52 @@ class LastfmDataSourceHandler < DataSource
     
   end
   
+  
+  
+  def getSimilarTrackWebRawDataImp track
+        rw = RawWebData.new
+        
+        begin
+          ablum = track.album;
+          if (ablum == nil) 
+            return 11
+          end                   
+          artist = album.artist;
+          if (artist == nil) 
+            return 11
+          end
+
+          
+          retStr = rw.getLastFmSimilarTrackData(artist.name, album.name, track.name)
+          
+          html = ""
+          if (retStr.empty?)
+            status = 2
+           else
+             html = retStr
+            status = 5
+          end
+
+          #WebsourceLastfm.delete_all(:altnet_id => artist.id)
+          #artist.websource_lastfm.remove 
+          wlf = WebsourceTrackSimilarLastfm.new
+          wlf.altnet_id = artist.id
+          wlf.html = html.to_s
+          wlf.url = rw.getLastFmSimilarTrackDataUrl(artist.name, album.name, track.name)
+          #wlf.url = ""
+          wlf.save
+          
+          return status 
+            
+          
+        rescue Exception => e
+          puts e
+          status = 4
+          return status
+        end 
+  
+  end
+  
   def getPopularArtistWebRawDataImp artist
         rw = RawWebData.new
         

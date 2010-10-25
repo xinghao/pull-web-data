@@ -33,7 +33,24 @@ class ProxyPool
         
   end
 
-
+  def testProxy
+    networks = @proxyHash.keys
+        
+    url = "http://www.yahoo.com/"
+    networks.each do |network|
+      proxy_id = network + "." + @proxyHash[network][rand(@proxyHash[network].length)].to_s()
+      #document = Hpricot(open(url, :proxy=>"http://" + proxy_id + ":3128/"))
+      #ar = document.search("//div[@id='y-masthead']");
+      ar = ""
+      print proxy_id + ": "
+      if (ar.empty?)
+        puts "failed!"
+      else
+        puts "working"
+      end
+    end
+  end
+    
   def getRandomProxy
     networks = @proxyHash.keys
 

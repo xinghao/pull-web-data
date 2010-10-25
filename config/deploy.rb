@@ -17,12 +17,13 @@ set :branch, "master"
 set :db_type, "master"
 
 set :user, 'xinghao'
-set :use_sudo, false
-ssh_options[:port] = 22
+set :use_sudo, true
+ssh_options[:port] = 54102
 ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
 
 set :deploy_via, :remote_cache
+set :cron, ""
 
 before "deploy:setup" , "deploy:pre_setup"
 
@@ -35,9 +36,9 @@ after "deploy:update" , "deploy:post_deploy"
 namespace :deploy do
   
   task :pre_setup do
-    sudo "[ -d /opt/apps/pullwebdata ] || #{sudo} mkdir /opt/apps/pullwebdata"
+    sudo "[ -d /opt/apps/pull-web-data ] || #{sudo} mkdir /opt/apps/pull-web-data"
     #sudo "[ -d /SOLR/SolrServer ] || #{sudo} mkdir /SOLR/SolrServer"
-    sudo "[ -d /opt/apps/pullwebdata/releases ] || #{sudo} mkdir /opt/apps/pullwebdata/releases"
+    sudo "[ -d /opt/apps/pullwebdata/releases ] || #{sudo} mkdir /opt/apps/pull-web-data/releases"
 #    sudo "chown svc-rails.kazaaadm /SOLR"
   end
   
@@ -71,6 +72,8 @@ namespace :deploy do
   
   task :post_deploy do
 
+    sudo "rm -f #{latest_release}/config/initializers/crons.rb"
+    sudo "echo CRON_SERVER=\"#{cron}\" > #{latest_release}/config/initializers/crons.rb"
     # sudo "cp -f #{latest_release}/SolrServer/bin/jetty.sh.#{rails_env} #{latest_release}/SolrServer/bin/jetty.sh"
     # sudo "cp -f #{latest_release}/SolrServer/newrelic/newrelic.yml.#{rails_env} #{latest_release}/SolrServer/newrelic/newrelic.yml"
 

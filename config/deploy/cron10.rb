@@ -1,15 +1,15 @@
 # Staging
 
-set :user, 'root'
+set :user, 'xinghao'
 
-set :application, "pullwebdata"
+set :application, "pull-web-data"
 set :hostname, ""
 set :rails_env, 'staging'
 set :deploy_to, "/opt/apps/#{application}"
 
-role :app, "67.228.198.71"
-role :web, "67.228.198.71"
-role :db,  "67.228.198.71", :primary => true
+role :app, "216.240.131.186"
+role :web, "216.240.131.186"
+role :db,  "216.240.131.186", :primary => true
 
 set :branch do
   default_tag = `git tag -l #{rails_env}* `.split("\n").last
