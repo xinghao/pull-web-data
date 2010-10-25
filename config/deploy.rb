@@ -11,7 +11,7 @@ set :default_stage, 'staging'
 require 'capistrano/ext/multistage'
 
 set :scm, 'git'
-set :repository,  "git@github.com:xinghao/PullWebData.git"
+set :repository,  "git@github.com:Creagency/pull-web-data.git"
 set :branch, "master"
 
 set :db_type, "master"
