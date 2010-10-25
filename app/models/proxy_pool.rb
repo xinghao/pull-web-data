@@ -60,4 +60,12 @@ class ProxyPool
     return "http://" + proxy_id + ":3128/"
   end
   
+  
+  def self.cronServerProvider
+    if (CRON_SERVER == "cron10")
+      return ProxyPoolCron10.new
+    else
+      return ProxyPoolCron3.new
+    end
+  end
 end

@@ -9,4 +9,4 @@
 #   inflect.uncountable %w( fish sheep )
 # end
 
-CRON_SERVER=""
+CRON_SERVER="cron3"

@@ -17,7 +17,7 @@ class RawWebData
   end
 
   def getProxy
-    pPool = ProxyPool.new
+    pPool = ProxyPool.cronServerProvider
     return pPool.getRandomProxy
   end
   
@@ -111,9 +111,10 @@ class RawWebData
 
   def getLastFmSimilarTrackData artist_name, album_name, track_name
     url = getLastFmSimilarTrackDataUrl(artist_name, album_name, track_name);
-    puts url
+    proxy = getProxy();
+    puts url+"-["+proxy+"]";
     #url = "http://www.google.com"
-    html = open(url, "User-Agent" => getUseragent(), :proxy=>getProxy())
+    html = open(url, "User-Agent" => getUseragent(), :proxy=>proxy)
     begin    
       document = Hpricot(html)
       ar = document.search("//div[@class='skyWrap']").search("//table[@class='candyStriped chart']");      
