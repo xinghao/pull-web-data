@@ -73,7 +73,7 @@ namespace :deploy do
   task :post_deploy do
 
     sudo "rm -f #{latest_release}/config/initializers/crons.rb"
-    sudo "echo  #{cron} > #{latest_release}/config/initializers/crons.rb"
+    #sudo "echo  #{cron} > #{latest_release}/config/initializers/crons.rb"
     # sudo "cp -f #{latest_release}/SolrServer/bin/jetty.sh.#{rails_env} #{latest_release}/SolrServer/bin/jetty.sh"
     # sudo "cp -f #{latest_release}/SolrServer/newrelic/newrelic.yml.#{rails_env} #{latest_release}/SolrServer/newrelic/newrelic.yml"
 
