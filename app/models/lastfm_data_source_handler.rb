@@ -54,8 +54,8 @@ class LastfmDataSourceHandler < DataSource
         rw = RawWebData.new
         
         begin
-          ablum = track.album;
-          if (ablum == nil) 
+          album = track.album;
+          if (album == nil) 
             return 11
           end                   
           artist = album.artist;

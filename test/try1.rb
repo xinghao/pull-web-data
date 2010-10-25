@@ -11,6 +11,10 @@
 # puts matchdata[1]
 
 
-r = RawWebData.new
-r.getLastFmSimilarTrackData("the rolling stones", "album_name", "come on")
+#r = RawWebData.new
+#r.getLastFmSimilarTrackData("the rolling stones", "album_name", "come on")
+
+tar = Track.find(:first)
+lm = LastfmDataSourceHandler.new
+lm.getSimilarTrackWebRawDataImp tar
 

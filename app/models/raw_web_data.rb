@@ -116,8 +116,7 @@ class RawWebData
     html = open(url, "User-Agent" => getUseragent(), :proxy=>getProxy())
     begin    
       document = Hpricot(html)
-      ar = document.search("//div[@class='skyWrap']").search("//table[@class='candyStriped chart']");
-      print ar
+      ar = document.search("//div[@class='skyWrap']").search("//table[@class='candyStriped chart']");      
       return ar
     rescue Exception => e
       return ""
