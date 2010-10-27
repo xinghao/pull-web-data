@@ -117,12 +117,39 @@ class RawWebData
     html = open(url, "User-Agent" => getUseragent(), :proxy=>proxy)
     begin    
       document = Hpricot(html)
-      ar = document.search("//div[@class='skyWrap']").search("//table[@class='candyStriped chart']");      
+      ar = document.search("//div[@class='skyWrap']").search("//table[@class='candyStriped chart']");
+      #puts ar      
       return ar
     rescue Exception => e
       return ""
     end       
   end
+
+
+  def getPandoraSimilarTrackDataUrl artist_name, album_name, track_name
+    #http://www.pandora.com/music/song/beyonce/halo
+    url_encoded_string_artist = CGI::escape(artist_name)
+    url_encoded_string_track = CGI::escape(track_name)
+    url = "http://www.pandora.com/music/song/" + url_encoded_string_artist +"/"+url_encoded_string_track
+    return url
+  end
+
+  def getPandoraSimilarTrackData artist_name, album_name, track_name
+    url = getPandoraSimilarTrackDataUrl(artist_name, album_name, track_name);
+    proxy = getProxy();
+    puts url+"-["+proxy+"]";
+    #url = "http://www.google.com"
+    html = open(url, "User-Agent" => getUseragent(), :proxy=>proxy)
+    begin    
+      document = Hpricot(html)
+      ar = document.search("//div[@id='community_content_right']").search("//div[@id='community_section']").search("//span[@id='similar_song']");
+      #puts ar      
+      return ar
+    rescue Exception => e
+      return ""
+    end       
+  end
+
                
 
   

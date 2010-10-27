@@ -103,16 +103,46 @@ class DataSource
    #iLimit = 30000
    Track.find(:all, :offset => iOffset, :limit => iLimit).each do |track|
         puts @DataSourceType + " processing(similar track raw data) :" + track.id.to_s
-        if (!alreadyHandled("similar track", @DataSourceType, @ReDo, track.id)) then
+        if (!alreadyHandled("similar tracks", @DataSourceType, @ReDo, track.id)) then
           status = getSimilarTrackWebRawDataImp(track)
           #status = 9
           puts "status : "+ status.to_s
-          updatePstatus("similar track", @DataSourceType, status, track.id)
+          updatePstatus("similar tracks", @DataSourceType, status, track.id)
         end
    end #--end of album iteration 
   end
   
+    def analyzeSimilarTrackRowData
+    #art = Artist.find(1)
+    where = @DataSourceType+ " = ?"
+   iOffset = 0
+   # iOffset = 30000
+   # iOffset = 60000
+   # iOffset = 90000
+   # iOffset = 120000
+   iLimit = 1    
+    SimilarPTrackStat.find(:all, :conditions =>[where , 5 ], :offset => iOffset, :limit => iLimit).each do |ps|
+    #PStat.find(:all, :conditions =>[where , 5 ]).each do |ps|
+      track = Track.find(:first, :conditions =>["id = ?", ps.altnet_id])
+      puts @DataSourceType + " analyzing(raw data) :" + track.id.to_s
   
+      begin
+        status = analyzeSimilarTrackRawData(track)    
+      rescue Exception => e
+        puts e
+        status = 7
+      end 
+      
+      begin
+        puts "status : "+ status.to_s
+        updatePstatus(art.id, status)
+      rescue Exception => e
+        puts e
+      end 
+    end #end of iteration    
+    return 0
+  end # end of function
+
   def analyzeRowData
     #art = Artist.find(1)
     where = @DataSourceType+ " = ?"
@@ -329,7 +359,7 @@ class DataSource
       pStat = PopularPStat.find_by_altnet_id(id)
     elsif (process_type == "album popular")
       pStat = PopularPAlbumStat.find_by_altnet_id(id)
-    elsif (process_type == "similar artists")
+    elsif (process_type == "similar tracks")
       pStat = SimilarPTrackStat.find_by_altnet_id(id)
     end
     
@@ -355,7 +385,7 @@ class DataSource
       pStat = PopularPStat.find_by_altnet_id(id)
     elsif (process_type == "album popular")
       pStat = PopularPAlbumStat.find_by_altnet_id(id) 
-    elsif (process_type == "similar artists")
+    elsif (process_type == "similar tracks")
       pStat = SimilarPTrackStat.find_by_altnet_id(id)
     end
     
@@ -367,7 +397,7 @@ class DataSource
         pStat = PopularPStat.new
       elsif (process_type == "album popular")
         pStat = PopularPAlbumStat.new 
-      elsif (process_type == "similar artists")
+      elsif (process_type == "similar tracks")
         pStat = SimilarPTrackStat.new               
       end
       

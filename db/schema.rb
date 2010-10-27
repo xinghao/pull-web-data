@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101022020938) do
+ActiveRecord::Schema.define(:version => 20101027061551) do
 
   create_table "a_stats", :force => true do |t|
     t.integer  "altnet_id"
@@ -223,6 +223,65 @@ ActiveRecord::Schema.define(:version => 20101022020938) do
 
   add_index "similar_p_track_stats", ["altnet_id"], :name => "index_similar_p_track_stats_on_altnet_id"
 
+  create_table "tracks", :force => true do |t|
+    t.string   "name",                                  :null => false
+    t.string   "permalink",                             :null => false
+    t.integer  "artist_id",                             :null => false
+    t.integer  "album_id",                              :null => false
+    t.string   "isrc",                                  :null => false
+    t.integer  "track_number",                          :null => false
+    t.integer  "altnet_object_id"
+    t.datetime "refreshed_at"
+    t.boolean  "featured"
+    t.datetime "release_date",                          :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "preview_plays",      :default => 0
+    t.integer  "full_plays",         :default => 0
+    t.integer  "downloads",          :default => 0
+    t.datetime "stats_updated_at"
+    t.boolean  "published",          :default => false
+    t.string   "altnet_directory"
+    t.integer  "release_year"
+    t.string   "file_name"
+    t.integer  "file_size"
+    t.string   "preview_file"
+    t.string   "gfs_hash"
+    t.string   "track_length"
+    t.boolean  "hidden"
+    t.datetime "last_modified_date"
+    t.boolean  "disabled"
+    t.string   "image"
+    t.string   "upc"
+    t.integer  "altnet_album_id"
+    t.integer  "play_count",         :default => 0
+    t.integer  "primary_genre_id"
+    t.boolean  "editors_pick",       :default => false
+    t.integer  "disc_number",        :default => 1,     :null => false
+    t.boolean  "explicit_advisory",  :default => false, :null => false
+    t.boolean  "is_valid",           :default => false
+    t.integer  "mobile_play_count",  :default => 0
+    t.integer  "ringtones_count",    :default => 0
+  end
+
+  add_index "tracks", ["album_id", "track_number", "is_valid"], :name => "index_tracks_on_album_id_and_track_number_and_is_valid"
+  add_index "tracks", ["altnet_object_id"], :name => "index_tracks_on_altnet_object_id", :unique => true
+  add_index "tracks", ["artist_id", "is_valid", "play_count", "id"], :name => "index_tracks_on_artist_id_and_is_valid_and_play_count_and_id"
+  add_index "tracks", ["artist_id", "primary_genre_id"], :name => "index_tracks_on_artist_id_and_primary_genre_id"
+  add_index "tracks", ["downloads", "is_valid"], :name => "index_tracks_on_downloads_and_is_valid"
+  add_index "tracks", ["id", "is_valid"], :name => "index_tracks_on_id_and_is_valid", :unique => true
+  add_index "tracks", ["is_valid", "play_count", "id"], :name => "index_tracks_on_is_valid_and_play_count_and_id"
+  add_index "tracks", ["is_valid"], :name => "index_tracks_on_is_valid"
+  add_index "tracks", ["isrc", "is_valid"], :name => "index_tracks_on_isrc_and_is_valid"
+  add_index "tracks", ["name", "is_valid"], :name => "index_tracks_on_name_and_is_valid"
+  add_index "tracks", ["play_count", "is_valid"], :name => "index_tracks_on_play_count_and_is_valid"
+  add_index "tracks", ["primary_genre_id", "is_valid", "play_count", "id"], :name => "idx_tracks_on_pri_genre_id_and_is_valid_and_play_count_and_id"
+  add_index "tracks", ["primary_genre_id", "is_valid", "release_date"], :name => "index_tracks_on_primary_genre_id_and_is_valid_and_release_date"
+  add_index "tracks", ["primary_genre_id", "is_valid"], :name => "index_tracks_on_primary_genre_id_and_is_valid"
+  add_index "tracks", ["primary_genre_id"], :name => "index_tracks_on_primary_genre_id"
+  add_index "tracks", ["release_date", "is_valid"], :name => "index_tracks_on_release_date_and_is_valid"
+  add_index "tracks", ["upc"], :name => "index_tracks_on_upc"
+
   create_table "websource_album_popular_lastfms", :force => true do |t|
     t.integer  "album_id"
     t.text     "html"
@@ -275,13 +334,23 @@ ActiveRecord::Schema.define(:version => 20101022020938) do
 
   create_table "websource_track_similar_lastfms", :force => true do |t|
     t.integer  "altnet_id"
-    t.text     "html"
+    t.text     "html",       :limit => 16777215
     t.text     "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "websource_track_similar_lastfms", ["altnet_id"], :name => "index_websource_track_similar_lastfms_on_altnet_id"
+
+  create_table "websource_track_similar_mtvs", :force => true do |t|
+    t.integer  "altnet_id"
+    t.text     "html"
+    t.text     "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "websource_track_similar_mtvs", ["altnet_id"], :name => "index_websource_track_similar_mtvs_on_altnet_id"
 
   create_table "websource_yahoomusics", :force => true do |t|
     t.integer  "altnet_id"

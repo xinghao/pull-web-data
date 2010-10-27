@@ -11,5 +11,5 @@
 # puts matchdata[1]
 
 
-cron10 = ProxyPoolCron10.new
-cron10.testProxy
+cron = ProxyPool.cronServerProvider
+cron.testRandomProxy

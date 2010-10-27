@@ -24,7 +24,7 @@ class ProxyPool
     @proxyHash["173.192.8"] = network2
     network3 = (33..46).to_a
     @proxyHash["67.228.156"] = network3
-    network4 = (46..63).to_a
+    network4 = (48..63).to_a
     @proxyHash["67.228.237"] = network4
     network5 = (49..62).to_a
     @proxyHash["67.228.223"] = network5
@@ -33,14 +33,34 @@ class ProxyPool
         
   end
 
-  def testProxy
+  def testCurrentCronAllProxy
+    networks = @proxyHash.keys
+        
+    url = "http://www.yahoo.com/"
+    networks.each do |network|
+      @proxyHash[network].each do |subnetwork|
+        proxy_id = network + "." + subnetwork.to_s()
+        document = Hpricot(open(url, :proxy=>"http://" + proxy_id + ":3128/"))
+        ar = document.search("//div[@id='y-masthead']");
+        ar = ""
+        print proxy_id + ": "
+        if (ar.empty?)
+          puts "failed!"
+        else
+          puts "working"
+        end
+       end # end of subnetwork
+    end # end of network
+  end
+
+  def testRandomProxy
     networks = @proxyHash.keys
         
     url = "http://www.yahoo.com/"
     networks.each do |network|
       proxy_id = network + "." + @proxyHash[network][rand(@proxyHash[network].length)].to_s()
-      #document = Hpricot(open(url, :proxy=>"http://" + proxy_id + ":3128/"))
-      #ar = document.search("//div[@id='y-masthead']");
+      document = Hpricot(open(url, :proxy=>"http://" + proxy_id + ":3128/"))
+      ar = document.search("//div[@id='y-masthead']");
       ar = ""
       print proxy_id + ": "
       if (ar.empty?)

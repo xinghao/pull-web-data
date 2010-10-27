@@ -8,8 +8,88 @@ class MtvDataSourceHandler < DataSource
       @ReDo2 = false
       @ReDo3 = false
       @ReDo4 = false 
-      @ReDo5 = false       
+      @ReDo5 = false  
+      @ReDo = [0,0,0,0,0,0,0]   
     end
+
+
+  def analyzeSimilarTrackRawData track
+    document = Hpricot(track.websource_track_similar_lastfm.html.to_s)
+    sarts = document.search("tr").search("//td[@class='subjectCell']")
+    
+    
+    #RelateMtv.delete_all(:altnet_id => art.id)
+    
+    icount = 0
+    ifound = 0
+    sarts.each do |sart|
+      #puts sart
+      #puts sart
+      regex = Regexp.new(/>(.*)<\/a>.*>(.*)<\/a>/)
+      matchdata = regex.match(sart.to_s)
+      #print matchdata
+      icount = icount + 1
+      
+      if matchdata
+        #similar_artist_name = matchdata[1]
+        puts matchdata[1]  + " - " + matchdata[2]
+        #ifound = ifound + insertSimilarArtist(art.id, similar_artist_name, icount)
+        #puts similar_artist_name           
+      end
+    end #end of iteration of artists 
+    
+    if (ifound > 0)
+      return 1
+    else
+      return 6
+    end
+  end # end of function    
+
+
+  def getSimilarTrackWebRawDataImp track
+        rw = RawWebData.new
+        
+        begin
+          album = track.album;
+          if (album == nil) 
+            return 11
+          end                   
+          artist = album.artist;
+          if (artist == nil) 
+            return 11
+          end
+
+          
+          retStr = rw.getPandoraSimilarTrackData(artist.name, album.name, track.name)
+          
+          html = ""
+          if (retStr.empty?)
+            status = 2
+           else
+             html = retStr
+            status = 5
+          end
+
+          #WebsourceLastfm.delete_all(:altnet_id => artist.id)
+          #artist.websource_lastfm.remove 
+          wlf = WebsourceTrackSimilarMtv.new
+          wlf.altnet_id = track.id
+          wlf.html = html.to_s
+          wlf.url = rw.getPandoraSimilarTrackDataUrl(artist.name, album.name, track.name)
+          #wlf.url = ""
+          wlf.save
+          
+          return status 
+            
+          
+        rescue Exception => e
+          puts e
+          status = 4
+          return status
+        end 
+  
+  end
+
 
   def getSimilarArtistWebRawData artist
         rw = RawWebData.new
@@ -99,5 +179,39 @@ class MtvDataSourceHandler < DataSource
       
  
   end #end of function 
-  
+
+ def analyzeSimilarTrackRawData track
+    document = Hpricot(track.websource_track_similar_mtv.html.to_s)
+    sarts = document.search("//span[@id='similar_song']")
+    
+    
+    #RelateMtv.delete_all(:altnet_id => art.id)
+    
+    icount = 0
+    ifound = 0
+    sarts.each do |sart|
+      #puts sart
+      #puts sart
+      regex = Regexp.new(/","(.*)",true.*<a.*>(.*?)<\/a>.*<a.*>(.*?)<\/a>/m)
+      regex2 = Regexp.new(/<a.*>(.*?)<\/a><br \/>.*<a/m)
+      matchdata = regex.match(sart.to_s)
+     #print matchdata
+      icount = icount + 1
+      
+      if matchdata
+        #similar_artist_name = matchdata[1]
+        puts matchdata[1]  + " - " + matchdata[2]+ " - " + matchdata[3]
+        #ifound = ifound + insertSimilarArtist(art.id, similar_artist_name, icount)
+        #puts similar_artist_name           
+      end
+    end #end of iteration of artists 
+    
+    if (ifound > 0)
+      return 1
+    else
+      return 6
+    end
+    
+  end # end of function    
+   
 end

@@ -77,7 +77,7 @@ class LastfmDataSourceHandler < DataSource
           #WebsourceLastfm.delete_all(:altnet_id => artist.id)
           #artist.websource_lastfm.remove 
           wlf = WebsourceTrackSimilarLastfm.new
-          wlf.altnet_id = artist.id
+          wlf.altnet_id = track.id
           wlf.html = html.to_s
           wlf.url = rw.getLastFmSimilarTrackDataUrl(artist.name, album.name, track.name)
           #wlf.url = ""
@@ -135,7 +135,38 @@ class LastfmDataSourceHandler < DataSource
  
   end #end of function 
 
-
+  def analyzeSimilarTrackRawData track
+    document = Hpricot(track.websource_track_similar_lastfm.html.to_s)
+    sarts = document.search("tr").search("//td[@class='subjectCell']")
+    
+    
+    #RelateMtv.delete_all(:altnet_id => art.id)
+    
+    icount = 0
+    ifound = 0
+    sarts.each do |sart|
+      #puts sart
+      #puts sart
+      regex = Regexp.new(/>(.*)<\/a>.*>(.*)<\/a>/)
+      matchdata = regex.match(sart.to_s)
+      #print matchdata
+      icount = icount + 1
+      
+      if matchdata
+        #similar_artist_name = matchdata[1]
+        puts matchdata[1]  + " - " + matchdata[2]
+        #ifound = ifound + insertSimilarArtist(art.id, similar_artist_name, icount)
+        #puts similar_artist_name           
+      end
+    end #end of iteration of artists 
+    
+    if (ifound > 0)
+      return 1
+    else
+      return 6
+    end
+  end # end of function    
+  
   def analyzeSimilarArtistRawData art
     document = Hpricot(art.websource_lastfm.html.to_s)
     sarts = document.search("li").search("a").search("strong")
