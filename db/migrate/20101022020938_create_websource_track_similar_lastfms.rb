@@ -2,7 +2,7 @@ class CreateWebsourceTrackSimilarLastfms < ActiveRecord::Migration
   def self.up
     create_table :websource_track_similar_lastfms do |t|
       t.integer :altnet_id
-      t.mediumtext :html
+      t.text :html
       t.text :url
 
       t.timestamps

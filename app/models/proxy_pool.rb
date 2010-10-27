@@ -1,3 +1,8 @@
+require 'open-uri'
+require 'pp'
+require 'hpricot'
+require 'uri'
+
 class ProxyPool
   
   def initialize
@@ -42,7 +47,6 @@ class ProxyPool
         proxy_id = network + "." + subnetwork.to_s()
         document = Hpricot(open(url, :proxy=>"http://" + proxy_id + ":3128/"))
         ar = document.search("//div[@id='y-masthead']");
-        ar = ""
         print proxy_id + ": "
         if (ar.empty?)
           puts "failed!"
@@ -61,12 +65,12 @@ class ProxyPool
       proxy_id = network + "." + @proxyHash[network][rand(@proxyHash[network].length)].to_s()
       document = Hpricot(open(url, :proxy=>"http://" + proxy_id + ":3128/"))
       ar = document.search("//div[@id='y-masthead']");
-      ar = ""
-      print proxy_id + ": "
+      #print proxy_id + ": "
       if (ar.empty?)
+        print proxy_id + ": "
         puts "failed!"
-      else
-        puts "working"
+#      else
+#        puts "working"
       end
     end
   end
@@ -84,7 +88,15 @@ class ProxyPool
   def self.cronServerProvider
     if (CRON_SERVER == "cron10")
       return ProxyPoolCron10.new
-    else
+    elsif (CRON_SERVER == "cron2")
+      return ProxyPoolCron2.new
+    elsif (CRON_SERVER == "cron3")
+      return ProxyPoolCron3.new
+    elsif (CRON_SERVER == "cron4")
+      return ProxyPoolCron4.new
+    elsif (CRON_SERVER == "cron9")
+      return ProxyPoolCron9.new
+    else      
       return ProxyPoolCron3.new
     end
   end
