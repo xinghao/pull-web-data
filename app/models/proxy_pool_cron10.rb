@@ -8,7 +8,7 @@ class ProxyPoolCron10 < ProxyPool
     @proxyHash["216.240.134"] = network8
     network9 = (187..202).to_a
     @proxyHash["216.240.148"] = network9    
-    network10 = (96..147).to_a
+    network10 = (96..127).to_a
     @proxyHash["216.240.157"] = network10
         
   end

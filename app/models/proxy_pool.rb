@@ -46,9 +46,9 @@ class ProxyPool
       @proxyHash[network].each do |subnetwork|
           begin
               proxy_id = network + "." + subnetwork.to_s()
-              document = Hpricot(open(url, :proxy=>"http://" + proxy_id + ":3128/"))
-              ar = document.search("//div[@id='y-masthead']");
               print proxy_id + ": "
+              document = Hpricot(open(url, :proxy=>"http://" + proxy_id + ":3128/"))
+              ar = document.search("//div[@id='y-masthead']");              
               if (ar.empty?)
                 puts "failed!"
               else
@@ -56,7 +56,6 @@ class ProxyPool
               end
          rescue Exception => e
             puts "failed"
-            return ""
          end           
 
        end # end of subnetwork
