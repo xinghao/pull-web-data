@@ -42,17 +42,23 @@ class ProxyPool
     networks = @proxyHash.keys
         
     url = "http://www.yahoo.com/"
-    networks.each do |network|
+    networks.each do |network|   
       @proxyHash[network].each do |subnetwork|
-        proxy_id = network + "." + subnetwork.to_s()
-        document = Hpricot(open(url, :proxy=>"http://" + proxy_id + ":3128/"))
-        ar = document.search("//div[@id='y-masthead']");
-        print proxy_id + ": "
-        if (ar.empty?)
-          puts "failed!"
-        else
-          puts "working"
-        end
+          begin
+              proxy_id = network + "." + subnetwork.to_s()
+              document = Hpricot(open(url, :proxy=>"http://" + proxy_id + ":3128/"))
+              ar = document.search("//div[@id='y-masthead']");
+              print proxy_id + ": "
+              if (ar.empty?)
+                puts "failed!"
+              else
+                puts "working"
+              end
+         rescue Exception => e
+            puts "failed"
+            return ""
+         end           
+
        end # end of subnetwork
     end # end of network
   end
