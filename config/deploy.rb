@@ -6,7 +6,7 @@
 # set :branch, "git-branch"
 # set :rails_env, 'rails-env'
 #
-set :stages, %w(cron2 cron3 cron4 cron9 cron10)
+set :stages, %w(cron2 cron3 cron4 cron9 cron10 monster)
 set :default_stage, 'staging'
 require 'capistrano/ext/multistage'
 

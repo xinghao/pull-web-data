@@ -1,7 +1,7 @@
 # Staging
 
 set :user, 'xinghao'
-
+ssh_options[:port] = 22
 set :application, "pull-web-data"
 set :hostname, ""
 set :rails_env, 'staging'
