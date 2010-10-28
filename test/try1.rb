@@ -20,10 +20,13 @@ r = RawWebData.new
 #lm.getSimilarTrackWebRawDataImp tar
 
 # track = Track.find(1)
-# lm = LastfmDataSourceHandler.new
+ lm = LastfmDataSourceHandler.new
 # lm.getWebRawSimilarTrackData(0,3)
 # lm.analyzeSimilarTrackRawData(track)
-mtv = MtvDataSourceHandler.new;
+#mtv = MtvDataSourceHandler.new;
 #mtv.getWebRawSimilarTrackData(0,20)
-track = Track.find(2)
-mtv.analyzeSimilarTrackRawData(track)
+#track = Track.find(2)
+#mtv.analyzeSimilarTrackRawData(track)
+#album = Album.find(1)
+#lm.analyzePopularAlbumRawData album
+lm.analyzeAlbumPopularRowData

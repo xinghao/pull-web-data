@@ -49,6 +49,32 @@ class DataSource
     return 0
   end # end of function
   
+  def analyzeAlbumPopularRowData
+    where = @DataSourceType+ " = ?"
+   iOffset = 0
+   iLimit = 10    
+   #PopularPStat.find(:all, :conditions =>[where , 5 ], :offset => iOffset, :limit => iLimit).each do |ps|
+   PopularPAlbumStat.find(:all, :conditions =>[where , 5 ]).each do |ps|
+    #PStat.find(:all, :conditions =>[where , 5 ]).each do |ps|
+      album = Album.find(:first, :conditions =>["id = ?", ps.altnet_id])
+      puts @DataSourceType + " analyzing(raw data) :" + album.id.to_s
+  
+      begin
+        status = analyzePopularAlbumRawData(album)    
+      rescue Exception => e
+        puts e
+        status = 7
+      end 
+      
+      begin
+        puts "status : "+ status.to_s
+        updatePstatus("album popular", @DataSourceType, status, album.id)
+      rescue Exception => e
+        puts e
+      end 
+    end #end of iteration    
+    return 0
+  end # end of function
   
   def getWebRawArtistPopularData
    #art = Artist.find(1785)
@@ -349,6 +375,27 @@ class DataSource
     return 1      
   end
 
+  def insertAlbumPopularity(album_id, popularity)
+    popular = PopularAlbum.find_by_album_id(album_id)
+    if (popular == nil)
+      popular = PopularAlbum.new
+    end
+            
+    if @DataSourceType == "lastfm"
+      popular.lastfm = popularity 
+    elsif @DataSourceType == "echonest"
+      popular.echonest = popularity 
+    elsif @DataSourceType == "yahoomusic"
+      popular.yahoomusic = popularity 
+    elsif @DataSourceType == "mtv"
+      popular.mtv = popularity
+    end 
+    
+    popular.album_id = album_id
+    popular.save
+    
+    return 1      
+  end
   
 
 

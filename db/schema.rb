@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101027061551) do
+ActiveRecord::Schema.define(:version => 20101028112335) do
 
   create_table "a_stats", :force => true do |t|
     t.integer  "altnet_id"
@@ -117,6 +117,21 @@ ActiveRecord::Schema.define(:version => 20101027061551) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "popular_albums", :force => true do |t|
+    t.integer  "album_id"
+    t.decimal  "playstats",  :precision => 65, :scale => 30
+    t.decimal  "mz",         :precision => 65, :scale => 30
+    t.decimal  "lastfm",     :precision => 65, :scale => 30
+    t.decimal  "echonest",   :precision => 65, :scale => 30
+    t.decimal  "yahoomusic", :precision => 65, :scale => 30
+    t.decimal  "mtv",        :precision => 65, :scale => 30
+    t.decimal  "popularity", :precision => 65, :scale => 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "popular_albums", ["album_id"], :name => "index_popular_albums_on_album_id"
 
   create_table "popular_artists", :force => true do |t|
     t.integer  "artist_id"
@@ -283,7 +298,7 @@ ActiveRecord::Schema.define(:version => 20101027061551) do
   add_index "tracks", ["upc"], :name => "index_tracks_on_upc"
 
   create_table "websource_album_popular_lastfms", :force => true do |t|
-    t.integer  "album_id"
+    t.integer  "altnet_id"
     t.text     "html"
     t.text     "url"
     t.datetime "created_at"

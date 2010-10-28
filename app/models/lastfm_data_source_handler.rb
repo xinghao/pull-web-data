@@ -220,6 +220,28 @@ class LastfmDataSourceHandler < DataSource
   end #end of function
 
 
+
+  def analyzePopularAlbumRawData album
+    document = Hpricot(album.websource_album_popular_lastfm.html.to_s)
+    sarts = document.search("p");
+    
+    #puts sarts
+    #RelateMtv.delete_all(:altnet_id => art.id)
+    regex = Regexp.new(/\((.*) listeners\)/)
+    matchdata = regex.match(sarts.to_s)
+    
+    
+    if (matchdata != nil)      
+      insertAlbumPopularity(album.id,matchdata[1].gsub(",", "").to_i)
+      puts matchdata[1].gsub(",", "").to_i
+      return 1
+    else
+      puts "no match";
+      return 6
+    end
+  end #end of function
+
+
   def getPopularAlbumWebRawDataImp album
         rw = RawWebData.new
         

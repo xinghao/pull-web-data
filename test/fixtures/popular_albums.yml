@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  album_id: 1
+  playstats: 9.99
+  mz: 9.99
+  lastfm: 9.99
+  echonest: 9.99
+  yahoomusic: 9.99
+  mtv: 9.99
+  popularity: 9.99
+
+two:
+  album_id: 1
+  playstats: 9.99
+  mz: 9.99
+  lastfm: 9.99
+  echonest: 9.99
+  yahoomusic: 9.99
+  mtv: 9.99
+  popularity: 9.99
