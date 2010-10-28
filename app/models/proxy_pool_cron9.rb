@@ -6,7 +6,7 @@ class ProxyPoolCron9 < ProxyPool
     network12 = (146..158).to_a
     network13 = (162..174).to_a
     network14 = (178..190).to_a
-    network = network11 + network12 + network13 + network14 
+    network1 = network11 + network12 + network13 + network14 
     @proxyHash = {"174.34.139" => network1}
     network21 = (194..208).to_a
     network22 = (162..174).to_a
