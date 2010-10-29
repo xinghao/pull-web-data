@@ -10,6 +10,6 @@
 # matchdata = regex.match("(2,216,732 listeners)")
 # puts matchdata[1]
 
-
+#ProxyPool.setCurrentCronServer "cron7"
 cron = ProxyPool.cronServerProvider
 cron.testCurrentCronAllProxy

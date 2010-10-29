@@ -4,6 +4,7 @@
 # cron5:  900,000 - 1,200,000
 # cron6:  1,200,000 - 1,6000,000
 
+#ProxyPool.setCurrentCronServer "cron4"
 lm = MtvDataSourceHandler.new
 lm.getWebRawSimilarTrackData(600000,100000)
 #lm.getWebRawSimilarTrackData(700000,100000)

@@ -4,7 +4,7 @@ require 'hpricot'
 require 'uri'
 
 class ProxyPool
-  
+  @@StaticProxy = ""
   def initialize
     #cron3
     network7 = (128..143).to_a
@@ -89,17 +89,34 @@ class ProxyPool
     return "http://" + proxy_id + ":3128/"
   end
   
+  def self.setCurrentCronServer cron
+    @@StaticProxy = cron
+  end
   
   def self.cronServerProvider
-    if (CRON_SERVER == "cron10")
+    if (@@StaticProxy != "")
+      tempProxy = @@StaticProxy 
+    else
+      tempProxy = CRON_SERVER
+    end
+    puts tempProxy;
+    if (tempProxy == "cron10")
       return ProxyPoolCron10.new
-    elsif (CRON_SERVER == "cron2")
+    elsif (tempProxy == "cron2")
       return ProxyPoolCron2.new
-    elsif (CRON_SERVER == "cron3")
+    elsif (tempProxy == "cron3")
       return ProxyPoolCron3.new
-    elsif (CRON_SERVER == "cron4")
+    elsif (tempProxy == "cron4")
       return ProxyPoolCron4.new
-    elsif (CRON_SERVER == "cron9")
+    elsif (tempProxy == "cron5")
+      return ProxyPoolCron5.new
+    elsif (tempProxy == "cron6")
+      return ProxyPoolCron6.new
+    elsif (tempProxy == "cron7")
+      return ProxyPoolCron7.new
+    elsif (tempProxy == "cron8")
+      return ProxyPoolCron8.new                        
+    elsif (tempProxy == "cron9")
       return ProxyPoolCron9.new
     else      
       return ProxyPoolCron3.new

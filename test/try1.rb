@@ -29,4 +29,6 @@ r = RawWebData.new
 #mtv.analyzeSimilarTrackRawData(track)
 #album = Album.find(1)
 #lm.analyzePopularAlbumRawData album
-lm.analyzeAlbumPopularRowData
+#lm.analyzeAlbumPopularRowData
+#ProxyPool.setCurrentCronServer "cron10"
+pPool = ProxyPool.cronServerProvider
