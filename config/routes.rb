@@ -4,6 +4,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :relate_musicbrainzs
 
   map.resources :p_statuses
+  map.resources :similar_tracks
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
 

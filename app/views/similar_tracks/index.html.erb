@@ -1,0 +1,32 @@
+<h1>Listing p_stats</h1>
+
+<table>
+  <tr>
+    
+    <th align="left">Track</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Artist</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Track_id</th>
+    
+  </tr>
+
+<% @tracks.each do |track| 
+%>
+  <tr>
+    <td><%=h track.track_name %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h track.artist_name %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h track.id %></td>
+
+
+
+    
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New p_stat', new_p_stat_path %>

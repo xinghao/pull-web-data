@@ -2678,3 +2678,525 @@ Migrating to CreatePopularAlbums (20101028112335)
   [4;35;1mSQL (0.4ms)[0m   [0mCOMMIT[0m
   [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
   [4;35;1mPopularPAlbumStat Load (0.3ms)[0m   [0mSELECT * FROM `popular_p_album_stats` WHERE (lastfm = 5) [0m
+/!\ FAILSAFE /!\  Mon Nov 01 16:47:13 +1000 2010
+  Status: 500 Internal Server Error
+  Access denied for user 'root'@'localhost' (using password: YES)
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `real_connect'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `connect'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:203:in `initialize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `new'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `mysql_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `send'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `new_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:245:in `checkout_new_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:188:in `checkout'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `loop'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `checkout'
+    /Users/xinghao/.rvm/rubies/ruby-1.8.7-p299/lib/ruby/1.8/monitor.rb:242:in `synchronize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:183:in `checkout'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:98:in `connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:326:in `retrieve_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:123:in `retrieve_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:115:in `connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:9:in `cache'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:28:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/string_coercion.rb:25:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/head.rb:9:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/methodoverride.rb:24:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/params_parser.rb:15:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/session/cookie_store.rb:99:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/failsafe.rb:26:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/lock.rb:11:in `synchronize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:114:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/reloader.rb:34:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:108:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rails-2.3.8/lib/rails/rack/static.rb:31:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/urlmap.rb:47:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `each'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rails-2.3.8/lib/rails/rack/log_tailer.rb:17:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/content_length.rb:13:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/chunked.rb:15:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:67:in `process'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:38:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rails-2.3.8/lib/commands/server.rb:111
+    /Users/xinghao/.rvm/rubies/ruby-1.8.7-p299/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Users/xinghao/.rvm/rubies/ruby-1.8.7-p299/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+/!\ FAILSAFE /!\  Mon Nov 01 16:47:17 +1000 2010
+  Status: 500 Internal Server Error
+  Access denied for user 'root'@'localhost' (using password: YES)
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `real_connect'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `connect'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:203:in `initialize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `new'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `mysql_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `send'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `new_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:245:in `checkout_new_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:188:in `checkout'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `loop'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `checkout'
+    /Users/xinghao/.rvm/rubies/ruby-1.8.7-p299/lib/ruby/1.8/monitor.rb:242:in `synchronize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:183:in `checkout'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:98:in `connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:326:in `retrieve_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:123:in `retrieve_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:115:in `connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:9:in `cache'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:28:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/string_coercion.rb:25:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/head.rb:9:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/methodoverride.rb:24:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/params_parser.rb:15:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/session/cookie_store.rb:99:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/failsafe.rb:26:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/lock.rb:11:in `synchronize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:114:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/reloader.rb:34:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:108:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rails-2.3.8/lib/rails/rack/static.rb:31:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/urlmap.rb:47:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `each'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rails-2.3.8/lib/rails/rack/log_tailer.rb:17:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/content_length.rb:13:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/chunked.rb:15:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:67:in `process'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:38:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rails-2.3.8/lib/commands/server.rb:111
+    /Users/xinghao/.rvm/rubies/ruby-1.8.7-p299/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Users/xinghao/.rvm/rubies/ruby-1.8.7-p299/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+/!\ FAILSAFE /!\  Mon Nov 01 16:47:29 +1000 2010
+  Status: 500 Internal Server Error
+  Access denied for user 'root'@'localhost' (using password: YES)
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `real_connect'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `connect'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:203:in `initialize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `new'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `mysql_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `send'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `new_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:245:in `checkout_new_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:188:in `checkout'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `loop'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `checkout'
+    /Users/xinghao/.rvm/rubies/ruby-1.8.7-p299/lib/ruby/1.8/monitor.rb:242:in `synchronize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:183:in `checkout'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:98:in `connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:326:in `retrieve_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:123:in `retrieve_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:115:in `connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:9:in `cache'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:28:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/string_coercion.rb:25:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/head.rb:9:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/methodoverride.rb:24:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/params_parser.rb:15:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/session/cookie_store.rb:99:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/failsafe.rb:26:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/lock.rb:11:in `synchronize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:114:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/reloader.rb:34:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:108:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rails-2.3.8/lib/rails/rack/static.rb:31:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/urlmap.rb:47:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `each'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rails-2.3.8/lib/rails/rack/log_tailer.rb:17:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/content_length.rb:13:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/chunked.rb:15:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:67:in `process'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:38:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rails-2.3.8/lib/commands/server.rb:111
+    /Users/xinghao/.rvm/rubies/ruby-1.8.7-p299/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Users/xinghao/.rvm/rubies/ruby-1.8.7-p299/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+/!\ FAILSAFE /!\  Mon Nov 01 16:47:52 +1000 2010
+  Status: 500 Internal Server Error
+  Access denied for user 'root'@'localhost' (using password: YES)
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `real_connect'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `connect'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:203:in `initialize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `new'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `mysql_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `send'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `new_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:245:in `checkout_new_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:188:in `checkout'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `loop'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `checkout'
+    /Users/xinghao/.rvm/rubies/ruby-1.8.7-p299/lib/ruby/1.8/monitor.rb:242:in `synchronize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:183:in `checkout'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:98:in `connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:326:in `retrieve_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:123:in `retrieve_connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:115:in `connection'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:9:in `cache'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:28:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/string_coercion.rb:25:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/head.rb:9:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/methodoverride.rb:24:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/params_parser.rb:15:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/session/cookie_store.rb:99:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/failsafe.rb:26:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/lock.rb:11:in `synchronize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:114:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/reloader.rb:34:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:108:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rails-2.3.8/lib/rails/rack/static.rb:31:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/urlmap.rb:47:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `each'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rails-2.3.8/lib/rails/rack/log_tailer.rb:17:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/content_length.rb:13:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/chunked.rb:15:in `call'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:67:in `process'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:38:in `run'
+    /Users/xinghao/.rvm/gems/ruby-1.8.7-p299/gems/rails-2.3.8/lib/commands/server.rb:111
+    /Users/xinghao/.rvm/rubies/ruby-1.8.7-p299/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /Users/xinghao/.rvm/rubies/ruby-1.8.7-p299/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.each) on line #9 of app/views/similar_tracks/index.html.erb:
+6:     <th>Mz</th>
+7:   </tr>
+8: 
+9: <% @p_stats.each do |p_stat| %>
+10:   <tr>
+11:     <td><%=h ptracks.altnet_id %></td>
+12:     <td><%=h p_stat.similar_track_id %></td>
+
+    app/views/similar_tracks/index.html.erb:9
+    app/controllers/similar_tracks_controller.rb:7:in `index'
+
+
+ActionView::TemplateError (undefined method `similar_track_id' for #<AggregateSimilarTracksStat:0x103458478>) on line #12 of app/views/similar_tracks/index.html.erb:
+9: <% @ptracks.each do |ptrack| %>
+10:   <tr>
+11:     <td><%=h ptrack.altnet_id %></td>
+12:     <td><%=h ptrack.similar_track_id %></td>
+13:   </tr>
+14: <% end %>
+15: </table>
+
+    app/views/similar_tracks/index.html.erb:12
+    app/views/similar_tracks/index.html.erb:9:in `each'
+    app/views/similar_tracks/index.html.erb:9
+    app/controllers/similar_tracks_controller.rb:7:in `index'
+
+
+SyntaxError (/Users/xinghao/Documents/rails/pull-web-data/app/controllers/similar_tracks_controller.rb:5: syntax error, unexpected '=', expecting ')'
+...racksStat.find(:all,  :limit = 1, :conditions =>["status = 1...
+                              ^
+/Users/xinghao/Documents/rails/pull-web-data/app/controllers/similar_tracks_controller.rb:5: syntax error, unexpected ')', expecting kEND):
+  
+
+
+ActionView::TemplateError (undefined method `similar_track_id' for #<AggregateSimilarTracksStat:0x103310098>) on line #12 of app/views/similar_tracks/index.html.erb:
+9: <% @ptracks.each do |ptrack| %>
+10:   <tr>
+11:     <td><%=h ptrack.altnet_id %></td>
+12:     <td><%=h ptrack.similar_track_id %></td>
+13:   </tr>
+14: <% end %>
+15: </table>
+
+    app/views/similar_tracks/index.html.erb:12
+    app/views/similar_tracks/index.html.erb:9:in `each'
+    app/views/similar_tracks/index.html.erb:9
+    app/controllers/similar_tracks_controller.rb:7:in `index'
+
+
+ActionView::TemplateError (undefined method `mtv' for #<AggregateSimilarTracksStat:0x10356da98>) on line #12 of app/views/similar_tracks/index.html.erb:
+9: <% @ptracks.each do |ptrack| %>
+10:   <tr>
+11:     <td><%=h ptrack.altnet_id %></td>
+12:     <td><%=h ptrack.mtv %></td>
+13:   </tr>
+14: <% end %>
+15: </table>
+
+    app/views/similar_tracks/index.html.erb:12
+    app/views/similar_tracks/index.html.erb:9:in `each'
+    app/views/similar_tracks/index.html.erb:9
+    app/controllers/similar_tracks_controller.rb:7:in `index'
+
+
+ActionView::TemplateError (undefined local variable or method `p_stat' for #<ActionView::Base:0x10369cd60>) on line #19 of app/views/similar_tracks/index.html.erb:
+16:     <td><%=h track.name %></td>
+17:     <td> &nbsp;&nbsp;&nbsp;</td>
+18:     <td><%=h artist.name %></td>
+19:     <td><%= link_to 'Show', p_stat %></td>
+20:     <td><%= link_to 'Edit', edit_p_stat_path(p_stat) %></td>
+21:     <td><%= link_to 'Destroy', p_stat, :confirm => 'Are you sure?', :method => :delete %></td>
+22:     
+
+    app/views/similar_tracks/index.html.erb:19
+    app/views/similar_tracks/index.html.erb:10:in `each'
+    app/views/similar_tracks/index.html.erb:10
+    app/controllers/similar_tracks_controller.rb:7:in `index'
+
+
+ActionView::TemplateError (undefined method `aggregate_similar_tracks_stat_path' for #<ActionView::Base:0x103438600>) on line #19 of app/views/similar_tracks/index.html.erb:
+16:     <td><%=h track.name %></td>
+17:     <td> &nbsp;&nbsp;&nbsp;</td>
+18:     <td><%=h artist.name %></td>
+19:     <td><%= link_to 'Show', ptrack %></td>
+20:     <td><%= link_to 'Edit', edit_p_stat_path(ptrack) %></td>
+21:     <td><%= link_to 'Destroy', ptrack, :confirm => 'Are you sure?', :method => :delete %></td>
+22:     
+
+    app/views/similar_tracks/index.html.erb:19
+    app/views/similar_tracks/index.html.erb:10:in `each'
+    app/views/similar_tracks/index.html.erb:10
+    app/controllers/similar_tracks_controller.rb:7:in `index'
+
+
+ActionView::TemplateError (undefined method `aggregate_similar_tracks_stat_path' for #<ActionView::Base:0x1032e2698>) on line #19 of app/views/similar_tracks/index.html.erb:
+16:     <td><%=h track.name %></td>
+17:     <td> &nbsp;&nbsp;&nbsp;</td>
+18:     <td><%=h artist.name %></td>
+19:     <td><%= link_to 'Show', ptrack %></td>
+20:     
+21:   </tr>
+22: <% end %>
+
+    app/views/similar_tracks/index.html.erb:19
+    app/views/similar_tracks/index.html.erb:10:in `each'
+    app/views/similar_tracks/index.html.erb:10
+    app/controllers/similar_tracks_controller.rb:7:in `index'
+
+
+NameError (uninitialized constant SimilarTracksController::User):
+  app/controllers/similar_tracks_controller.rb:16:in `show'
+
+
+ActionView::TemplateError (undefined method `altnet_id' for nil:NilClass) on line #3 of app/views/similar_tracks/show.html.erb:
+1: <p>
+2:   <b>Altnet:</b>
+3:   <%=h @p_stat.altnet_id %>
+4: </p>
+5: 
+6: <p>
+
+    app/views/similar_tracks/show.html.erb:3
+    app/controllers/similar_tracks_controller.rb:19:in `show'
+
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.each) on line #15 of app/views/similar_tracks/show.html.erb:
+12:     <th>Artist</th>
+13:   </tr>
+14: 
+15: <% @similar_tracks.each do |ptrack| 
+16:   track = Track.find(ptrack.similar_track_id)
+17:   artist = Artist.find(ptrack.artist_id)
+18: %>
+
+    app/views/similar_tracks/show.html.erb:15
+    app/controllers/similar_tracks_controller.rb:19:in `show'
+
+
+ActionView::TemplateError (undefined method `each' for #<SimilarTrack:0x103700fb8>) on line #15 of app/views/similar_tracks/show.html.erb:
+12:     <th>Artist</th>
+13:   </tr>
+14: 
+15: <% @similar_tracks.each do |ptrack| 
+16:   track = Track.find(ptrack.similar_track_id)
+17:   artist = Artist.find(ptrack.artist_id)
+18: %>
+
+    app/views/similar_tracks/show.html.erb:15
+    app/controllers/similar_tracks_controller.rb:19:in `show'
+
+
+ActionView::TemplateError (undefined method `artist_id' for #<SimilarTrack:0x103258b28>) on line #17 of app/views/similar_tracks/show.html.erb:
+14: 
+15: <% @similar_tracks.each do |ptrack| 
+16:   track = Track.find(ptrack.similar_track_id)
+17:   artist = Artist.find(ptrack.artist_id)
+18: %>
+19:   <tr>
+20:     <td><%=h track.name %></td>
+
+    app/views/similar_tracks/show.html.erb:17
+    app/views/similar_tracks/show.html.erb:15:in `each'
+    app/views/similar_tracks/show.html.erb:15
+    app/controllers/similar_tracks_controller.rb:19:in `show'
+
+
+ActionView::TemplateError (Couldn't find Artist without an ID) on line #17 of app/views/similar_tracks/show.html.erb:
+14: 
+15: <% @similar_tracks.each do |ptrack| 
+16:   track = Track.find(ptrack.similar_track_id)
+17:   artist = Artist.find(ptrack.similar_artist_id)
+18: %>
+19:   <tr>
+20:     <td><%=h track.name %></td>
+
+    app/views/similar_tracks/show.html.erb:17
+    app/views/similar_tracks/show.html.erb:15:in `each'
+    app/views/similar_tracks/show.html.erb:15
+    app/controllers/similar_tracks_controller.rb:19:in `show'
+
+
+ActionView::TemplateError (compile error
+/Users/xinghao/Documents/rails/pull-web-data/app/views/similar_tracks/show.html.erb:16: syntax error, unexpected '<'
+  <!-- track = Track.find(ptrack.similar_track_id)
+   ^
+/Users/xinghao/Documents/rails/pull-web-data/app/views/similar_tracks/show.html.erb:18: syntax error, unexpected '>') on line #16 of app/views/similar_tracks/show.html.erb:
+13:   </tr>
+14: 
+15: <% @similar_tracks.each do |ptrack| 
+16:   <!-- track = Track.find(ptrack.similar_track_id)
+17:   album = Album.find(track.album_id)
+18:   artist = Artist.find(album.artist_id) -->
+19: %>
+
+    app/views/similar_tracks/show.html.erb:35:in `compile!'
+    app/controllers/similar_tracks_controller.rb:21:in `show'
+
+
+ActionView::TemplateError (undefined method `track_name' for #<Array:0x1037b5c38>) on line #19 of app/views/similar_tracks/show.html.erb:
+16: 
+17: %>
+18:   <tr>
+19:     <td><%=h ptrack.track_name %></td>
+20:     <td> &nbsp;&nbsp;&nbsp;</td>
+21:     <td><%=h ptrack.artist_name %></td>
+22: 
+
+    app/views/similar_tracks/show.html.erb:19
+    app/views/similar_tracks/show.html.erb:15:in `each'
+    app/views/similar_tracks/show.html.erb:15
+    app/controllers/similar_tracks_controller.rb:21:in `show'
+
+
+SyntaxError (/Users/xinghao/Documents/rails/pull-web-data/app/controllers/similar_tracks_controller.rb:22: syntax error, unexpected tIDENTIFIER, expecting ')'
+              :Select =>" ...
+   ^
+/Users/xinghao/Documents/rails/pull-web-data/app/controllers/similar_tracks_controller.rb:23: syntax error, unexpected tIDENTIFIER, expecting kDO or '{' or '('
+              :conditions =>  ["altnet_id = ?", params[:id]], 
+      ^
+/Users/xinghao/Documents/rails/pull-web-data/app/controllers/similar_tracks_controller.rb:24: syntax error, unexpected tIDENTIFIER, expecting kDO or '{' or '('
+              :joins      ...
+      ^
+/Users/xinghao/Documents/rails/pull-web-data/app/controllers/similar_tracks_controller.rb:24: syntax error, unexpected tIDENTIFIER, expecting kEND
+              :joins      => [  { :track =>{:album...
+                              ^
+/Users/xinghao/Documents/rails/pull-web-data/app/controllers/similar_tracks_controller.rb:24: syntax error, unexpected tIDENTIFIER, expecting '}'
+...track =>{:album => :artist}   } ],
+                              ^
+/Users/xinghao/Documents/rails/pull-web-data/app/controllers/similar_tracks_controller.rb:25: syntax error, unexpected tIDENTIFIER, expecting kEND
+              :Page       => @page,
+                             ^
+/Users/xinghao/Documents/rails/pull-web-data/app/controllers/similar_tracks_controller.rb:26: syntax error, unexpected tIDENTIFIER, expecting kDO or '{' or '('
+              :Per_page   => @@nb_per_page,
+      ^
+/Users/xinghao/Documents/rails/pull-web-data/app/controllers/similar_tracks_controller.rb:26: syntax error, unexpected tIDENTIFIER, expecting kEND
+              :Per_page   => @@nb_per_page,
+                                 ^
+/Users/xinghao/Documents/rails/pull-web-data/app/controllers/similar_tracks_controller.rb:27: syntax error, unexpected tIDENTIFIER, expecting kDO or '{' or '('
+              :Order      => @sort_by + ' ' + @way
+      ^
+/Users/xinghao/Documents/rails/pull-web-data/app/controllers/similar_tracks_controller.rb:27: syntax error, unexpected tIDENTIFIER, expecting kEND
+              :Order      => @sort_by + ' ' + @way
+                              ^
+/Users/xinghao/Documents/rails/pull-web-data/app/controllers/similar_tracks_controller.rb:28: syntax error, unexpected ')', expecting kEND):
+  
+
+
+ActionView::TemplateError (undefined method `altnet_id' for #<Track id: 278373>) on line #23 of app/views/similar_tracks/show.html.erb:
+20:     <td> &nbsp;&nbsp;&nbsp;</td>
+21:     <td><%=h ptrack.artist_name %></td>
+22: 
+23:     <td><%= link_to 'Show', similar_tracks_path(ptrack.altnet_id) %></td>
+24: 
+25:     
+26:   </tr>
+
+    app/views/similar_tracks/show.html.erb:23
+    app/views/similar_tracks/show.html.erb:15:in `each'
+    app/views/similar_tracks/show.html.erb:15
+    app/controllers/similar_tracks_controller.rb:21:in `show'
+
+
+ActiveRecord::StatementInvalid (Mysql::Error: Unknown column 'status' in 'where clause': select tracks.id, tracks.name as track_name, artists.name as artist_name from similar_p_track_stats, tracks,albums,artists where status = 1 and similar_p_track_stats.altnet_id =  tracks.id and  tracks.album_id = albums.id and albums.artist_id = artists.id limit 100):
+  app/controllers/similar_tracks_controller.rb:7:in `index'
+
+
+ActiveRecord::StatementInvalid (Mysql::Error: Unknown column 'similar_p_track_stats.status' in 'where clause': select tracks.id, tracks.name as track_name, artists.name as artist_name from similar_p_track_stats, tracks,albums,artists where similar_p_track_stats.status = 1 and similar_p_track_stats.altnet_id =  tracks.id and  tracks.album_id = albums.id and albums.artist_id = artists.id limit 100):
+  app/controllers/similar_tracks_controller.rb:7:in `index'
+
+
+ActionView::TemplateError (undefined local variable or method `ptrack' for #<ActionView::Base:0x103642158>) on line #17 of app/views/similar_tracks/index.html.erb:
+14:     <td> &nbsp;&nbsp;&nbsp;</td>
+15:     <td><%=h track.artist_name %></td>
+16: 
+17:     <td><%= link_to 'Show', similar_tracks_path(ptrack.altnet_id) %></td>
+18: 
+19:     
+20:   </tr>
+
+    app/views/similar_tracks/index.html.erb:17
+    app/views/similar_tracks/index.html.erb:10:in `each'
+    app/views/similar_tracks/index.html.erb:10
+    app/controllers/similar_tracks_controller.rb:9:in `index'
+

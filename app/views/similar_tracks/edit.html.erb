@@ -1,0 +1,36 @@
+<h1>Editing p_stat</h1>
+
+<% form_for(@p_stat) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :altnet_id %><br />
+    <%= f.text_field :altnet_id %>
+  </p>
+  <p>
+    <%= f.label :mz %><br />
+    <%= f.text_field :mz %>
+  </p>
+  <p>
+    <%= f.label :lastfm %><br />
+    <%= f.text_field :lastfm %>
+  </p>
+  <p>
+    <%= f.label :echonest %><br />
+    <%= f.text_field :echonest %>
+  </p>
+  <p>
+    <%= f.label :yahoomusic %><br />
+    <%= f.text_field :yahoomusic %>
+  </p>
+  <p>
+    <%= f.label :mtv %><br />
+    <%= f.text_field :mtv %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @p_stat %> |
+<%= link_to 'Back', p_stats_path %>
