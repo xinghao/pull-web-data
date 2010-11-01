@@ -44,9 +44,9 @@ class RawWebData
   
   def getLastfmArtistPopularity altnet_name
     url = getLastfmArtistPopularityUrl(altnet_name)
-    puts url
-    html = open(url, "User-Agent" => getUseragent(), :proxy=>getProxy())
-    begin    
+    puts url    
+    begin
+      html = open(url, "User-Agent" => getUseragent(), :proxy=>getProxy())    
       document = Hpricot(html)
       #ar = document.search("//div[@id='catalogueHead']");
       ar = document.search("//div[@id='catalogueHead']").search("//p[@class='stats']");      
@@ -60,8 +60,9 @@ class RawWebData
   def getLastfmAlbumPopularity artist_name, album_name
     url = getLastfmAlbumPopularityUrl(artist_name, album_name)
     puts url
-    html = open(url, "User-Agent" => getUseragent(), :proxy=>getProxy())
-    begin    
+    
+    begin
+      html = open(url, "User-Agent" => getUseragent(), :proxy=>getProxy())    
       document = Hpricot(html)
       #ar = document.search("//div[@id='catalogueHead']");
       ar = document.search("//div[@id='catalogueHead']").search("//p[@class='stats']");      
@@ -79,8 +80,9 @@ class RawWebData
   def getYahooMusicData altnet_name
     url = getYahooMusicDataUrl(altnet_name)
     puts url
-    html = open(url, "User-Agent" => getUseragent(), :proxy=>getProxy())
-    begin    
+    
+    begin
+      html = open(url, "User-Agent" => getUseragent(), :proxy=>getProxy())    
       document = Hpricot(html)
       ar = document.search("//ul[@id='artistPgSimArtists']");
       return ar
@@ -113,9 +115,9 @@ class RawWebData
     url = getLastFmSimilarTrackDataUrl(artist_name, album_name, track_name);
     proxy = getProxy();
     puts url+"-["+proxy+"]";
-    #url = "http://www.google.com"
-    html = open(url, "User-Agent" => getUseragent(), :proxy=>proxy)
-    begin    
+    #url = "http://www.google.com"    
+    begin
+      html = open(url, "User-Agent" => getUseragent(), :proxy=>proxy)    
       document = Hpricot(html)
       ar = document.search("//div[@class='skyWrap']").search("//table[@class='candyStriped chart']");
       #puts ar      
@@ -138,9 +140,9 @@ class RawWebData
     url = getPandoraSimilarTrackDataUrl(artist_name, album_name, track_name);
     proxy = getProxy();
     puts url+"-["+proxy+"]";
-    #url = "http://www.google.com"
-    html = open(url, "User-Agent" => getUseragent(), :proxy=>proxy)
-    begin    
+    #url = "http://www.google.com"    
+    begin
+      html = open(url, "User-Agent" => getUseragent(), :proxy=>proxy)    
       document = Hpricot(html)
       ar = document.search("//div[@id='community_content_right']").search("//div[@id='community_section']").search("//span[@id='similar_song']");
       #puts ar      

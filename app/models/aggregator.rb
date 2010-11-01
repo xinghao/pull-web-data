@@ -2,6 +2,13 @@ class Aggregator
     def initialize
     end
 
+  def aggredateSimilarTracks iOffset, iLimit
+    tracks = SimilarPTrackStat.find(:all, :offset => iOffset, :limit => iLimit, :conditions =>["mtv = 5 and lastfm = 5"])
+    tracks.each do |track|
+      
+    end
+  end
+  
   def start
     #2402 the rolling stones
     #1785 beyonce

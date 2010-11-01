@@ -138,22 +138,23 @@ class DataSource
    end #--end of album iteration 
   end
   
-    def analyzeSimilarTrackRowData
+    def analyzeSimilarTrackRawData iOffset, iLimit
     #art = Artist.find(1)
     where = @DataSourceType+ " = ?"
-   iOffset = 0
+   #iOffset = 0
    # iOffset = 30000
    # iOffset = 60000
    # iOffset = 90000
    # iOffset = 120000
    iLimit = 1    
-    SimilarPTrackStat.find(:all, :conditions =>[where , 5 ], :offset => iOffset, :limit => iLimit).each do |ps|
+    #SimilarPTrackStat.find(:all, :conditions =>[where , 5 ], :offset => iOffset, :limit => iLimit).each do |ps|
+    SimilarPTrackStat.find(:all, :conditions =>["lastfm = 5 and mtv =5 "], :offset => iOffset, :limit => iLimit).each do |ps|
     #PStat.find(:all, :conditions =>[where , 5 ]).each do |ps|
       track = Track.find(:first, :conditions =>["id = ?", ps.altnet_id])
       puts @DataSourceType + " analyzing(raw data) :" + track.id.to_s
   
       begin
-        status = analyzeSimilarTrackRawData(track)    
+        status = analyzeSimilarTrackRawDataImp(track)    
       rescue Exception => e
         puts e
         status = 7
@@ -161,7 +162,7 @@ class DataSource
       
       begin
         puts "status : "+ status.to_s
-        updatePstatus(art.id, status)
+        #updatePstatus(art.id, status)
       rescue Exception => e
         puts e
       end 
@@ -324,7 +325,33 @@ class DataSource
   #     end      
   # end # end of function
  
- 
+  def insertSimilarTrack(track_id, artist_name, album_name, track_name, icount)
+    #puts "artist name:" + artist_name
+    artist = Artist.find(:first, :conditions =>[ "name = ?", artist_name ])
+    if artist == nil
+      return 0
+    end
+    
+    #puts "track name:" + track_name
+    track = Track.find(:first, :conditions =>[ "name = ?", track_name ])
+    if track == nil
+      return 0
+    end
+    #puts "match!"
+    if @DataSourceType == "lastfm"
+      rm = SimilarTrackLastfm.new 
+    elsif @DataSourceType == "mtv"
+      rm = SimilarTrackMtv.new
+    end 
+    
+    rm.altnet_id = track_id
+    rm.similar_artist_id = artist.id
+    rm.similar_track_id = track.id           
+    rm.score = icount 
+    rm.save
+    return 1
+  end
+  
   def insertSimilarArtist(art_id, similar_artist_name, icount)
     similar_artist = Artist.find(:first, :conditions =>[ "name = ?", similar_artist_name ])
 

@@ -2321,3 +2321,360 @@ Migrating to CreateWebsourceTrackSimilarMtvs (20101027061551)
   [4;36;1mTrack Load (1.4ms)[0m   [0;1mSELECT * FROM `tracks` WHERE (`tracks`.`id` = 2) [0m
   [4;35;1mWebsourceTrackSimilarMtv Load (0.4ms)[0m   [0mSELECT * FROM `websource_track_similar_mtvs` WHERE (`websource_track_similar_mtvs`.altnet_id = 2) LIMIT 1[0m
   [4;36;1mWebsourceTrackSimilarMtv Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `websource_track_similar_mtvs`[0m
+  [4;36;1mSQL (306.3ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (308.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (294.6ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreatePStats (20100922010458)
+Migrating to CreateRelateMusicbrainzs (20100922023028)
+Migrating to CreateWebsources (20100922071727)
+Migrating to CreateWebsourceLastfms (20100923021033)
+Migrating to CreateWebsourceYahoomusics (20100923021056)
+Migrating to CreateWebsourceMtvs (20100923021108)
+Migrating to CreateWebsourceEchonests (20100923071830)
+Migrating to CreateRelateMtvs (20100924035323)
+Migrating to CreateRelateLastfms (20100924052749)
+Migrating to CreateRelateYahoomusics (20100924052803)
+Migrating to CreateRelateEchonests (20100924052823)
+Migrating to CreateAStats (20100927031750)
+Migrating to CreateSimilarArtists (20100930045107)
+Migrating to CreatePopularPStats (20101006061104)
+Migrating to CreateWebsourceArtistPopularLastfms (20101006062147)
+Migrating to CreateWebsourceArtistPopularEchonests (20101007023819)
+Migrating to CreatePopularArtists (20101018032613)
+Migrating to CreatePopularPAlbumStats (20101021054138)
+Migrating to CreateWebsourceAlbumPopularLastfms (20101021065914)
+Migrating to CreateSimilarPTrackStats (20101022020827)
+Migrating to CreateWebsourceTrackSimilarLastfms (20101022020938)
+Migrating to CreateWebsourceTrackSimilarMtvs (20101027061551)
+Migrating to CreatePopularAlbums (20101028112335)
+  [4;35;1mSQL (484.0ms)[0m   [0mCREATE TABLE `popular_albums` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `album_id` int(11), `playstats` decimal(65,30), `mz` decimal(65,30), `lastfm` decimal(65,30), `echonest` decimal(65,30), `yahoomusic` decimal(65,30), `mtv` decimal(65,30), `popularity` decimal(65,30), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (330.7ms)[0m   [0;1mSHOW KEYS FROM `popular_albums`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mMysql::Error: Key column 'artist_id' doesn't exist in table: CREATE INDEX `index_popular_albums_on_artist_id` ON `popular_albums` (`artist_id`)[0m
+  [4;36;1mSQL (213.5ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAlbum Columns (324.1ms)[0m   [0mSHOW FIELDS FROM `albums`[0m
+  [4;36;1mAlbum Load (429.1ms)[0m   [0;1mSELECT * FROM `albums` WHERE (`albums`.`id` = 1) [0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.0ms)[0m   [0mMysql::Error: Unknown column 'websource_album_popular_lastfms.altnet_id' in 'where clause': SELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 1) LIMIT 1[0m
+  [4;36;1mSQL (17.9ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (19.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreatePStats (20100922010458)
+Migrating to CreateRelateMusicbrainzs (20100922023028)
+Migrating to CreateWebsources (20100922071727)
+Migrating to CreateWebsourceLastfms (20100923021033)
+Migrating to CreateWebsourceYahoomusics (20100923021056)
+Migrating to CreateWebsourceMtvs (20100923021108)
+Migrating to CreateWebsourceEchonests (20100923071830)
+Migrating to CreateRelateMtvs (20100924035323)
+Migrating to CreateRelateLastfms (20100924052749)
+Migrating to CreateRelateYahoomusics (20100924052803)
+Migrating to CreateRelateEchonests (20100924052823)
+Migrating to CreateAStats (20100927031750)
+Migrating to CreateSimilarArtists (20100930045107)
+Migrating to CreatePopularPStats (20101006061104)
+Migrating to CreateWebsourceArtistPopularLastfms (20101006062147)
+Migrating to CreateWebsourceArtistPopularEchonests (20101007023819)
+Migrating to CreatePopularArtists (20101018032613)
+Migrating to CreatePopularPAlbumStats (20101021054138)
+Migrating to CreateWebsourceAlbumPopularLastfms (20101021065914)
+Migrating to CreateSimilarPTrackStats (20101022020827)
+Migrating to CreateWebsourceTrackSimilarLastfms (20101022020938)
+Migrating to CreateWebsourceTrackSimilarMtvs (20101027061551)
+Migrating to CreatePopularAlbums (20101028112335)
+  [4;35;1mSQL (210.2ms)[0m   [0mCREATE TABLE `popular_albums` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `album_id` int(11), `playstats` decimal(65,30), `mz` decimal(65,30), `lastfm` decimal(65,30), `echonest` decimal(65,30), `yahoomusic` decimal(65,30), `mtv` decimal(65,30), `popularity` decimal(65,30), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (5.4ms)[0m   [0;1mSHOW KEYS FROM `popular_albums`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mMysql::Error: Key column 'artist_id' doesn't exist in table: CREATE INDEX `index_popular_albums_on_artist_id` ON `popular_albums` (`artist_id`)[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreatePStats (20100922010458)
+Migrating to CreateRelateMusicbrainzs (20100922023028)
+Migrating to CreateWebsources (20100922071727)
+Migrating to CreateWebsourceLastfms (20100923021033)
+Migrating to CreateWebsourceYahoomusics (20100923021056)
+Migrating to CreateWebsourceMtvs (20100923021108)
+Migrating to CreateWebsourceEchonests (20100923071830)
+Migrating to CreateRelateMtvs (20100924035323)
+Migrating to CreateRelateLastfms (20100924052749)
+Migrating to CreateRelateYahoomusics (20100924052803)
+Migrating to CreateRelateEchonests (20100924052823)
+Migrating to CreateAStats (20100927031750)
+Migrating to CreateSimilarArtists (20100930045107)
+Migrating to CreatePopularPStats (20101006061104)
+Migrating to CreateWebsourceArtistPopularLastfms (20101006062147)
+Migrating to CreateWebsourceArtistPopularEchonests (20101007023819)
+Migrating to CreatePopularArtists (20101018032613)
+Migrating to CreatePopularPAlbumStats (20101021054138)
+Migrating to CreateWebsourceAlbumPopularLastfms (20101021065914)
+Migrating to CreateSimilarPTrackStats (20101022020827)
+Migrating to CreateWebsourceTrackSimilarLastfms (20101022020938)
+Migrating to CreateWebsourceTrackSimilarMtvs (20101027061551)
+Migrating to CreatePopularAlbums (20101028112335)
+  [4;35;1mSQL (118.2ms)[0m   [0mCREATE TABLE `popular_albums` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `album_id` int(11), `playstats` decimal(65,30), `mz` decimal(65,30), `lastfm` decimal(65,30), `echonest` decimal(65,30), `yahoomusic` decimal(65,30), `mtv` decimal(65,30), `popularity` decimal(65,30), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.5ms)[0m   [0;1mSHOW KEYS FROM `popular_albums`[0m
+  [4;35;1mSQL (220.6ms)[0m   [0mCREATE INDEX `index_popular_albums_on_album_id` ON `popular_albums` (`album_id`)[0m
+  [4;36;1mSQL (19.2ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20101028112335')[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `a_stats`[0m
+  [4;35;1mSQL (19.0ms)[0m   [0mdescribe `a_stats`[0m
+  [4;36;1mSQL (8.1ms)[0m   [0;1mSHOW KEYS FROM `a_stats`[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mSHOW FIELDS FROM `albums`[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mdescribe `albums`[0m
+  [4;35;1mSQL (1217.4ms)[0m   [0mSHOW KEYS FROM `albums`[0m
+  [4;36;1mSQL (2.3ms)[0m   [0;1mSHOW FIELDS FROM `artists`[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mdescribe `artists`[0m
+  [4;36;1mSQL (1232.2ms)[0m   [0;1mSHOW KEYS FROM `artists`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mSHOW FIELDS FROM `p_stats`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mdescribe `p_stats`[0m
+  [4;35;1mSQL (38.3ms)[0m   [0mSHOW KEYS FROM `p_stats`[0m
+  [4;36;1mSQL (3.6ms)[0m   [0;1mSHOW FIELDS FROM `popular_albums`[0m
+  [4;35;1mSQL (2.5ms)[0m   [0mdescribe `popular_albums`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `popular_albums`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSHOW FIELDS FROM `popular_artists`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mdescribe `popular_artists`[0m
+  [4;35;1mSQL (168.3ms)[0m   [0mSHOW KEYS FROM `popular_artists`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mSHOW FIELDS FROM `popular_p_album_stats`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `popular_p_album_stats`[0m
+  [4;36;1mSQL (46.1ms)[0m   [0;1mSHOW KEYS FROM `popular_p_album_stats`[0m
+  [4;35;1mSQL (1.8ms)[0m   [0mSHOW FIELDS FROM `popular_p_stats`[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mdescribe `popular_p_stats`[0m
+  [4;35;1mSQL (11.4ms)[0m   [0mSHOW KEYS FROM `popular_p_stats`[0m
+  [4;36;1mSQL (1.4ms)[0m   [0;1mSHOW FIELDS FROM `relate_echonests`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `relate_echonests`[0m
+  [4;36;1mSQL (6.3ms)[0m   [0;1mSHOW KEYS FROM `relate_echonests`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSHOW FIELDS FROM `relate_lastfms`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mdescribe `relate_lastfms`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW KEYS FROM `relate_lastfms`[0m
+  [4;36;1mSQL (0.9ms)[0m   [0;1mSHOW FIELDS FROM `relate_mtvs`[0m
+  [4;35;1mSQL (16.8ms)[0m   [0mdescribe `relate_mtvs`[0m
+  [4;36;1mSQL (18.3ms)[0m   [0;1mSHOW KEYS FROM `relate_mtvs`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `relate_musicbrainzs`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `relate_musicbrainzs`[0m
+  [4;35;1mSQL (84.7ms)[0m   [0mSHOW KEYS FROM `relate_musicbrainzs`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mSHOW FIELDS FROM `relate_yahoomusics`[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mdescribe `relate_yahoomusics`[0m
+  [4;36;1mSQL (1.6ms)[0m   [0;1mSHOW KEYS FROM `relate_yahoomusics`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mSHOW FIELDS FROM `similar_artists`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `similar_artists`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW KEYS FROM `similar_artists`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mSHOW FIELDS FROM `similar_p_track_stats`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `similar_p_track_stats`[0m
+  [4;36;1mSQL (46.7ms)[0m   [0;1mSHOW KEYS FROM `similar_p_track_stats`[0m
+  [4;35;1mSQL (2.4ms)[0m   [0mSHOW FIELDS FROM `tracks`[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mdescribe `tracks`[0m
+  [4;35;1mSQL (1592.6ms)[0m   [0mSHOW KEYS FROM `tracks`[0m
+  [4;36;1mSQL (24.0ms)[0m   [0;1mSHOW FIELDS FROM `websource_album_popular_lastfms`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mdescribe `websource_album_popular_lastfms`[0m
+  [4;36;1mSQL (16.1ms)[0m   [0;1mSHOW KEYS FROM `websource_album_popular_lastfms`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `websource_artist_popular_echonests`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mdescribe `websource_artist_popular_echonests`[0m
+  [4;35;1mSQL (11.9ms)[0m   [0mSHOW KEYS FROM `websource_artist_popular_echonests`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSHOW FIELDS FROM `websource_artist_popular_lastfms`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `websource_artist_popular_lastfms`[0m
+  [4;36;1mSQL (6.1ms)[0m   [0;1mSHOW KEYS FROM `websource_artist_popular_lastfms`[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mSHOW FIELDS FROM `websource_echonests`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `websource_echonests`[0m
+  [4;35;1mSQL (12.5ms)[0m   [0mSHOW KEYS FROM `websource_echonests`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSHOW FIELDS FROM `websource_lastfms`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mdescribe `websource_lastfms`[0m
+  [4;36;1mSQL (5.3ms)[0m   [0;1mSHOW KEYS FROM `websource_lastfms`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW FIELDS FROM `websource_mtvs`[0m
+  [4;36;1mSQL (1.2ms)[0m   [0;1mdescribe `websource_mtvs`[0m
+  [4;35;1mSQL (13.7ms)[0m   [0mSHOW KEYS FROM `websource_mtvs`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mSHOW FIELDS FROM `websource_track_similar_lastfms`[0m
+  [4;35;1mSQL (1.1ms)[0m   [0mdescribe `websource_track_similar_lastfms`[0m
+  [4;36;1mSQL (10.9ms)[0m   [0;1mSHOW KEYS FROM `websource_track_similar_lastfms`[0m
+  [4;35;1mSQL (1.4ms)[0m   [0mSHOW FIELDS FROM `websource_track_similar_mtvs`[0m
+  [4;36;1mSQL (1.1ms)[0m   [0;1mdescribe `websource_track_similar_mtvs`[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mSHOW KEYS FROM `websource_track_similar_mtvs`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mSHOW FIELDS FROM `websource_yahoomusics`[0m
+  [4;35;1mSQL (1.5ms)[0m   [0mdescribe `websource_yahoomusics`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW KEYS FROM `websource_yahoomusics`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW FIELDS FROM `websources`[0m
+  [4;36;1mSQL (1.3ms)[0m   [0;1mdescribe `websources`[0m
+  [4;35;1mSQL (12.6ms)[0m   [0mSHOW KEYS FROM `websources`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mAlbum Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `albums`[0m
+  [4;36;1mAlbum Load (54.8ms)[0m   [0;1mSELECT * FROM `albums` WHERE (`albums`.`id` = 1) [0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.4ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 1) LIMIT 1[0m
+  [4;36;1mWebsourceAlbumPopularLastfm Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `websource_album_popular_lastfms`[0m
+  [4;35;1mPopularAlbum Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `popular_albums`[0m
+  [4;36;1mPopularAlbum Load (3.9ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.5ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 11:56:42', 1, NULL, NULL, '2010-10-28 11:56:42', NULL, 1535.0, NULL)[0m
+  [4;35;1mSQL (16.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mPopularPAlbumStat Load (0.3ms)[0m   [0mSELECT * FROM `popular_p_album_stats` WHERE (lastfm = 5) [0m
+  [4;36;1mPopularPAlbumStat Columns (35.6ms)[0m   [0;1mSHOW FIELDS FROM `popular_p_album_stats`[0m
+  [4;35;1mAlbum Load (0.4ms)[0m   [0mSELECT * FROM `albums` WHERE (id = 1) LIMIT 1[0m
+  [4;36;1mAlbum Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `albums`[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.4ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 1) LIMIT 1[0m
+  [4;36;1mWebsourceAlbumPopularLastfm Columns (18.8ms)[0m   [0;1mSHOW FIELDS FROM `websource_album_popular_lastfms`[0m
+  [4;35;1mPopularAlbum Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `popular_albums`[0m
+  [4;36;1mPopularAlbum Load (11.0ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.3ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:00:33', 1, NULL, NULL, '2010-10-28 12:00:33', NULL, 1535.0, NULL)[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.5ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 2) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.2ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 2) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.2ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.4ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:00:33', 2, NULL, NULL, '2010-10-28 12:00:33', NULL, 69344.0, NULL)[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 3) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.2ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 3) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.2ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 3) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.2ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:00:33', 3, NULL, NULL, '2010-10-28 12:00:33', NULL, 14409.0, NULL)[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 4) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.2ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 4) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.2ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 4) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.2ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:00:33', 4, NULL, NULL, '2010-10-28 12:00:33', NULL, 6748.0, NULL)[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 5) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.2ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 5) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.2ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 5) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.2ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:00:33', 5, NULL, NULL, '2010-10-28 12:00:33', NULL, 117.0, NULL)[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 6) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.2ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 6) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.2ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 6) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.2ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:00:33', 6, NULL, NULL, '2010-10-28 12:00:33', NULL, 47.0, NULL)[0m
+  [4;35;1mSQL (9.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.4ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 7) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.3ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 7) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 7) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.3ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:00:33', 7, NULL, NULL, '2010-10-28 12:00:33', NULL, 3206.0, NULL)[0m
+  [4;35;1mSQL (5.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.5ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 8) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.4ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 8) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.5ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 8) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.2ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:00:33', 8, NULL, NULL, '2010-10-28 12:00:33', NULL, 31093.0, NULL)[0m
+  [4;35;1mSQL (4.9ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.4ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 9) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.3ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 9) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 9) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.2ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:00:33', 9, NULL, NULL, '2010-10-28 12:00:33', NULL, 50.0, NULL)[0m
+  [4;35;1mSQL (5.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.4ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 10) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.3ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 10) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 10) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.4ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:00:33', 10, NULL, NULL, '2010-10-28 12:00:33', NULL, 167.0, NULL)[0m
+  [4;35;1mSQL (5.9ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mPopularPAlbumStat Load (0.5ms)[0m   [0mSELECT * FROM `popular_p_album_stats` WHERE (lastfm = 5) [0m
+  [4;36;1mPopularPAlbumStat Columns (9.8ms)[0m   [0;1mSHOW FIELDS FROM `popular_p_album_stats`[0m
+  [4;35;1mAlbum Load (0.4ms)[0m   [0mSELECT * FROM `albums` WHERE (id = 1) LIMIT 1[0m
+  [4;36;1mAlbum Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `albums`[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.3ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 1) LIMIT 1[0m
+  [4;36;1mWebsourceAlbumPopularLastfm Columns (25.2ms)[0m   [0;1mSHOW FIELDS FROM `websource_album_popular_lastfms`[0m
+  [4;35;1mPopularAlbum Columns (5.0ms)[0m   [0mSHOW FIELDS FROM `popular_albums`[0m
+  [4;36;1mPopularAlbum Load (0.4ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.2ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:02:13', 1, NULL, NULL, '2010-10-28 12:02:13', NULL, 1535.0, NULL)[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPopularPAlbumStat Load (0.3ms)[0m   [0;1mSELECT * FROM `popular_p_album_stats` WHERE (`popular_p_album_stats`.`altnet_id` = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularPAlbumStat Update (18.8ms)[0m   [0;1mUPDATE `popular_p_album_stats` SET `updated_at` = '2010-10-28 12:02:13', `lastfm` = 1 WHERE `id` = 1[0m
+  [4;35;1mSQL (0.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.4ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 2) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.2ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 2) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.2ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.2ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:02:13', 2, NULL, NULL, '2010-10-28 12:02:13', NULL, 69344.0, NULL)[0m
+  [4;35;1mSQL (1.2ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPopularPAlbumStat Load (0.3ms)[0m   [0;1mSELECT * FROM `popular_p_album_stats` WHERE (`popular_p_album_stats`.`altnet_id` = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularPAlbumStat Update (0.2ms)[0m   [0;1mUPDATE `popular_p_album_stats` SET `updated_at` = '2010-10-28 12:02:13', `lastfm` = 1 WHERE `id` = 2[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 3) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.2ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 3) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 3) LIMIT 1[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.3ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:02:13', 3, NULL, NULL, '2010-10-28 12:02:13', NULL, 14409.0, NULL)[0m
+  [4;35;1mSQL (9.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPopularPAlbumStat Load (0.3ms)[0m   [0;1mSELECT * FROM `popular_p_album_stats` WHERE (`popular_p_album_stats`.`altnet_id` = 3) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularPAlbumStat Update (0.3ms)[0m   [0;1mUPDATE `popular_p_album_stats` SET `updated_at` = '2010-10-28 12:02:13', `lastfm` = 1 WHERE `id` = 3[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 4) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.2ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 4) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 4) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.2ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:02:13', 4, NULL, NULL, '2010-10-28 12:02:13', NULL, 6748.0, NULL)[0m
+  [4;35;1mSQL (4.2ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPopularPAlbumStat Load (0.4ms)[0m   [0;1mSELECT * FROM `popular_p_album_stats` WHERE (`popular_p_album_stats`.`altnet_id` = 4) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularPAlbumStat Update (0.2ms)[0m   [0;1mUPDATE `popular_p_album_stats` SET `updated_at` = '2010-10-28 12:02:13', `lastfm` = 1 WHERE `id` = 4[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 5) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.2ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 5) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 5) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.7ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:02:13', 5, NULL, NULL, '2010-10-28 12:02:13', NULL, 117.0, NULL)[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPopularPAlbumStat Load (0.3ms)[0m   [0;1mSELECT * FROM `popular_p_album_stats` WHERE (`popular_p_album_stats`.`altnet_id` = 5) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularPAlbumStat Update (0.2ms)[0m   [0;1mUPDATE `popular_p_album_stats` SET `updated_at` = '2010-10-28 12:02:13', `lastfm` = 1 WHERE `id` = 5[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 6) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.3ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 6) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.2ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 6) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.2ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:02:13', 6, NULL, NULL, '2010-10-28 12:02:13', NULL, 47.0, NULL)[0m
+  [4;35;1mSQL (4.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPopularPAlbumStat Load (0.4ms)[0m   [0;1mSELECT * FROM `popular_p_album_stats` WHERE (`popular_p_album_stats`.`altnet_id` = 6) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularPAlbumStat Update (0.2ms)[0m   [0;1mUPDATE `popular_p_album_stats` SET `updated_at` = '2010-10-28 12:02:13', `lastfm` = 1 WHERE `id` = 6[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 7) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.2ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 7) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.4ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 7) LIMIT 1[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.3ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:02:13', 7, NULL, NULL, '2010-10-28 12:02:13', NULL, 3206.0, NULL)[0m
+  [4;35;1mSQL (2.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPopularPAlbumStat Load (0.4ms)[0m   [0;1mSELECT * FROM `popular_p_album_stats` WHERE (`popular_p_album_stats`.`altnet_id` = 7) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularPAlbumStat Update (0.2ms)[0m   [0;1mUPDATE `popular_p_album_stats` SET `updated_at` = '2010-10-28 12:02:13', `lastfm` = 1 WHERE `id` = 7[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 8) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.2ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 8) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.2ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 8) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.2ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:02:13', 8, NULL, NULL, '2010-10-28 12:02:13', NULL, 31093.0, NULL)[0m
+  [4;35;1mSQL (3.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPopularPAlbumStat Load (0.3ms)[0m   [0;1mSELECT * FROM `popular_p_album_stats` WHERE (`popular_p_album_stats`.`altnet_id` = 8) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularPAlbumStat Update (0.2ms)[0m   [0;1mUPDATE `popular_p_album_stats` SET `updated_at` = '2010-10-28 12:02:13', `lastfm` = 1 WHERE `id` = 8[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 9) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.3ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 9) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.4ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 9) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.3ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:02:13', 9, NULL, NULL, '2010-10-28 12:02:13', NULL, 50.0, NULL)[0m
+  [4;35;1mSQL (3.2ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPopularPAlbumStat Load (0.4ms)[0m   [0;1mSELECT * FROM `popular_p_album_stats` WHERE (`popular_p_album_stats`.`altnet_id` = 9) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularPAlbumStat Update (0.2ms)[0m   [0;1mUPDATE `popular_p_album_stats` SET `updated_at` = '2010-10-28 12:02:13', `lastfm` = 1 WHERE `id` = 9[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `albums` WHERE (id = 10) LIMIT 1[0m
+  [4;35;1mWebsourceAlbumPopularLastfm Load (0.4ms)[0m   [0mSELECT * FROM `websource_album_popular_lastfms` WHERE (`websource_album_popular_lastfms`.altnet_id = 10) LIMIT 1[0m
+  [4;36;1mPopularAlbum Load (0.3ms)[0m   [0;1mSELECT * FROM `popular_albums` WHERE (`popular_albums`.`album_id` = 10) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularAlbum Create (0.3ms)[0m   [0;1mINSERT INTO `popular_albums` (`echonest`, `popularity`, `created_at`, `album_id`, `playstats`, `mz`, `updated_at`, `mtv`, `lastfm`, `yahoomusic`) VALUES(NULL, NULL, '2010-10-28 12:02:13', 10, NULL, NULL, '2010-10-28 12:02:13', NULL, 167.0, NULL)[0m
+  [4;35;1mSQL (1.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mPopularPAlbumStat Load (0.4ms)[0m   [0;1mSELECT * FROM `popular_p_album_stats` WHERE (`popular_p_album_stats`.`altnet_id` = 10) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mPopularPAlbumStat Update (0.3ms)[0m   [0;1mUPDATE `popular_p_album_stats` SET `updated_at` = '2010-10-28 12:02:13', `lastfm` = 1 WHERE `id` = 10[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mPopularPAlbumStat Load (0.3ms)[0m   [0mSELECT * FROM `popular_p_album_stats` WHERE (lastfm = 5) [0m

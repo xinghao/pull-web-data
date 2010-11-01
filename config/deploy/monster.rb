@@ -6,7 +6,7 @@ set :application, "pull-web-data"
 set :hostname, ""
 set :rails_env, 'staging'
 set :deploy_to, "/opt/apps/#{application}"
-set :cron, "cron8"
+set :cron, "cron5"
 
 role :app, "192.168.26.79"
 role :web, "192.168.26.79"

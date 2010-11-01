@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101028112335) do
+ActiveRecord::Schema.define(:version => 20101101033901) do
 
   create_table "a_stats", :force => true do |t|
     t.integer  "altnet_id"
@@ -172,6 +172,8 @@ ActiveRecord::Schema.define(:version => 20101028112335) do
     t.datetime "updated_at"
   end
 
+  add_index "popular_p_stats", ["altnet_id"], :name => "index_popular_p_stats_on_altnet_id"
+
   create_table "relate_echonests", :force => true do |t|
     t.integer  "altnet_id"
     t.integer  "similar_artist_id"
@@ -217,7 +219,7 @@ ActiveRecord::Schema.define(:version => 20101028112335) do
     t.datetime "updated_at"
   end
 
-  create_table "similar_artists", :force => true do |t|
+  create_table "similar_artists", :primary_key => "pk_id", :force => true do |t|
     t.integer  "artist_id"
     t.integer  "similar_artist_id"
     t.decimal  "similar_score",     :precision => 20, :scale => 15
@@ -237,6 +239,30 @@ ActiveRecord::Schema.define(:version => 20101028112335) do
   end
 
   add_index "similar_p_track_stats", ["altnet_id"], :name => "index_similar_p_track_stats_on_altnet_id"
+
+  create_table "similar_track_lastfms", :force => true do |t|
+    t.integer  "altnet_id"
+    t.integer  "similar_artist_id"
+    t.integer  "similar_album_id"
+    t.integer  "similar_track_id"
+    t.integer  "score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "similar_track_lastfms", ["altnet_id"], :name => "index_similar_track_lastfms_on_altnet_id"
+
+  create_table "similar_track_mtvs", :force => true do |t|
+    t.integer  "altnet_id"
+    t.integer  "similar_artist_id"
+    t.integer  "similar_album_id"
+    t.integer  "similar_track_id"
+    t.integer  "score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "similar_track_mtvs", ["altnet_id"], :name => "index_similar_track_mtvs_on_altnet_id"
 
   create_table "tracks", :force => true do |t|
     t.string   "name",                                  :null => false
@@ -298,7 +324,7 @@ ActiveRecord::Schema.define(:version => 20101028112335) do
   add_index "tracks", ["upc"], :name => "index_tracks_on_upc"
 
   create_table "websource_album_popular_lastfms", :force => true do |t|
-    t.integer  "altnet_id"
+    t.integer  "album_id"
     t.text     "html"
     t.text     "url"
     t.datetime "created_at"
@@ -323,6 +349,8 @@ ActiveRecord::Schema.define(:version => 20101028112335) do
     t.datetime "updated_at"
   end
 
+  add_index "websource_artist_popular_lastfms", ["altnet_id"], :name => "index_websource_artist_popular_lastfms_on_altnet_id"
+
   create_table "websource_echonests", :force => true do |t|
     t.integer  "altnet_id"
     t.text     "html"
@@ -331,6 +359,8 @@ ActiveRecord::Schema.define(:version => 20101028112335) do
     t.datetime "updated_at"
   end
 
+  add_index "websource_echonests", ["altnet_id"], :name => "index_webresource_enchonest_altent_id"
+
   create_table "websource_lastfms", :force => true do |t|
     t.integer  "altnet_id"
     t.text     "html"
@@ -338,6 +368,8 @@ ActiveRecord::Schema.define(:version => 20101028112335) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "websource_lastfms", ["altnet_id"], :name => "index_webresource_lastfm_altent_id"
 
   create_table "websource_mtvs", :force => true do |t|
     t.integer  "altnet_id"
@@ -349,10 +381,10 @@ ActiveRecord::Schema.define(:version => 20101028112335) do
 
   create_table "websource_track_similar_lastfms", :force => true do |t|
     t.integer  "altnet_id"
-    t.text     "html",       :limit => 16777215
     t.text     "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "html",       :limit => 16777215
   end
 
   add_index "websource_track_similar_lastfms", ["altnet_id"], :name => "index_websource_track_similar_lastfms_on_altnet_id"

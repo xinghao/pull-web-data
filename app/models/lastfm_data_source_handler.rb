@@ -135,7 +135,7 @@ class LastfmDataSourceHandler < DataSource
  
   end #end of function 
 
-  def analyzeSimilarTrackRawData track
+  def analyzeSimilarTrackRawDataImp track
     document = Hpricot(track.websource_track_similar_lastfm.html.to_s)
     sarts = document.search("tr").search("//td[@class='subjectCell']")
     
@@ -154,9 +154,9 @@ class LastfmDataSourceHandler < DataSource
       
       if matchdata
         #similar_artist_name = matchdata[1]
-        puts matchdata[1]  + " - " + matchdata[2]
-        #ifound = ifound + insertSimilarArtist(art.id, similar_artist_name, icount)
-        #puts similar_artist_name           
+        #puts matchdata[1]  + " - " + matchdata[2]
+        ifound = ifound + insertSimilarTrack(track.id, matchdata[1], "", matchdata[2], icount)
+        #puts similar_artist_name   
       end
     end #end of iteration of artists 
     

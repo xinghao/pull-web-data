@@ -19,10 +19,10 @@
 #lm = LastfmDataSourceHandler.new
 #lm.getSimilarTrackWebRawDataImp tar
 
-track = Track.find(1)
+#track = Track.find(1)
  lm = LastfmDataSourceHandler.new
 # lm.getWebRawSimilarTrackData(0,3)
- lm.analyzeSimilarTrackRawData(0,1)
+ lm.analyzeSimilarTrackRawData(0,5000)
 # mtv = MtvDataSourceHandler.new;
 # mtv.getWebRawSimilarTrackData(0,20)
 #track = Track.find(2)

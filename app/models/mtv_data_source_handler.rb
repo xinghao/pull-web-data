@@ -13,37 +13,38 @@ class MtvDataSourceHandler < DataSource
     end
 
 
-  def analyzeSimilarTrackRawData track
-    document = Hpricot(track.websource_track_similar_lastfm.html.to_s)
-    sarts = document.search("tr").search("//td[@class='subjectCell']")
-    
-    
-    #RelateMtv.delete_all(:altnet_id => art.id)
-    
-    icount = 0
-    ifound = 0
-    sarts.each do |sart|
-      #puts sart
-      #puts sart
-      regex = Regexp.new(/>(.*)<\/a>.*>(.*)<\/a>/)
-      matchdata = regex.match(sart.to_s)
-      #print matchdata
-      icount = icount + 1
-      
-      if matchdata
-        #similar_artist_name = matchdata[1]
-        puts matchdata[1]  + " - " + matchdata[2]
-        #ifound = ifound + insertSimilarArtist(art.id, similar_artist_name, icount)
-        #puts similar_artist_name           
-      end
-    end #end of iteration of artists 
-    
-    if (ifound > 0)
-      return 1
-    else
-      return 6
-    end
-  end # end of function    
+  # def analyzeSimilarTrackRawData track
+  #   document = Hpricot(track.websource_track_similar_lastfm.html.to_s)
+  #   sarts = document.search("tr").search("//td[@class='subjectCell']")
+  #   
+  #   
+  #   #RelateMtv.delete_all(:altnet_id => art.id)
+  #   
+  #   icount = 0
+  #   ifound = 0
+  #   sarts.each do |sart|
+  #     #puts sart
+  #     #puts sart
+  #     regex = Regexp.new(/>(.*)<\/a>.*>(.*)<\/a>/)
+  #     matchdata = regex.match(sart.to_s)
+  #     #print matchdata
+  #     icount = icount + 1
+  #     
+  #     if matchdata
+  #       #similar_artist_name = matchdata[1]
+  #       #puts matchdata[1]  + " - " + matchdata[2]
+  #       #ifound = ifound + insertSimilarArtist(art.id, similar_artist_name, icount)
+  #       #ifound = ifound + insertSimilarTrack(track.id, matchdata[1], "", matchdata[2], icount)
+  #       #puts similar_artist_name           
+  #     end
+  #   end #end of iteration of artists 
+  #   
+  #   if (ifound > 0)
+  #     return 1
+  #   else
+  #     return 6
+  #   end
+  # end # end of function    
 
 
   def getSimilarTrackWebRawDataImp track
@@ -180,7 +181,7 @@ class MtvDataSourceHandler < DataSource
  
   end #end of function 
 
- def analyzeSimilarTrackRawData track
+ def analyzeSimilarTrackRawDataImp track
     document = Hpricot(track.websource_track_similar_mtv.html.to_s)
     sarts = document.search("//span[@id='similar_song']")
     
@@ -193,14 +194,15 @@ class MtvDataSourceHandler < DataSource
       #puts sart
       #puts sart
       regex = Regexp.new(/","(.*)",true.*<a.*>(.*?)<\/a>.*<a.*>(.*?)<\/a>/m)
-      regex2 = Regexp.new(/<a.*>(.*?)<\/a><br \/>.*<a/m)
+      #regex2 = Regexp.new(/<a.*>(.*?)<\/a><br \/>.*<a/m)
       matchdata = regex.match(sart.to_s)
      #print matchdata
       icount = icount + 1
       
       if matchdata
         #similar_artist_name = matchdata[1]
-        puts matchdata[1]  + " - " + matchdata[2]+ " - " + matchdata[3]
+        #puts matchdata[1]  + " - " + matchdata[2]+ " - " + matchdata[3]
+        ifound = ifound + insertSimilarTrack(track.id, CGI.unescapeHTML(matchdata[2]), CGI.unescapeHTML(matchdata[3]), CGI.unescapeHTML(matchdata[1]), icount)
         #ifound = ifound + insertSimilarArtist(art.id, similar_artist_name, icount)
         #puts similar_artist_name           
       end
