@@ -19,10 +19,10 @@
 #lm = LastfmDataSourceHandler.new
 #lm.getSimilarTrackWebRawDataImp tar
 
-track = Track.find(1)
- lm = LastfmDataSourceHandler.new
+#track = Track.find(1)
+# lm = LastfmDataSourceHandler.new
 # lm.getWebRawSimilarTrackData(0,3)
- lm.analyzeSimilarTrackRawData(0,1)
+# lm.analyzeSimilarTrackRawData(0,1)
 # mtv = MtvDataSourceHandler.new;
 # mtv.getWebRawSimilarTrackData(0,20)
 #track = Track.find(2)
@@ -33,5 +33,6 @@ track = Track.find(1)
 #ProxyPool.setCurrentCronServer "cron10"
 #pPool = ProxyPool.cronServerProvider
 
-# a = Aggregator.new;
+ a = Aggregator.new;
 # a.aggredateSimilarTracks(0,1)
+a.aggregateSimilarTracks(0,5000)

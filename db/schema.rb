@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101101033901) do
+ActiveRecord::Schema.define(:version => 20101101061754) do
 
   create_table "a_stats", :force => true do |t|
     t.integer  "altnet_id"
@@ -17,6 +17,15 @@ ActiveRecord::Schema.define(:version => 20101101033901) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "aggregate_similar_tracks_stats", :force => true do |t|
+    t.integer  "altnet_id"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "aggregate_similar_tracks_stats", ["altnet_id"], :name => "index_aggregate_similar_tracks_stats_on_altnet_id"
 
   create_table "albums", :force => true do |t|
     t.string   "name",                                    :null => false
@@ -263,6 +272,18 @@ ActiveRecord::Schema.define(:version => 20101101033901) do
   end
 
   add_index "similar_track_mtvs", ["altnet_id"], :name => "index_similar_track_mtvs_on_altnet_id"
+
+  create_table "similar_tracks", :force => true do |t|
+    t.integer  "altnet_id"
+    t.integer  "similar_artist_id"
+    t.integer  "similar_album_id"
+    t.integer  "similar_track_id"
+    t.decimal  "score",             :precision => 65, :scale => 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "similar_tracks", ["altnet_id"], :name => "index_similar_tracks_on_altnet_id"
 
   create_table "tracks", :force => true do |t|
     t.string   "name",                                  :null => false

@@ -2,10 +2,45 @@ class Aggregator
     def initialize
     end
 
-  def aggredateSimilarTracks iOffset, iLimit
-    tracks = SimilarPTrackStat.find(:all, :offset => iOffset, :limit => iLimit, :conditions =>["mtv = 5 and lastfm = 5"])
-    tracks.each do |track|
-      
+  def aggregateSimilarTracks iOffset, iLimit
+    #pTracks = SimilarPTrackStat.find(:all, :offset => iOffset, :limit => iLimit, :conditions =>["mtv = 5 and lastfm = 5"])
+    pTracks = SimilarPTrackStat.find(:all, :conditions =>["mtv = 5 and lastfm = 5"])
+    pTracks.each do |p|
+      track = Track.find(p.altnet_id);
+      if (!alreadyHandled(track, "similar tracks"))
+         h = Hash.new
+         
+        puts "Aggregator :" + track.id.to_s
+        # LASTFM
+        relateLastfms = SimilarTrackLastfm.find(:all, :select => 'DISTINCT similar_artist_id, similar_album_id, similar_track_id, score', :conditions =>["altnet_id = ?", track.id])
+        startSingleDataSourceTrack(relateLastfms, h, "lastfm")     
+        #MTV
+        relateMtvs = SimilarTrackMtv.find(:all, :select => 'DISTINCT similar_artist_id, similar_album_id, similar_track_id, score', :conditions =>["altnet_id = ?", track.id])
+        startSingleDataSourceTrack(relateMtvs, h, "mtv")
+        
+        icount = 0
+        h.each_pair do |sid, sas|
+           sa = SimilarTrack.new
+           sa.altnet_id = track.id
+#           sa.similar_artist_id = sid
+           sa.similar_track_id = sid
+           sa.score = sas.getScore
+           sa.save
+          #puts sid.to_s + ":"+ sas.getScore.to_s
+          icount = icount+1  
+        end
+        
+        puts "total:" + icount.to_s
+        if (icount == 0)
+          status = 2
+        else
+          status = 1
+        end
+        
+        puts status.to_s
+        updateAstatus(track, status, "similar tracks")
+
+      end   #end of if  
     end
   end
   
@@ -86,12 +121,34 @@ class Aggregator
     end
   end
   
+  def startSingleDataSourceTrack(relations, h, datasource_type)
+    relations.each do |ref|
+      sas = h[ref.similar_track_id]
+      if (sas == nil)        
+        sas = SimilarTrackScore.new
+        h[ref.similar_track_id] = sas
+      end
+      
+      sas.calculate(ref.score.to_f, datasource_type)
+    end
+  end
+
   
   # check if this artist has already been handled
-  def alreadyHandled art
-    aStat = art.a_stat
+  def alreadyHandled art, process_type
+    if (process_type == "similar artists")
+      aStat = art.a_stat
+    elsif (process_type == "similar tracks")
+      aStat = art.aggregate_similar_tracks_stat
+    end
     if (aStat == nil) 
+    if (process_type == "similar artists")
       aStat =  AStat.new
+    elsif (process_type == "similar tracks")
+      aStat = AggregateSimilarTracksStat.new
+    end
+      
+      
       aStat.altnet_id = art.id
       aStat.status = 0
       aStat.save
@@ -107,8 +164,14 @@ class Aggregator
   end # end of function
   
 
-  def updateAstatus(art, status)
-    aStat = AStat.find(:first, :conditions =>["altnet_id = ?", art.id])
+  def updateAstatus(art, status, process_type)
+    if (process_type == "similar artists")
+      aStat = AStat.find(:first, :conditions =>["altnet_id = ?", art.id])
+    elsif (process_type == "similar tracks")
+      aStat = AggregateSimilarTracksStat.find(:first, :conditions =>["altnet_id = ?", art.id])
+    end
+    
+    
     
     aStat.status = status
     
