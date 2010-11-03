@@ -14,20 +14,25 @@
 #r = RawWebData.new
 #r.getLastFmSimilarTrackData("the rolling stones", "album_name", "come on")
 #r.getPandoraSimilarTrackData("beyonce", "", "halo")
-
-#tar = Track.find(:first)
-#lm = LastfmDataSourceHandler.new
+#r.getLastfmTrackPopularity("beyonce", "", "halo")
+#r.getEchonestTrackPopularity("beyonce", "", "halo")
+tar = Track.find(:first)
+lm = LastfmDataSourceHandler.new
 #lm.getSimilarTrackWebRawDataImp tar
-
-track = Track.find(504257)
+#lm.getPopularTrackWebRawDataImp tar
+#e = EchonestDataSourceHandler.new
+#e.getPopularTrackWebRawDataImp tar
+#e.getWebRawTrackPopularData(0,10)
+lm.getWebRawTrackPopularData(0,10)
+#track = Track.find(504257)
 #lm = LastfmDataSourceHandler.new
 #lm.analyzeSimilarTrackRawDataImp(track)
 # lm.getWebRawSimilarTrackData(0,3)
 # lm.analyzeSimilarTrackRawData(0,1)
- mtv = MtvDataSourceHandler.new;
+# mtv = MtvDataSourceHandler.new;
 # mtv.getWebRawSimilarTrackData(0,20)
 #track = Track.find(2)
-mtv.analyzeSimilarTrackRawDataImp(track)
+#mtv.analyzeSimilarTrackRawDataImp(track)
 #album = Album.find(1)
 #lm.analyzePopularAlbumRawData album
 #lm.analyzeAlbumPopularRowData
@@ -37,3 +42,5 @@ mtv.analyzeSimilarTrackRawDataImp(track)
 #  a = Aggregator.new;
  # a.aggredateSimilarTracks(0,1)
 # a.aggregateSimilarTracks(0,5000)
+
+

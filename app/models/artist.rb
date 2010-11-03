@@ -16,6 +16,7 @@ has_one :a_stat, :foreign_key=>"altnet_id"
 has_one :popular_p_stat, :foreign_key=>"altnet_id"
 
 has_many :albums, :conditions => {:is_valid => true}
+has_many :tracks, :conditions => {:is_valid => true}
 has_many :relate_lastfms, :foreign_key=>"altnet_id", :order => "position asc"
 has_many :relate_musicbrainzs, :foreign_key=>"altnet_id", :order => "position asc"
 has_many :relate_echonests, :foreign_key=>"altnet_id", :order => "position asc"

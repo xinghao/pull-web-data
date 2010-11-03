@@ -119,6 +119,47 @@ class EchonestDataSourceHandler < DataSource
     
   end
   
+  def getPopularTrackWebRawDataImp track
+        rw = RawWebData.new
+        
+        begin
+          artist_name = ""
+          artist = track.artist;
+          if (artist != nil)
+            artist_name = artist.name
+          else
+            return 11
+          end
+
+          retStr = rw.getEchonestTrackPopularity(artist_name, "", track.name).to_s()
+          
+          html = ""
+          if (retStr.empty?)
+            status = 2
+           else
+             html = retStr
+            status = 5
+          end
+
+          #WebsourceLastfm.delete_all(:altnet_id => artist.id)
+          #artist.websource_lastfm.remove 
+          wlf = WebsourceTrackPopularEchonest.new
+          wlf.altnet_id = track.id
+          wlf.html = html
+          wlf.url = rw.getEchonestTrackPopularityUrl(artist_name, track.name)
+          #wlf.url = ""
+          wlf.save
+          
+          return status 
+            
+          
+        rescue Exception => e
+          puts e
+          status = 4
+          return status
+        end 
+    
+  end
   
   def analyzePopularArtistRawData art
     document = Hpricot(art.websource_artist_popular_echonest.html.to_s)

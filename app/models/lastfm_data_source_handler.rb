@@ -265,7 +265,7 @@ class LastfmDataSourceHandler < DataSource
           #WebsourceLastfm.delete_all(:altnet_id => artist.id)
           #artist.websource_lastfm.remove 
           wlf = WebsourceAlbumPopularLastfm.new
-          wlf.album_id = album.id
+          wlf.altnet_id = album.id
           wlf.html = html.to_s
           wlf.url = rw.getLastfmAlbumPopularityUrl(artist_name, album.name)
           #wlf.url = ""
@@ -281,5 +281,45 @@ class LastfmDataSourceHandler < DataSource
         end
   end #end of function
 
+  def getPopularTrackWebRawDataImp track
+        rw = RawWebData.new
+        
+        begin
+          artist_name = ""
+          artist = track.artist;
+          if (artist != nil)
+            artist_name = artist.name
+          else
+            return 11
+          end
+              
+          retStr = rw.getLastfmTrackPopularity(artist_name, "", track.name)
+          
+          html = ""
+          if (retStr.empty?)
+            status = 2
+           else
+             html = retStr
+            status = 5
+          end
+
+          #WebsourceLastfm.delete_all(:altnet_id => artist.id)
+          #artist.websource_lastfm.remove 
+          wlf = WebsourceTrackPopularLastfm.new
+          wlf.altnet_id = track.id
+          wlf.html = html.to_s
+          wlf.url = rw.getLastfmTrackPopularityUrl(artist_name, track.name)
+          #wlf.url = ""
+          wlf.save
+          
+          return status 
+            
+          
+        rescue Exception => e
+          puts e
+          status = 4
+          return status
+        end
+  end #end of function
   
 end

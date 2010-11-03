@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  altnet_id: 1
+  mz: 1
+  lastfm: 1
+  echonest: 1
+  yahoomusic: 1
+  mtv: 1
+
+two:
+  altnet_id: 1
+  mz: 1
+  lastfm: 1
+  echonest: 1
+  yahoomusic: 1
+  mtv: 1

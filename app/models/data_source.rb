@@ -118,6 +118,26 @@ class DataSource
    end #--end of album iteration 
   end
 
+  def getWebRawTrackPopularData(iOffset, iLimit)
+   #track = Track.find(:first)
+   icount = 0
+   #iOffset = 0
+   # iOffset = 30000
+   # iOffset = 60000
+   # iOffset = 90000
+   # iOffset = 120000
+   #iLimit = 30000
+   Track.find(:all, :offset => iOffset, :limit => iLimit).each do |track|
+        puts @DataSourceType + " processing(track popular raw data) :" + track.id.to_s
+        if (!alreadyHandled("track popular", @DataSourceType, @ReDo, track.id)) then
+          status = getPopularTrackWebRawDataImp(track)
+          #status = 9
+          puts "status : "+ status.to_s
+          updatePstatus("track popular", @DataSourceType, status, track.id)
+        end
+   end #--end of album iteration 
+  end
+
   def getWebRawSimilarTrackData(iOffset, iLimit)
    #album = Album.find(1)
    icount = 0
@@ -436,6 +456,8 @@ class DataSource
       pStat = PopularPAlbumStat.find_by_altnet_id(id)
     elsif (process_type == "similar tracks")
       pStat = SimilarPTrackStat.find_by_altnet_id(id)
+    elsif (process_type == "track popular")
+      pStat = PopularPTrackStat.find_by_altnet_id(id)       
     end
     
     if data_source_type == "mz"
@@ -459,7 +481,9 @@ class DataSource
     elsif (process_type == "artist popular")
       pStat = PopularPStat.find_by_altnet_id(id)
     elsif (process_type == "album popular")
-      pStat = PopularPAlbumStat.find_by_altnet_id(id) 
+      pStat = PopularPAlbumStat.find_by_altnet_id(id)
+    elsif (process_type == "track popular")
+      pStat = PopularPTrackStat.find_by_altnet_id(id) 
     elsif (process_type == "similar tracks")
       pStat = SimilarPTrackStat.find_by_altnet_id(id)
     end
@@ -472,6 +496,8 @@ class DataSource
         pStat = PopularPStat.new
       elsif (process_type == "album popular")
         pStat = PopularPAlbumStat.new 
+      elsif (process_type == "track popular")
+        pStat = PopularPTrackStat.new         
       elsif (process_type == "similar tracks")
         pStat = SimilarPTrackStat.new               
       end

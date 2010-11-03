@@ -35,6 +35,15 @@ class RawWebData
     return url
   end
 
+
+  def getLastfmTrackPopularityUrl artist_name, track_name
+    url_encoded_string_artist = URI::escape(artist_name)
+    url_encoded_string_track = URI::escape(track_name)
+    url = "http://www.last.fm/music/" + url_encoded_string_artist + "/_/" + url_encoded_string_track
+    return url
+  end
+
+
   # def getLastfmArtistPopularityUrl altnet_name
   #   url_encoded_string = URI::escape(altnet_name)
   #   url = "http://www.last.fm/music/" + url_encoded_string
@@ -73,6 +82,22 @@ class RawWebData
     end           
   end
 
+  def getLastfmTrackPopularity artist_name, album_name, track_name
+    url = getLastfmTrackPopularityUrl(artist_name, track_name)
+    puts url
+    
+    begin
+      html = open(url, "User-Agent" => getUseragent(), :proxy=>getProxy())    
+      document = Hpricot(html)
+      #ar = document.search("//div[@id='catalogueHead']");
+      ar = document.search("//div[@id='scrobblesAndListeners']"); 
+      #print ar     
+      return ar
+    rescue Exception => e
+      puts "html grab error"
+      return ""
+    end           
+  end
   
   # throw timeout exception if proxy does not work
   # return empy if no similar artist find
@@ -262,5 +287,33 @@ class RawWebData
       #print document
       return document
   end
+  
+  
+  #http://developer.echonest.com/api/v4/song/search?api_key=N6E4NIOVYMTHNDM8J&format=xml&results=1&artist=beyonce&title=halo&bucket=id:7digital&bucket=song_hotttnesss
+  def getEchonestTrackPopularityUrl artist_name, track_name
+    api_key = "U5HC4VU7NSELKNWKE"
+    url_encoded_string_artist = URI::escape(artist_name)
+    url_encoded_string_track = URI::escape(track_name)
+    url = "http://developer.echonest.com/api/v4/song/search?api_key=" + api_key + "&artist=" + url_encoded_string_artist + "&title=" + url_encoded_string_track + "&format=xml&results=1&bucket=id:7digital&bucket=song_hotttnesss"    
+    return url
+  end
+
+  def getEchonestTrackPopularity artist_name, album_name, track_name
+    url = getEchonestTrackPopularityUrl(artist_name, track_name)
+    puts url
+    
+    begin
+      html = open(url, "User-Agent" => getUseragent(), :proxy=>getProxy())    
+      document = Hpricot(html)
+      #ar = document.search("//div[@id='catalogueHead']");
+      #ar = document.search("//div[@id='scrobblesAndListeners']"); 
+      #print document     
+      return document
+    rescue Exception => e
+      puts "html grab error"
+      return ""
+    end           
+  end
+
   
 end
