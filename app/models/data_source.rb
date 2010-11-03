@@ -148,9 +148,9 @@ class DataSource
    # iOffset = 120000
    iLimit = 1    
     #SimilarPTrackStat.find(:all, :conditions =>[where , 5 ], :offset => iOffset, :limit => iLimit).each do |ps|
-    SimilarPTrackStat.find(:all, :conditions =>["lastfm = 5 and mtv =5 "], :offset => iOffset, :limit => iLimit).each do |ps|
+#    SimilarPTrackStat.find(:all, :conditions =>["lastfm = 5 and mtv =5 "], :offset => iOffset, :limit => iLimit).each do |ps|
       SimilarPTrackStat.find(:all, :conditions =>["lastfm = 5 and mtv =5 "]).each do |ps|
-    #PStat.find(:all, :conditions =>[where , 5 ]).each do |ps|
+
       track = Track.find(:first, :conditions =>["id = ?", ps.altnet_id])
       puts @DataSourceType + " analyzing(raw data) :" + track.id.to_s
   

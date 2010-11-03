@@ -4,9 +4,11 @@ class Aggregator
 
   def aggregateSimilarTracks iOffset, iLimit
     #pTracks = SimilarPTrackStat.find(:all, :offset => iOffset, :limit => iLimit, :conditions =>["mtv = 5 and lastfm = 5"])
-    pTracks = SimilarPTrackStat.find(:all, :conditions =>["mtv = 5 and lastfm = 5"])
-    pTracks.each do |p|
-      track = Track.find(p.altnet_id);
+   pTracks = SimilarPTrackStat.find(:all, :conditions =>["mtv = 5 and lastfm = 5"])
+   pTracks.each do |p|
+    
+    track = Track.find(p.altnet_id);
+    #track = Track.find(504257)
       if (!alreadyHandled(track, "similar tracks"))
          h = Hash.new
          

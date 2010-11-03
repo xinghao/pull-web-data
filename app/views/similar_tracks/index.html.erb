@@ -8,6 +8,8 @@
     <th align="left">Artist</th>
     <th> &nbsp;&nbsp;&nbsp;</th>
     <th align="left">Track_id</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Similar Tracks</th>
     
   </tr>
 
@@ -19,6 +21,8 @@
     <td><%=h track.artist_name %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
     <td><%=h track.id %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><a href="/similar_tracks/<%=h track.id %>">Similar Tracks</a></td>
 
 
 
