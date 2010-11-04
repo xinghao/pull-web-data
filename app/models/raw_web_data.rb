@@ -1,10 +1,18 @@
 #gem install hpricot
+#Mac OX
+#sudo port install libxml2 libxslt
+#sudo gem install nokogiri
+
+#Red Hat/CentOs
+# sudo yum install -y libxml2 libxml2-devel libxslt libxslt-devel
+# sudo gem install nokogiri
+
 require 'rubygems'
 require 'open-uri'
 require 'pp'
 require 'hpricot'
 require 'uri'
-
+require 'nokogiri'
 
 class RawWebData
   
@@ -88,9 +96,11 @@ class RawWebData
     
     begin
       html = open(url, "User-Agent" => getUseragent(), :proxy=>getProxy())    
-      document = Hpricot(html)
+      document = Nokogiri::HTML(html)
+      #document = Hpricot(html)
       #ar = document.search("//div[@id='catalogueHead']");
-      ar = document.search("//div[@id='scrobblesAndListeners']"); 
+      #ar = document.search("//div[@id='scrobblesAndListeners']");
+      ar = document.css('div#scrobblesAndListeners') 
       #print ar     
       return ar
     rescue Exception => e
@@ -143,8 +153,11 @@ class RawWebData
     #url = "http://www.google.com"    
     begin
       html = open(url, "User-Agent" => getUseragent(), :proxy=>proxy)    
-      document = Hpricot(html)
-      ar = document.search("//div[@class='skyWrap']").search("//table[@class='candyStriped chart']");
+      #document = Hpricot(html)
+      document = Nokogiri::HTML(html)
+      ar = document.css('div.skyWrap table.candyStriped') 
+
+      #ar = document.search("//div[@class='skyWrap']").search("//table[@class='candyStriped chart']");
       #puts ar      
       return ar
     rescue Exception => e
@@ -168,8 +181,11 @@ class RawWebData
     #url = "http://www.google.com"    
     begin
       html = open(url, "User-Agent" => getUseragent(), :proxy=>proxy)    
-      document = Hpricot(html)
-      ar = document.search("//div[@id='community_content_right']").search("//div[@id='community_section']").search("//span[@id='similar_song']");
+      #document = Hpricot(html)
+      #ar = document.search("//div[@id='community_content_right']").search("//div[@id='community_section']").search("//span[@id='similar_song']");
+      document = Nokogiri::HTML(html)
+      ar = document.css('div#community_content_right div#community_section span#similar_song') 
+
       #puts ar      
       return ar
     rescue Exception => e
@@ -271,19 +287,20 @@ class RawWebData
   def getEchonestArtistPopularUrl(mz_id, altnet_name)
     api_key = "U5HC4VU7NSELKNWKE"
     result_number = 40
-    if (mz_id == nil or mz_id.empty?)
       url_encoded_string = URI::escape(altnet_name)
       return "http://developer.echonest.com/api/v4/artist/hotttnesss?api_key=" + api_key + "&name=" + url_encoded_string + "&format=xml"
-    end
     
-    return "http://developer.echonest.com/api/v4/artist/hotttnesss?api_key=" + api_key + "&id=musicbrainz:artist:" + mz_id + "&format=xml"
+    # if (mz_id == nil or mz_id.empty?)
+    # end
+    # 
+    # return "http://developer.echonest.com/api/v4/artist/hotttnesss?api_key=" + api_key + "&id=musicbrainz:artist:" + mz_id + "&format=xml"
   end
   
   
   def getEchonestArtistPopularData(mz_id, altnet_name)
       url = getEchonestArtistPopularUrl(mz_id, altnet_name)
       puts url
-      document = Hpricot(open(url, "User-Agent" => getUseragent(), :proxy=>getProxy()))
+      document = Nokogiri::XML(open(url, "User-Agent" => getUseragent(), :proxy=>getProxy()))
       #print document
       return document
   end
@@ -304,10 +321,9 @@ class RawWebData
     
     begin
       html = open(url, "User-Agent" => getUseragent(), :proxy=>getProxy())    
-      document = Hpricot(html)
-      #ar = document.search("//div[@id='catalogueHead']");
-      #ar = document.search("//div[@id='scrobblesAndListeners']"); 
-      #print document     
+      #document = Hpricot(html)
+      document = Nokogiri::XML(html)
+#      print document     
       return document
     rescue Exception => e
       puts "html grab error"

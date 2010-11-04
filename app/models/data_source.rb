@@ -12,11 +12,24 @@ class DataSource
     @ReDo = [0,0,0,0,0,0,0]
   end
   
+  
+# select * from artists,popular_artists where artists.id = popular_artists.artist_id and name like '%james%' order by popularity desc
+# select * from artists where  name like '%james%' order by external_popularity desc
+# select * from artists where  name like '%james%' and type = 'person' order by aggregated_popularity desc
+# select * from popular_artists where artist_id = 106267
+# select * from popular_artists where artist_id = 6938
+# update artists set external_popularity = external_popularity/5 where type = 'group';
+# update artists set external_popularity = external_popularity/10 where type is null;
+# select * from artists where name = 'james brown'
+# select * from 
+  
   #update popular_artists set lastfm = 0 where echonest is null;
   #select max(lastfm) from popular_artists
   #update popular_artists set popularity=lastfm/3150173;
   #update popular_artists set echonest = 0 where echonest is null;
-  #update popular_artists set popularity=(lastfm*0.8)/3150173 + echonest*0.2;
+  #update popular_artists set popularity=(lastfm*0.2)/3150173 + echonest*0.2;
+  #update artists set external_popularity = (0.6*tracks_play_count)/402659.0;
+  #update artists a, popular_artists p set a.external_popularity = a.external_popularity + p.popularity where a.id = p.artist_id;
   def analyzeArtistPopularRowData
     #art = Artist.find(1)
     where = @DataSourceType+ " = ?"
@@ -77,6 +90,7 @@ class DataSource
   end # end of function
   
   def getWebRawArtistPopularData
+    where = @DataSourceType+ " = ?"
    #art = Artist.find(1785)
    icount = 0
    iOffset = 0
@@ -85,7 +99,9 @@ class DataSource
    # iOffset = 90000
    # iOffset = 120000
    iLimit = 30000
-   Artist.find(:all, :offset => iOffset, :limit => iLimit).each do |art|
+   #Artist.find(:all, :offset => iOffset, :limit => iLimit).each do |art|
+   PopularPStat.find(:all, :conditions =>[where , 0 ]).each do |ps|
+     art = Artist.find(ps.altnet_id)
       puts @DataSourceType + " processing(artist popularity raw data) :" + art.id.to_s
       if (!alreadyHandled("artist popular", @DataSourceType, @ReDo, art.id)) then
         status = getPopularArtistWebRawDataImp(art)
@@ -167,9 +183,9 @@ class DataSource
    # iOffset = 90000
    # iOffset = 120000
    iLimit = 1    
-    #SimilarPTrackStat.find(:all, :conditions =>[where , 5 ], :offset => iOffset, :limit => iLimit).each do |ps|
+    SimilarPTrackStat.find(:all, :conditions =>[where , 5 ], :offset => iOffset, :limit => iLimit).each do |ps|
 #    SimilarPTrackStat.find(:all, :conditions =>["lastfm = 5 and mtv =5 "], :offset => iOffset, :limit => iLimit).each do |ps|
-      SimilarPTrackStat.find(:all, :conditions =>["lastfm = 5 and mtv =5 "]).each do |ps|
+#      SimilarPTrackStat.find(:all, :conditions =>["lastfm = 5 and mtv =5 "]).each do |ps|
 
       track = Track.find(:first, :conditions =>["id = ?", ps.altnet_id])
       puts @DataSourceType + " analyzing(raw data) :" + track.id.to_s
