@@ -30,6 +30,7 @@ class DataSource
   #update popular_artists set popularity=(lastfm*0.2)/3150173 + echonest*0.2;
   #update artists set external_popularity = (0.6*tracks_play_count)/402659.0;
   #update artists a, popular_artists p set a.external_popularity = a.external_popularity + p.popularity where a.id = p.artist_id;
+  #update artists set aggregated_popularity = aggregated_popularity / 5 where (name like '% and %' or name like '% & %' or name like ' with ' ) and name != 'Brooks & Dunn' and name !='Tuck & Patti'
   def analyzeArtistPopularRowData
     #art = Artist.find(1)
     where = @DataSourceType+ " = ?"
@@ -89,7 +90,7 @@ class DataSource
     return 0
   end # end of function
   
-  def getWebRawArtistPopularData
+  def getWebRawArtistPopularData(iOffset, iLimit)
     where = @DataSourceType+ " = ?"
    #art = Artist.find(1785)
    icount = 0
@@ -99,8 +100,8 @@ class DataSource
    # iOffset = 90000
    # iOffset = 120000
    iLimit = 30000
-   #Artist.find(:all, :offset => iOffset, :limit => iLimit).each do |art|
-   PopularPStat.find(:all, :conditions =>[where , 0 ]).each do |ps|
+   Artist.find(:all, :offset => iOffset, :limit => iLimit).each do |art|
+   #PopularPStat.find(:all, :offset => iOffset, :limit => iLimit, :order=>"id", :conditions =>[where , 0 ]).each do |ps|
      art = Artist.find(ps.altnet_id)
       puts @DataSourceType + " processing(artist popularity raw data) :" + art.id.to_s
       if (!alreadyHandled("artist popular", @DataSourceType, @ReDo, art.id)) then
