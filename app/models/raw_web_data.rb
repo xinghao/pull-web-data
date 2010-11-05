@@ -158,7 +158,7 @@ class RawWebData
       ar = document.css('div.skyWrap table.candyStriped') 
 
       #ar = document.search("//div[@class='skyWrap']").search("//table[@class='candyStriped chart']");
-      #puts ar      
+      puts ar      
       return ar
     rescue Exception => e
       return ""
