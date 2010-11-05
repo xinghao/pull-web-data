@@ -153,11 +153,11 @@ class RawWebData
     #url = "http://www.google.com"    
     begin
       html = open(url, "User-Agent" => getUseragent(), :proxy=>proxy)    
-      #document = Hpricot(html)
-      document = Nokogiri::HTML(html)
-      ar = document.css('div.skyWrap table.candyStriped') 
+      document = Hpricot(html)
+      #document = Nokogiri::HTML(html)
+      #ar = document.css('div.skyWrap table.candyStriped') 
 
-      #ar = document.search("//div[@class='skyWrap']").search("//table[@class='candyStriped chart']");
+      ar = document.search("//div[@class='skyWrap']").search("//table[@class='candyStriped chart']");
       puts ar      
       return ar
     rescue Exception => e
