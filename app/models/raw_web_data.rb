@@ -96,11 +96,11 @@ class RawWebData
     
     begin
       html = open(url, "User-Agent" => getUseragent(), :proxy=>getProxy())    
-      document = Nokogiri::HTML(html)
-      #document = Hpricot(html)
+      #document = Nokogiri::HTML(html)
+      document = Hpricot(html)
       #ar = document.search("//div[@id='catalogueHead']");
-      #ar = document.search("//div[@id='scrobblesAndListeners']");
-      ar = document.css('div#scrobblesAndListeners') 
+      ar = document.search("//div[@id='scrobblesAndListeners']");
+      #ar = document.css('div#scrobblesAndListeners') 
       #print ar     
       return ar
     rescue Exception => e
@@ -146,6 +146,7 @@ class RawWebData
     return url
   end
 
+  #11-05 roll back cron10 time
   def getLastFmSimilarTrackData artist_name, album_name, track_name
     url = getLastFmSimilarTrackDataUrl(artist_name, album_name, track_name);
     proxy = getProxy();
@@ -158,7 +159,7 @@ class RawWebData
       #ar = document.css('div.skyWrap table.candyStriped') 
 
       ar = document.search("//div[@class='skyWrap']").search("//table[@class='candyStriped chart']");
-      puts ar      
+      #puts ar      
       return ar
     rescue Exception => e
       return ""
@@ -181,10 +182,10 @@ class RawWebData
     #url = "http://www.google.com"    
     begin
       html = open(url, "User-Agent" => getUseragent(), :proxy=>proxy)    
-      #document = Hpricot(html)
-      #ar = document.search("//div[@id='community_content_right']").search("//div[@id='community_section']").search("//span[@id='similar_song']");
-      document = Nokogiri::HTML(html)
-      ar = document.css('div#community_content_right div#community_section span#similar_song') 
+      document = Hpricot(html)
+      ar = document.search("//div[@id='community_content_right']").search("//div[@id='community_section']").search("//span[@id='similar_song']");
+      #document = Nokogiri::HTML(html)
+      #ar = document.css('div#community_content_right div#community_section span#similar_song') 
 
       #puts ar      
       return ar
@@ -321,8 +322,8 @@ class RawWebData
     
     begin
       html = open(url, "User-Agent" => getUseragent(), :proxy=>getProxy())    
-      #document = Hpricot(html)
-      document = Nokogiri::XML(html)
+      document = Hpricot(html)
+      #document = Nokogiri::XML(html)
 #      print document     
       return document
     rescue Exception => e
