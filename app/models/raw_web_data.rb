@@ -5,7 +5,7 @@
 
 #Red Hat/CentOs
 # sudo yum install -y libxml2 libxml2-devel libxslt libxslt-devel
-# sudo gem install nokogiri
+# gem install nokogiri
 
 require 'rubygems'
 require 'open-uri'
