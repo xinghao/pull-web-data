@@ -54,17 +54,17 @@ class LastfmDataSourceHandler < DataSource
         rw = RawWebData.new
         
         begin
-          album = track.album;
-          if (album == nil) 
-            return 11
-          end                   
-          artist = album.artist;
+          # album = track.album;
+          # if (album == nil) 
+          #   return 11
+          # end                   
+          artist = track.artist;
           if (artist == nil) 
             return 11
           end
 
           
-          retStr = rw.getLastFmSimilarTrackData(artist.name, album.name, track.name)
+          retStr = rw.getLastFmSimilarTrackData(artist.name, "", track.name)
           
           html = ""
           if (retStr.empty?)
@@ -79,7 +79,7 @@ class LastfmDataSourceHandler < DataSource
           wlf = WebsourceTrackSimilarLastfm.new
           wlf.altnet_id = track.id
           wlf.html = html.to_s
-          wlf.url = rw.getLastFmSimilarTrackDataUrl(artist.name, album.name, track.name)
+          wlf.url = rw.getLastFmSimilarTrackDataUrl(artist.name, "", track.name)
           #wlf.url = ""
           wlf.save
           

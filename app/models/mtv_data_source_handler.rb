@@ -51,17 +51,17 @@ class MtvDataSourceHandler < DataSource
         rw = RawWebData.new
         
         begin
-          album = track.album;
-          if (album == nil) 
-            return 11
-          end                   
-          artist = album.artist;
+          # album = track.album;
+          # if (album == nil) 
+          #   return 11
+          # end                   
+          artist = track.artist;
           if (artist == nil) 
             return 11
           end
 
           
-          retStr = rw.getPandoraSimilarTrackData(artist.name, album.name, track.name)
+          retStr = rw.getPandoraSimilarTrackData(artist.name, "", track.name)
           
           html = ""
           if (retStr.empty?)
@@ -76,7 +76,7 @@ class MtvDataSourceHandler < DataSource
           wlf = WebsourceTrackSimilarMtv.new
           wlf.altnet_id = track.id
           wlf.html = html.to_s
-          wlf.url = rw.getPandoraSimilarTrackDataUrl(artist.name, album.name, track.name)
+          wlf.url = rw.getPandoraSimilarTrackDataUrl(artist.name, "", track.name)
           #wlf.url = ""
           wlf.save
           
