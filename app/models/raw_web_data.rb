@@ -140,12 +140,13 @@ class RawWebData
         
   def getLastFmSimilarTrackDataUrl artist_name, album_name, track_name
     #http://www.last.fm/music/The+Rolling+Stones/_/Come+On/+similar
-    url_encoded_string_artist = CGI::escape(artist_name)
-    url_encoded_string_track = CGI::escape(track_name)
+    url_encoded_string_artist = URI::escape(artist_name)
+    url_encoded_string_track = URI::escape(track_name)
     url = "http://www.last.fm/music/" + url_encoded_string_artist +"/_/"+url_encoded_string_track+"/+similar"
     return url
   end
 
+  #delete from websource_track_similar_lastfms where html = ''
   #11-05 roll back cron10 time
   def getLastFmSimilarTrackData artist_name, album_name, track_name
     url = getLastFmSimilarTrackDataUrl(artist_name, album_name, track_name);
@@ -307,12 +308,12 @@ class RawWebData
   end
   
   
-  #http://developer.echonest.com/api/v4/song/search?api_key=N6E4NIOVYMTHNDM8J&format=xml&results=1&artist=beyonce&title=halo&bucket=id:7digital&bucket=song_hotttnesss
+  #http://developer.echonest.com/api/v4/song/search?api_key=N6E4NIOVYMTHNDM8J&format=xml&results=1&artist=beyonce&title=halo&bucket=id:7digital&bucket=audio_summary&bucket=song_hotttnesss
   def getEchonestTrackPopularityUrl artist_name, track_name
     api_key = "U5HC4VU7NSELKNWKE"
     url_encoded_string_artist = URI::escape(artist_name)
     url_encoded_string_track = URI::escape(track_name)
-    url = "http://developer.echonest.com/api/v4/song/search?api_key=" + api_key + "&artist=" + url_encoded_string_artist + "&title=" + url_encoded_string_track + "&format=xml&results=1&bucket=id:7digital&bucket=song_hotttnesss"    
+    url = "http://developer.echonest.com/api/v4/song/search?api_key=" + api_key + "&artist=" + url_encoded_string_artist + "&title=" + url_encoded_string_track + "&format=xml&results=1&bucket=id:7digital&bucket=id:7digital&bucket=audio_summary&bucket=song_hotttnesss"    
     return url
   end
 

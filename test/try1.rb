@@ -10,14 +10,14 @@
 # matchdata = regex.match("(2,216,732 listeners)")
 # puts matchdata[1]
 
-r = RawWebData.new
-r.getLastFmSimilarTrackData("Johnny Hallyday", "album_name", "J'Oublierai Ton Nom")
+#r = RawWebData.new
+#r.getLastFmSimilarTrackData("Johnny Hallyday", "album_name", "J'Oublierai Ton Nom")
 #r.getPandoraSimilarTrackData("beyonce", "", "halo")
 #r.getLastfmTrackPopularity("beyonce", "", "halo")
 #r.getEchonestTrackPopularity("beyonce", "", "halo")
-#tar = Track.find(:first)
-#lm = LastfmDataSourceHandler.new
-#lm.getSimilarTrackWebRawDataImp tar
+tar = Track.find(19430)
+lm = LastfmDataSourceHandler.new
+lm.getSimilarTrackWebRawDataImp tar
 #lm.getPopularTrackWebRawDataImp tar
 #e = EchonestDataSourceHandler.new
 #artist = Artist.find(9391)
