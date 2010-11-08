@@ -175,7 +175,7 @@ class DataSource
    end #--end of album iteration 
   end
   
-    def analyzeSimilarTrackRawData iOffset, iLimit
+    def analyzeSimilarTrackRawData
     where = @DataSourceType+ " = ?"
     #SimilarPTrackStat.find(:all, :conditions =>[where , 5 ], :offset => iOffset, :limit => iLimit).each do |ps|
     SimilarPTrackStat.find(:all, :conditions =>[where , 5 ]).each do |ps|
