@@ -175,28 +175,39 @@ class DataSource
    end #--end of album iteration 
   end
   
-    def analyzeSimilarTrackRawData
+    def analyzeSimilarTrackRawData iOffset, iLimit
     where = @DataSourceType+ " = ?"
     #SimilarPTrackStat.find(:all, :conditions =>[where , 5 ], :offset => iOffset, :limit => iLimit).each do |ps|
-    SimilarPTrackStat.find(:all, :conditions =>[where , 5 ]).each do |ps|
-#    SimilarPTrackStat.find(:all, :conditions =>["lastfm = 5 and mtv =5 "], :offset => iOffset, :limit => iLimit).each do |ps|
-#      SimilarPTrackStat.find(:all, :conditions =>["lastfm = 5 and mtv =5 "]).each do |ps|
-      track = Track.find(:first, :conditions =>["id = ?", ps.altnet_id])
+    Track.find(:all, :offset => iOffset, :limit => iLimit).each do |track|      
       puts @DataSourceType + " analyzing(raw data) :" + track.id.to_s
-  
-      begin
-        status = analyzeSimilarTrackRawDataImp(track)    
-      rescue Exception => e
-        puts e
-        status = 7
-      end 
-      
-      begin
-        puts "status : "+ status.to_s
-        updatePstatus("similar tracks", @DataSourceType, status, track.id)
-      rescue Exception => e
-        puts e
-      end 
+      sp = SimilarPTrackStat.find(:first, :conditions =>["altnet_id = ?" , track.id ])
+      if (sp != nil)
+        if (@DataSourceType == "lastfm")
+          status = sp.lastfm
+        elsif(@DataSourceType == "mtv")
+          status = sp.mtv
+        end
+        
+        if (status == 5)
+          begin
+            status = analyzeSimilarTrackRawDataImp(track)    
+          rescue Exception => e
+            puts e
+            status = 7
+          end 
+          
+          begin
+            puts "status : "+ status.to_s
+            updatePstatus("similar tracks", @DataSourceType, status, track.id)
+          rescue Exception => e
+            puts e
+          end
+        else # status is not 5
+          puts "no raw data"
+        end
+      else #psats is null
+        puts "no raw data"
+      end         
     end #end of iteration    
     return 0
   end # end of function
