@@ -5,10 +5,13 @@ class CreatePopularArtists < ActiveRecord::Migration
       t.decimal :playstats, :precision => 65, :scale => 30
       t.decimal :mz, :precision => 65, :scale => 30
       t.decimal :lastfm, :precision => 65, :scale => 30
+      t.decimal :lastfm_handled, :precision => 65, :scale => 30
       t.decimal :echonest, :precision => 65, :scale => 30
       t.decimal :yahoomusic, :precision => 65, :scale => 30
       t.decimal :mtv, :precision => 65, :scale => 30
       t.decimal :popularity, :precision => 65, :scale => 30
+      t.integer :version, :default => 0
+
 
 
       t.timestamps

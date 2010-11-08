@@ -15,9 +15,9 @@
 #r.getPandoraSimilarTrackData("beyonce", "", "halo")
 #r.getLastfmTrackPopularity("beyonce", "", "halo")
 #r.getEchonestTrackPopularity("beyonce", "", "halo")
-tar = Track.find(19430)
-lm = LastfmDataSourceHandler.new
-lm.getSimilarTrackWebRawDataImp tar
+#track = Track.find(19430)
+#lm = LastfmDataSourceHandler.new
+#lm.getSimilarTrackWebRawDataImp track
 #lm.getPopularTrackWebRawDataImp tar
 #e = EchonestDataSourceHandler.new
 #artist = Artist.find(9391)
@@ -30,10 +30,12 @@ lm.getSimilarTrackWebRawDataImp tar
 #lm.analyzeSimilarTrackRawDataImp(track)
 # lm.getWebRawSimilarTrackData(0,3)
 # lm.analyzeSimilarTrackRawData(0,3)
-# mtv = MtvDataSourceHandler.new;
+track = Track.find(2)
+ mtv = MtvDataSourceHandler.new;
+ mtv.getSimilarTrackWebRawDataImp track
 # mtv.getWebRawSimilarTrackData(0,20)
-#track = Track.find(2)
-#mtv.analyzeSimilarTrackRawDataImp(track)
+
+mtv.analyzeSimilarTrackRawDataImp(track)
 #album = Album.find(1)
 #lm.analyzePopularAlbumRawData album
 #lm.analyzeAlbumPopularRowData

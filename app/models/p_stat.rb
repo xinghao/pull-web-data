@@ -7,6 +7,7 @@
 # 6 --- anaylze not match
 # 7 --- anaylze error
 # 11 --- data integrate error(track no album or track no artist)
+# 12 --- parsed
 class PStat < ActiveRecord::Base
   belongs_to :artist
   

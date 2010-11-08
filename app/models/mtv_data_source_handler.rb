@@ -169,7 +169,7 @@ class MtvDataSourceHandler < DataSource
     # end #end of if
 
     if (ifound > 0)
-      return 1
+      return 12
     else
       return 6
     end
@@ -182,7 +182,8 @@ class MtvDataSourceHandler < DataSource
   end #end of function 
 
  def analyzeSimilarTrackRawDataImp track
-    document = Hpricot(track.websource_track_similar_mtv.html.to_s)
+   websource = WebsourceTrackSimilarMtv.find(:first, :conditions =>["altnet_id = ?", track.id], :order => "id desc")
+    document = Hpricot(websource.html.to_s)
     sarts = document.search("//span[@id='similar_song']")
     
     
@@ -209,7 +210,7 @@ class MtvDataSourceHandler < DataSource
     end #end of iteration of artists 
     
     if (ifound > 0)
-      return 1
+      return 12
     else
       return 6
     end

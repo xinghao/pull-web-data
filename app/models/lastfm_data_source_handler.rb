@@ -136,9 +136,10 @@ class LastfmDataSourceHandler < DataSource
   end #end of function 
 
   def analyzeSimilarTrackRawDataImp track
-    document = Hpricot(track.websource_track_similar_lastfm.html.to_s)
+    websource = WebsourceTrackSimilarLastfm.find(:first, :conditions =>["altnet_id = ?", track.id], :order => "id desc")
+    #puts websource.html
+    document = Hpricot(websource.html.to_s)
     sarts = document.search("tr").search("//td[@class='subjectCell']")
-    
     
     #RelateMtv.delete_all(:altnet_id => art.id)
     
@@ -159,12 +160,14 @@ class LastfmDataSourceHandler < DataSource
         #puts similar_artist_name   
       end
     end #end of iteration of artists 
+    puts ifound
     
     if (ifound > 0)
-      return 1
+      return 12
     else
       return 6
     end
+    
   end # end of function    
   
   def analyzeSimilarArtistRawData art

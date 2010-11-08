@@ -176,18 +176,11 @@ class DataSource
   end
   
     def analyzeSimilarTrackRawData iOffset, iLimit
-    #art = Artist.find(1)
     where = @DataSourceType+ " = ?"
-   #iOffset = 0
-   # iOffset = 30000
-   # iOffset = 60000
-   # iOffset = 90000
-   # iOffset = 120000
-   iLimit = 1    
-    SimilarPTrackStat.find(:all, :conditions =>[where , 5 ], :offset => iOffset, :limit => iLimit).each do |ps|
+    #SimilarPTrackStat.find(:all, :conditions =>[where , 5 ], :offset => iOffset, :limit => iLimit).each do |ps|
+    SimilarPTrackStat.find(:all, :conditions =>[where , 5 ]).each do |ps|
 #    SimilarPTrackStat.find(:all, :conditions =>["lastfm = 5 and mtv =5 "], :offset => iOffset, :limit => iLimit).each do |ps|
 #      SimilarPTrackStat.find(:all, :conditions =>["lastfm = 5 and mtv =5 "]).each do |ps|
-
       track = Track.find(:first, :conditions =>["id = ?", ps.altnet_id])
       puts @DataSourceType + " analyzing(raw data) :" + track.id.to_s
   
@@ -200,7 +193,7 @@ class DataSource
       
       begin
         puts "status : "+ status.to_s
-        #updatePstatus(art.id, status)
+        updatePstatus(art.id, status)
       rescue Exception => e
         puts e
       end 
