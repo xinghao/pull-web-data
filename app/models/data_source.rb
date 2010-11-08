@@ -193,7 +193,7 @@ class DataSource
       
       begin
         puts "status : "+ status.to_s
-        updatePstatus(art.id, status)
+        updatePstatus("similar tracks", @DataSourceType, status, track.id)
       rescue Exception => e
         puts e
       end 
