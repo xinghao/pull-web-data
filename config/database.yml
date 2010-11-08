@@ -14,8 +14,9 @@ postgres_development:
 development:  
   adapter: mysql
   database: kazaa_similar_artists
-  host: 216.240.131.186
-#  host: 127.0.0.1
+#  host: 216.240.131.186
+  host: 127.0.0.1
+#  host: 192.168.26.79
   username: root
   password: 'Mon Aug 10 23:19:09 CDT 2009'
 #  password: bah5ieMoTahphau8vaa5Caep  
