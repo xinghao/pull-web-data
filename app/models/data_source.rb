@@ -175,39 +175,28 @@ class DataSource
    end #--end of album iteration 
   end
   
-    def analyzeSimilarTrackRawData iOffset, iLimit
+    def analyzeSimilarTrackRawData
     where = @DataSourceType+ " = ?"
     #SimilarPTrackStat.find(:all, :conditions =>[where , 5 ], :offset => iOffset, :limit => iLimit).each do |ps|
-    Track.find(:all, :offset => iOffset, :limit => iLimit).each do |track|      
+    SimilarPTrackStat.find(:all, :conditions =>[where , 5 ]).each do |ps|
+#    SimilarPTrackStat.find(:all, :conditions =>["lastfm = 5 and mtv =5 "], :offset => iOffset, :limit => iLimit).each do |ps|
+#      SimilarPTrackStat.find(:all, :conditions =>["lastfm = 5 and mtv =5 "]).each do |ps|
+      track = Track.find(:first, :conditions =>["id = ?", ps.altnet_id])
       puts @DataSourceType + " analyzing(raw data) :" + track.id.to_s
-      sp = SimilarPTrackStat.find(:first, :conditions =>["altnet_id = ?" , track.id ])
-      if (sp != nil)
-        if (@DataSourceType == "lastfm")
-          status = sp.lastfm
-        elsif(@DataSourceType == "mtv")
-          status = sp.mtv
-        end
-        
-        if (status == 5)
-          begin
-            status = analyzeSimilarTrackRawDataImp(track)    
-          rescue Exception => e
-            puts e
-            status = 7
-          end 
-          
-          begin
-            puts "status : "+ status.to_s
-            updatePstatus("similar tracks", @DataSourceType, status, track.id)
-          rescue Exception => e
-            puts e
-          end
-        else # status is not 5
-          puts "no raw data"
-        end
-      else #psats is null
-        puts "no raw data"
-      end         
+  
+      begin
+        status = analyzeSimilarTrackRawDataImp(track)    
+      rescue Exception => e
+        puts e
+        status = 7
+      end 
+      
+      begin
+        puts "status : "+ status.to_s
+        #updatePstatus(art.id, status)
+      rescue Exception => e
+        puts e
+      end 
     end #end of iteration    
     return 0
   end # end of function
