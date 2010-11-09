@@ -176,27 +176,27 @@ class DataSource
   end
   
     def analyzeSimilarTrackRawData iStart, offset
-    where = @DataSourceType+ " = ? and id >= ? and id < iEnd"
+    where = @DataSourceType+ " = ? and altnet_id >= ? and altnet_id < ?"
     #SimilarPTrackStat.find(:all, :conditions =>[where , 5 ], :offset => iOffset, :limit => iLimit).each do |ps|
-    SimilarPTrackStat.find(:all, :order=>"id", :conditions =>[where , 5 , iStart, (offset+iStart)]).each do |ps|
+    SimilarPTrackStat.find(:all, :order=>"altnet_id", :conditions =>[where , 5 , iStart, (offset+iStart)]).each do |ps|
 #    SimilarPTrackStat.find(:all, :conditions =>["lastfm = 5 and mtv =5 "], :offset => iOffset, :limit => iLimit).each do |ps|
 #      SimilarPTrackStat.find(:all, :conditions =>["lastfm = 5 and mtv =5 "]).each do |ps|
-      track = Track.find(:first, :conditions =>["id = ?", ps.altnet_id])
-      puts @DataSourceType + " analyzing(raw data) :" + ps.id.to_s + "-" + track.id.to_s
-  
-      begin
-        status = analyzeSimilarTrackRawDataImp(track)    
-      rescue Exception => e
-        puts e
-        status = 7
-      end 
-      
-      begin
-        puts "status : "+ status.to_s
-        #updatePstatus("similar tracks", @DataSourceType, status, track.id)
-      rescue Exception => e
-        puts e
-      end 
+        track = Track.find(:first, :conditions =>["id = ?", ps.altnet_id])
+        puts @DataSourceType + " analyzing(raw data) :" + ps.id.to_s + "-" + track.id.to_s
+    
+        begin
+          status = analyzeSimilarTrackRawDataImp(track)    
+        rescue Exception => e
+          puts e
+          status = 7
+        end 
+        
+        begin
+          puts "status : "+ status.to_s
+          #updatePstatus("similar tracks", @DataSourceType, status, track.id)
+        rescue Exception => e
+          puts e
+        end 
     end #end of iteration    
     return 0
   end # end of function
@@ -358,13 +358,13 @@ class DataSource
  
   def insertSimilarTrack(track_id, artist_name, album_name, track_name, icount)
     #puts "artist name:" + artist_name
-    artist = Artist.find(:first, :conditions =>[ "name = ?", artist_name ])
+    artist = Artist.find(:first, :conditions =>[ "name = ? and is_valid = 1", artist_name ])
     if artist == nil
       return 0
     end
     
     #puts "track name:" + track_name
-    track = Track.find(:first, :conditions =>[ "name = ? and artist_id = ? ", track_name,  artist.id])
+    track = Track.find(:first, :conditions =>[ "artist_id = ? and is_valid = 1 and name = ?", artist.id, track_name])
     if track == nil
       return 0
     end
