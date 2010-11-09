@@ -7,5 +7,5 @@
 lm = LastfmDataSourceHandler.new
 #lm.getWebRawSimilarTrackData(1200000,100000)
 #lm.getWebRawSimilarTrackData(1300000,100000)
-lm.getWebRawSimilarTrackData(600000,300000)
+lm.getWebRawSimilarTrackData(1040000,20000)
 #lm.getWebRawSimilarTrackData(1500000,100000)
