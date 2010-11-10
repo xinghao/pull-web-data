@@ -5,7 +5,7 @@
 # cron6:  1,200,000 - 1,6000,000
 
 mtv = MtvDataSourceHandler.new
-mtv.analyzeSimilarTrackRawData
+mtv.analyzeSimilarTrackRawData(0, 1700000)
 #lm.getWebRawSimilarTrackData(1300000,100000)
 #lm.getWebRawSimilarTrackData(1400000,100000)
 #lm.getWebRawSimilarTrackData(1500000,100000)
