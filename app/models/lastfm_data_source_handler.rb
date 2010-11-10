@@ -156,7 +156,7 @@ class LastfmDataSourceHandler < DataSource
       if matchdata
         #similar_artist_name = matchdata[1]
         #puts matchdata[1]  + " - " + matchdata[2]
-        ifound = ifound + insertSimilarTrack(track.id, matchdata[1], "", matchdata[2], icount)
+        ifound = ifound + insertSimilarTrack(track.id, CGI.unescapeHTML(matchdata[1]), "", CGI.unescapeHTML(matchdata[2]), icount)
         #puts similar_artist_name   
       end
     end #end of iteration of artists 

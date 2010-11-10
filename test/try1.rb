@@ -25,17 +25,17 @@
 #e.getPopularTrackWebRawDataImp tar
 #e.getWebRawTrackPopularData(0,10)
 #lm.getWebRawTrackPopularData(0,10)
-#track = Track.find(504257)
-#lm = LastfmDataSourceHandler.new
-#lm.analyzeSimilarTrackRawDataImp(track)
+track = Track.find(1089976)
+lm = LastfmDataSourceHandler.new
+lm.analyzeSimilarTrackRawDataImp(track)
 # lm.getWebRawSimilarTrackData(0,3)
 # lm.analyzeSimilarTrackRawData(0,3)
-track = Track.find(2)
- mtv = MtvDataSourceHandler.new;
- mtv.getSimilarTrackWebRawDataImp track
+#track = Track.find(2)
+# mtv = MtvDataSourceHandler.new;
+# mtv.getSimilarTrackWebRawDataImp track
 # mtv.getWebRawSimilarTrackData(0,20)
 
-mtv.analyzeSimilarTrackRawDataImp(track)
+#mtv.analyzeSimilarTrackRawDataImp(track)
 #album = Album.find(1)
 #lm.analyzePopularAlbumRawData album
 #lm.analyzeAlbumPopularRowData
