@@ -5,7 +5,7 @@
 # cron6:  1,200,000 - 1,6000,000
 
 lm = LastfmDataSourceHandler.new
-lm.analyzeSimilarTrackRawData(1160000,10000)
+lm.analyzeSimilarTrackRawData(1320000,20000)
 #lm.getWebRawSimilarTrackData(1300000,100000)
 #lm.getWebRawSimilarTrackData(1400000,100000)
 #lm.getWebRawSimilarTrackData(1500000,100000)

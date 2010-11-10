@@ -136,7 +136,7 @@ class LastfmDataSourceHandler < DataSource
   end #end of function 
 
   def analyzeSimilarTrackRawDataImp track
-    websource = WebsourceTrackSimilarTempLastfm.find(:first, :conditions =>["altnet_id = ?", track.id], :order => "id desc")
+    websource = WebsourceTrackSimilarTemp120140Lastfm.find(:first, :conditions =>["altnet_id = ?", track.id], :order => "id desc")
     #puts websource.html
     document = Hpricot(websource.html.to_s)
     sarts = document.search("tr").search("//td[@class='subjectCell']")
