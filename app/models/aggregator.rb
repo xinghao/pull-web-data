@@ -2,7 +2,7 @@ class Aggregator
     def initialize
     end
 
-  def aggregateSimilarTracks iOffset, iLimit
+  def aggregateSimilarTracks iStart, offset
     where = "id >= ? and id < ?"
     #pTracks = SimilarPTrackStat.find(:all, :offset => iOffset, :limit => iLimit, :conditions =>["mtv = 5 and lastfm = 5"])
    #pTracks = SimilarPTrackStat.find(:all, :conditions =>["mtv = 5 and lastfm = 5"])
