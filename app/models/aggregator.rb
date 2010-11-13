@@ -3,18 +3,19 @@ class Aggregator
     end
 
   def aggregateSimilarTracks iOffset, iLimit
+    where = "id >= ? and id < ?"
     #pTracks = SimilarPTrackStat.find(:all, :offset => iOffset, :limit => iLimit, :conditions =>["mtv = 5 and lastfm = 5"])
    #pTracks = SimilarPTrackStat.find(:all, :conditions =>["mtv = 5 and lastfm = 5"])
-   Tracks.find(:all, :offset => iOffset, :limit => iLimit).each do |track|
-      if (!alreadyHandled(track, "similar tracks"))
+   Track.find(:all, :order=>"id", :conditions =>[where , iStart, (offset+iStart)] ).each do |track|
+     # if (!alreadyHandled(track, "similar tracks"))
          h = Hash.new
          
         puts "Aggregator :" + track.id.to_s
         # LASTFM
-        relateLastfms = SimilarTrackLastfm.find(:all, :select => 'DISTINCT similar_artist_id, similar_album_id, similar_track_id, score', :conditions =>["altnet_id = ?", track.id])
+        relateLastfms = SimilarTrackLastfm.find(:all, :select => 'DISTINCT  similar_track_id, score', :conditions =>["altnet_id = ?", track.id])
         startSingleDataSourceTrack(relateLastfms, h, "lastfm")     
         #MTV
-        relateMtvs = SimilarTrackMtv.find(:all, :select => 'DISTINCT similar_artist_id, similar_album_id, similar_track_id, score', :conditions =>["altnet_id = ?", track.id])
+        relateMtvs = SimilarTrackMtv.find(:all, :select => 'DISTINCT  similar_track_id, score', :conditions =>["altnet_id = ?", track.id])
         startSingleDataSourceTrack(relateMtvs, h, "mtv")
         
         icount = 0
@@ -38,9 +39,9 @@ class Aggregator
         end
         
         puts status.to_s
-        updateAstatus(track, status, "similar tracks")
+     #   updateAstatus(track, status, "similar tracks")
 
-      end   #end of if  
+     # end   #end of if  
     end
   end
   
