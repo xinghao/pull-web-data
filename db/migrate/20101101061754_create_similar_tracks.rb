@@ -8,6 +8,7 @@ class CreateSimilarTracks < ActiveRecord::Migration
       t.integer :version, :default=>0
       t.decimal :score, :precision => 65, :scale => 30
       t.integer :appearance_times, :default => 0
+      t.decimal :track_popularity, :precision => 10, :scale => 8, :default=>0
 
       t.timestamps
     end
