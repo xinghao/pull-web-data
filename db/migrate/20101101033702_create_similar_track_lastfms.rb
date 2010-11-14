@@ -13,7 +13,7 @@ class CreateSimilarTrackLastfms < ActiveRecord::Migration
   end
 
   def self.down
-    remove_index :similar_track_lastfms, [:altnet_id]
-    drop_table :similar_track_lastfms
+  #  remove_index :similar_track_lastfms, [:altnet_id]
+  #  drop_table :similar_track_lastfms
   end
 end
