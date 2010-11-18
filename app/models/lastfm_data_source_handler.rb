@@ -414,9 +414,9 @@ class LastfmDataSourceHandler < DataSource
     return 1
   end
   
-  def insertPopularTrackFromSimilarTrack(version)
-    PopularTracksLastfmTempA.find(:all).each do |p|
-      PopularTracksLastfmTempA.find(:first, :conditions =>[ "artist_id = ? and is_valid = 1 and name = ?",])      
-    end
-  end
+  # def insertPopularTrackFromSimilarTrack(version)
+  #   PopularTracksLastfmTempA.find(:all).each do |p|
+  #     PopularTracksLastfmTempA.find(:first, :conditions =>[ "artist_id = ? and is_valid = 1 and name = ?",])      
+  #   end
+  # end
 end
