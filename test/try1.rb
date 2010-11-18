@@ -16,7 +16,8 @@
 #r.getLastfmTrackPopularity("beyonce", "", "halo")
 #r.getEchonestTrackPopularity("beyonce", "", "halo")
 #track = Track.find(19430)
-#lm = LastfmDataSourceHandler.new
+lm = LastfmDataSourceHandler.new
+lm.getTrackPopularityFromSimilarTracksData
 #lm.getSimilarTrackWebRawDataImp track
 #lm.getPopularTrackWebRawDataImp tar
 #e = EchonestDataSourceHandler.new
@@ -25,9 +26,9 @@
 #e.getPopularTrackWebRawDataImp tar
 #e.getWebRawTrackPopularData(0,10)
 #lm.getWebRawTrackPopularData(0,10)
-track = Track.find(1089976)
-lm = LastfmDataSourceHandler.new
-lm.analyzeSimilarTrackRawDataImp(track)
+# track = Track.find(1030203)
+# lm = LastfmDataSourceHandler.new
+# lm.analyzeSimilarTrackRawDataImp(track)
 # lm.getWebRawSimilarTrackData(0,3)
 # lm.analyzeSimilarTrackRawData(0,3)
 #track = Track.find(2)

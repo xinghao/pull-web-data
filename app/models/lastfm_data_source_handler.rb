@@ -12,6 +12,15 @@ class LastfmDataSourceHandler < DataSource
       @ReDo = [0,0,0,0,0,0,0]      
     end
 
+  def getTrackPopularityFromSimilarTracksData
+    Track.find(:all, :conditions =>["is_valid = 1"] ).each do |track|
+      simlar_track = SimilarTrackLastfm.first(:conditions =>["similar_track_id = ?", track.id], :order => 'altnet_id asc')
+      ltpt = LastfmTrackPopularTemp.new
+      ltpt.track_id = simlar_track.altnet_id
+      ltpt.similar_track_id = track.id
+      ltpt.save
+    end
+  end
   
   def getSimilarArtistWebRawData artist
         rw = RawWebData.new
