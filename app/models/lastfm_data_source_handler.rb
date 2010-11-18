@@ -407,6 +407,7 @@ class LastfmDataSourceHandler < DataSource
     
     rm.altnet_id = track.id
     rm.lastfm = popularity
+    rm.version = 1
     rm.save
     return 1
   end

@@ -3,6 +3,7 @@ class CreatePopularTracksLastfmTemps < ActiveRecord::Migration
     create_table :popular_tracks_lastfm_temps do |t|
       t.integer :altnet_id
       t.decimal :lastfm, :precision => 65, :scale => 30
+      t.integer :version, :default => 1
       t.timestamps
     end
     
