@@ -15,9 +15,10 @@
 #r.getPandoraSimilarTrackData("beyonce", "", "halo")
 #r.getLastfmTrackPopularity("beyonce", "", "halo")
 #r.getEchonestTrackPopularity("beyonce", "", "halo")
-#track = Track.find(19430)
+track = Track.find(28709)
 lm = LastfmDataSourceHandler.new
-lm.getTrackPopularityFromSimilarTracksData
+#lm.getTrackPopularityFromSimilarTracksData
+lm.analyzePopularityFromSimilarTracksDataImp(track)
 #lm.getSimilarTrackWebRawDataImp track
 #lm.getPopularTrackWebRawDataImp tar
 #e = EchonestDataSourceHandler.new

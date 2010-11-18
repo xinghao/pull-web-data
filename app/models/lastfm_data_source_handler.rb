@@ -12,15 +12,29 @@ class LastfmDataSourceHandler < DataSource
       @ReDo = [0,0,0,0,0,0,0]      
     end
 
-  def getTrackPopularityFromSimilarTracksData
-    Track.find(:all, :conditions =>["is_valid = 1"] ).each do |track|
-      simlar_track = SimilarTrackLastfm.first(:conditions =>["similar_track_id = ?", track.id], :order => 'altnet_id asc')
-      ltpt = LastfmTrackPopularTemp.new
-      ltpt.track_id = simlar_track.altnet_id
-      ltpt.similar_track_id = track.id
-      ltpt.save
-    end
-  end
+  def getTrackPopularityFromSimilarTracksData iStart, offset
+    where = @DataSourceType+ " = ? and altnet_id >= ? and altnet_id < ?"
+    SimilarPTrackStat.find(:all, :order=>"altnet_id", :conditions =>[where , 5 , iStart, (offset+iStart)]).each do |ps|
+        track = Track.find(:first, :conditions =>["id = ?", ps.altnet_id])
+        puts @DataSourceType + " analyzing(raw data) :" + ps.id.to_s + "-" + track.id.to_s
+    
+        begin
+          status = analyzePopularityFromSimilarTracksDataImp(track)    
+        rescue Exception => e
+          puts e
+          status = 7
+        end 
+        
+        begin
+          puts "status : "+ status.to_s
+          #updatePstatus("similar tracks", @DataSourceType, status, track.id)
+        rescue Exception => e
+          puts e
+        end 
+    end #end of iteration    
+    return 0
+  end # end of function
+
   
   def getSimilarArtistWebRawData artist
         rw = RawWebData.new
@@ -334,5 +348,67 @@ class LastfmDataSourceHandler < DataSource
           return status
         end
   end #end of function
+  
+  
+  def analyzePopularityFromSimilarTracksDataImp track
+    websource = WebsourceTrackSimilarTemplastLastfm.find(:first, :conditions =>["altnet_id = ?", track.id], :order => "id desc")
+    #websource = WebsourceTrackSimilarLastfm.find(:first, :conditions =>["altnet_id = ?", track.id], :order => "id desc")
+    #puts websource.html
+    document = Hpricot(websource.html.to_s)
+    sarts = document.search("tr")
+    
+    #RelateMtv.delete_all(:altnet_id => art.id)
+    
+    icount = 0
+    ifound = 0
+    sarts.each do |sart|
+      #puts sart
+      #puts sart
+      regex = Regexp.new(/>(.*)<\/a>.*>(.*)<\/a>/)
+      matchdata = regex.match(sart.to_s)
+      regex1 = Regexp.new(/reachCell">(.*)<\/td>/m)
+      matchdata1 = regex1.match(sart.to_s)
+      
+      #print matchdata
+      icount = icount + 1
+      
+      if (matchdata1)
+        #similar_artist_name = matchdata[1]
+        #puts matchdata[1]  + " - " + matchdata[2] + ":" + matchdata1[1].strip.gsub(",", "")
+        ifound = ifound + insertPopularTrackFromSimilarTrack(track.id, CGI.unescapeHTML(matchdata[1]), "", CGI.unescapeHTML(matchdata[2]), icount, matchdata1[1].strip.gsub(",", ""))
+        #puts similar_artist_name   
+      end
+    end #end of iteration of artists 
+    puts ifound
+    
+    if (ifound > 0)
+      return 12
+    else
+      return 6
+    end
+    
+  end # end of function    
+  
+  
+  def insertPopularTrackFromSimilarTrack(track_id, artist_name, album_name, track_name, icount, popularity)
+    #puts "artist name:" + artist_name
+    artist = Artist.find(:first, :conditions =>[ "name = ? and is_valid = 1", artist_name ])
+    if artist == nil
+      return 0
+    end
+    
+    #puts "track name:" + track_name
+    track = Track.find(:first, :conditions =>[ "artist_id = ? and is_valid = 1 and name = ?", artist.id, track_name])
+    if track == nil
+      return 0
+    end
+    #puts "match!"
+    rm = PopularTracksLastfmTemp.new
+    
+    rm.altnet_id = track.id
+    rm.lastfm = popularity
+    rm.save
+    return 1
+  end
   
 end
