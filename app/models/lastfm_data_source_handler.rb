@@ -351,42 +351,44 @@ class LastfmDataSourceHandler < DataSource
   
   
   def analyzePopularityFromSimilarTracksDataImp track
-    websource = WebsourceTrackSimilarTemplastLastfm.find(:first, :conditions =>["altnet_id = ?", track.id], :order => "id desc")
+    websource = WebsourceTrackSimilarTemp050100Lastfm.find(:first, :conditions =>["altnet_id = ?", track.id], :order => "id desc")
     #websource = WebsourceTrackSimilarLastfm.find(:first, :conditions =>["altnet_id = ?", track.id], :order => "id desc")
     #puts websource.html
-    document = Hpricot(websource.html.to_s)
-    sarts = document.search("tr")
-    
-    #RelateMtv.delete_all(:altnet_id => art.id)
-    
-    icount = 0
-    ifound = 0
-    sarts.each do |sart|
-      #puts sart
-      #puts sart
-      regex = Regexp.new(/>(.*)<\/a>.*>(.*)<\/a>/)
-      matchdata = regex.match(sart.to_s)
-      regex1 = Regexp.new(/reachCell">(.*)<\/td>/m)
-      matchdata1 = regex1.match(sart.to_s)
+    if (websource != nil)
+      document = Hpricot(websource.html.to_s)
+      sarts = document.search("tr")
       
-      #print matchdata
-      icount = icount + 1
+      #RelateMtv.delete_all(:altnet_id => art.id)
       
-      if (matchdata1)
-        #similar_artist_name = matchdata[1]
-        #puts matchdata[1]  + " - " + matchdata[2] + ":" + matchdata1[1].strip.gsub(",", "")
-        ifound = ifound + insertPopularTrackFromSimilarTrack(track.id, CGI.unescapeHTML(matchdata[1]), "", CGI.unescapeHTML(matchdata[2]), icount, matchdata1[1].strip.gsub(",", ""))
-        #puts similar_artist_name   
+      icount = 0
+      ifound = 0
+      sarts.each do |sart|
+        #puts sart
+        #puts sart
+        regex = Regexp.new(/>(.*)<\/a>.*>(.*)<\/a>/)
+        matchdata = regex.match(sart.to_s)
+        regex1 = Regexp.new(/reachCell">(.*)<\/td>/m)
+        matchdata1 = regex1.match(sart.to_s)
+        
+        #print matchdata
+        icount = icount + 1
+        
+        if (matchdata1)
+          #similar_artist_name = matchdata[1]
+          #puts matchdata[1]  + " - " + matchdata[2] + ":" + matchdata1[1].strip.gsub(",", "")
+          ifound = ifound + insertPopularTrackFromSimilarTrack(track.id, CGI.unescapeHTML(matchdata[1]), "", CGI.unescapeHTML(matchdata[2]), icount, matchdata1[1].strip.gsub(",", ""))
+          #puts similar_artist_name   
+        end
+      end #end of iteration of artists 
+      puts ifound
+      
+      if (ifound > 0)
+        return 12
+      else
+        return 6
       end
-    end #end of iteration of artists 
-    puts ifound
-    
-    if (ifound > 0)
-      return 12
-    else
-      return 6
     end
-    
+    return 6
   end # end of function    
   
   
@@ -412,4 +414,9 @@ class LastfmDataSourceHandler < DataSource
     return 1
   end
   
+  def insertPopularTrackFromSimilarTrack(version)
+    PopularTracksLastfmTempA.find(:all).each do |p|
+      PopularTracksLastfmTempA.find(:first, :conditions =>[ "artist_id = ? and is_valid = 1 and name = ?",])      
+    end
+  end
 end
