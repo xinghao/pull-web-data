@@ -18,9 +18,9 @@
 track = Track.find(28709)
 lm = LastfmDataSourceHandler.new
 #lm.getTrackPopularityFromSimilarTracksData
-lm.analyzePopularityFromSimilarTracksDataImp(track)
+#lm.analyzePopularityFromSimilarTracksDataImp(track)
 #lm.getSimilarTrackWebRawDataImp track
-#lm.getPopularTrackWebRawDataImp tar
+lm.getPopularTrackWebRawDataImp track
 #e = EchonestDataSourceHandler.new
 #artist = Artist.find(9391)
 #e.getPopularArtistWebRawDataImp artist

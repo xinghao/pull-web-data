@@ -1,9 +1,9 @@
 icount = 0;
-offset = 1000;
+offset = 10000;
 while(true)
   tempCount = 0
   PopularTracksLastfmTemp.find(:all, :conditions =>["id > ? and id < ?" , icount, icount+offset ]).each do |pdf|
-    puts "processing: " + pdf.id
+    puts "processing: " + pdf.id.to_s
     tempa = PopularTracksLastfmTempA.find_by_altnet_id(pdf.altnet_id)
     if (tempa == nil)
       tempa = PopularTracksLastfmTempA.new
