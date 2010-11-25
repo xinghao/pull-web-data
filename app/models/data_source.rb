@@ -89,6 +89,35 @@ class DataSource
     end #end of iteration    
     return 0
   end # end of function
+
+
+  def analyzeTrackPopularRowData
+    where = @DataSourceType+ " = ?"
+   iOffset = 0
+   iLimit = 10    
+   #PopularPStat.find(:all, :conditions =>[where , 5 ], :offset => iOffset, :limit => iLimit).each do |ps|
+   PopularPTrackStat.find(:all, :conditions =>[where , 5 ]).each do |ps|
+    #PStat.find(:all, :conditions =>[where , 5 ]).each do |ps|
+      track = Track.find(:first, :conditions =>["id = ?", ps.altnet_id])
+      puts @DataSourceType + " analyzing(raw data) :" + track.id.to_s
+  
+      begin
+        status = analyzePopularTrackRawDataImpl(track)    
+      rescue Exception => e
+        puts e
+        status = 7
+      end 
+      
+      begin
+        puts "status : "+ status.to_s
+        updatePstatus("track popular", @DataSourceType, status, track.id)
+      rescue Exception => e
+        puts e
+      end 
+    end #end of iteration    
+    return 0
+  end # end of function
+
   
   def getWebRawArtistPopularData(iOffset, iLimit)
     where = @DataSourceType+ " = ?"
@@ -456,6 +485,46 @@ class DataSource
   end
   
 
+  def insertTrackPopularity(track_id, popularity, energy, tempo, duration, loudness, danceability)
+    popular = PopularTrack.find_by_altnet_id(track_id)
+    if (popular == nil)
+      popular = PopularTrack.new
+    end
+    
+    if @DataSourceType == "lastfm"
+      popular.lastfm = popularity 
+    elsif @DataSourceType == "echonest"
+      popular.echonest = popularity 
+    elsif @DataSourceType == "yahoomusic"
+      popular.yahoomusic = popularity 
+    elsif @DataSourceType == "mtv"
+      popular.mtv = popularity
+    end 
+    
+    popular.altnet_id = track_id
+    if (energy != nil)
+      popular.energy = energy
+    end
+    if (tempo != nil)      
+      popular.tempo = tempo
+    end
+    if (duration != nil)
+      popular.duration = duration
+    end
+    if (energy != nil)
+      popular.energy = energy
+    end
+    if (loudness != nil)
+      popular.loudness = loudness
+    end
+    if (danceability != nil)
+      popular.danceability = danceability
+    end                      
+    popular.save
+    
+    return 1      
+  end
+  
 
   def updatePstatus(process_type, data_source_type, status, id)
     if (process_type == "similar artists")
@@ -537,8 +606,7 @@ class DataSource
       status = pStat.yahoomusic 
     elsif data_source_type == "mtv"
       status = pStat.mtv 
-    end
-
+    end    
       if ((status != 1 or status != 5) and reDo[1] == 1) 
         puts "good1"
         return false

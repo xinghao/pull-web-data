@@ -10,6 +10,11 @@ class CreatePopularTracks < ActiveRecord::Migration
       t.decimal :yahoomusic, :precision => 65, :scale => 30
       t.decimal :mtv, :precision => 65, :scale => 30
       t.decimal :popularity, :precision => 65, :scale => 30
+      t.decimal :energy, :precision => 65, :scale => 30
+      t.decimal :tempo, :precision => 65, :scale => 30
+      t.decimal :duration, :precision => 65, :scale => 30
+      t.decimal :danceability, :precision => 65, :scale => 30
+      t.decimal :loudness, :precision => 65, :scale => 30
       t.integer :version, :default => 0 
       t.timestamps
     end

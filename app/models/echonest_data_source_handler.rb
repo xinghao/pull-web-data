@@ -181,5 +181,58 @@ class EchonestDataSourceHandler < DataSource
     end
   end #end of function
   
+  def analyzePopularTrackRawDataImpl track
+    document = Hpricot(track.websource_track_popular_echonest.html.to_s)
+    #sarts = document.search("p");
+    
+    #puts sarts
+    #RelateMtv.delete_all(:altnet_id => art.id)
+    regex_hot = Regexp.new(/<song_hotttnesss>(.*)<\/song_hotttnesss>/)
+    regex_energy = Regexp.new(/<energy>(.*)<\/energy>/)
+    regex_tempo = Regexp.new(/<tempo>(.*)<\/tempo>/)
+    regex_duration = Regexp.new(/<duration>(.*)<\/duration>/)
+    regex_loudness = Regexp.new(/<loudness>(.*)<\/loudness>/)
+    regex_danceability = Regexp.new(/<danceability>(.*)<\/danceability>/)
+    matchdata_hot = regex_hot.match(document.to_s)
+    matchdata_energy = regex_energy.match(document.to_s)
+    matchdata_tempo = regex_tempo.match(document.to_s)
+    matchdata_duration = regex_duration.match(document.to_s)
+    matchdata_loudness = regex_loudness.match(document.to_s)
+    matchdata_danceability = regex_danceability.match(document.to_s)
+    
+    hot = nil;
+    energy = nil;
+    temp = nil;
+    duration = nil;
+    loudness = nil;
+    danceability = nil;
+    if (matchdata_hot != nil)
+      hot = matchdata_hot[1]
+    end
+    if (matchdata_tempo != nil)
+      tempo = matchdata_tempo[1]
+    end
+    if (matchdata_duration != nil)
+      duration = matchdata_duration[1]
+    end
+    if (matchdata_loudness != nil)
+      loudness = matchdata_loudness[1]
+    end
+    if (matchdata_danceability != nil)
+      danceability = matchdata_danceability[1]
+    end
+    if (matchdata_energy != nil)
+      energy = matchdata_energy[1]
+    end
+    
+    
+    if (hot != nil or tempo != nil or duration != nil or loadness != nil or danceability != nil or enery != nill)      
+      insertTrackPopularity(track.id, hot, energy, tempo, duration, loudness, danceability)
+      return 1
+    else
+      puts "no match";
+      return 6
+    end
+  end #end of function
   
 end

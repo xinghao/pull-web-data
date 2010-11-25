@@ -413,6 +413,27 @@ class LastfmDataSourceHandler < DataSource
     rm.save
     return 1
   end
+
+  def analyzePopularTrackRawDataImpl track
+    document = Hpricot(track.websource_track_popular_lastfm.html.to_s)
+    sarts = document.search("div");
+    
+    #puts sarts
+    #RelateMtv.delete_all(:altnet_id => art.id)
+    regex = Regexp.new(/container listeners.*<span>(.*)<\/span>/m)
+    matchdata = regex.match(sarts.to_s)
+    
+    
+    if (matchdata != nil)
+      insertTrackPopularity(track.id, matchdata[1].gsub(",", "").to_i, nil,nil,nil,nil,nil)      
+      puts matchdata[1].gsub(",", "").to_i
+      return 1
+    else
+      puts "no match";
+      return 6
+    end
+    
+  end #end of function
   
   # def insertPopularTrackFromSimilarTrack(version)
   #   PopularTracksLastfmTempA.find(:all).each do |p|
