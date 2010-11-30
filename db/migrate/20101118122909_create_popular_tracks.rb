@@ -22,6 +22,6 @@ class CreatePopularTracks < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :popular_tracks
+    #drop_table :popular_tracks
   end
 end

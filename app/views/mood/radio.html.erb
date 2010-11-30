@@ -75,15 +75,15 @@ if @tracks != nil then
     <td> &nbsp;&nbsp;&nbsp;</td>
     <td><%=h track.id %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
-    <td> --</td>
+    <td> <%=h Format("%.5f%", [aggregated_popularity])%></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
-    <td><%=h track.tempo %></td>
+    <td><%=h Format("%.5f%", [track.tempo]) %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
-    <td><%=h track.energy %></td>
+    <td><%=h Format("%.5f%", [track.energy) %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
-    <td><%=h track.loudness %></td>
+    <td><%=h Format("%.5f%", [track.loudness) %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
-    <td><%=h track.danceability %></td>
+    <td><%=h Format("%.5f%", [track.danceability) %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
 
 
