@@ -1,0 +1,97 @@
+<h1>Mood radio for song</h1>
+
+<table>
+  <tr>
+    
+    <th align="left">Track</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Artist</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Track_id</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Popularity</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Tempo</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Energy</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Loudness</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Danceability</th>
+    
+  </tr>
+  <tr>
+    <td><%=h @rawTrack.name %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h @rawArtist.name %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h @rawTrack.id %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td> --</td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h @popular_track.tempo %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h @popular_track.energy %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h @popular_track.loudness %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h @popular_track.danceability %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>    
+  </tr>
+</table>
+  
+ 
+ <h1>Song Radio</h1>
+
+<table>
+  <tr>
+    
+    <th align="left">Track</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Artist</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Track_id</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>    
+    <th align="left">Popularity</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Tempo</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Energy</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Loudness</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Danceability</th>
+    
+  </tr>
+
+<% 
+if @tracks != nil then
+@tracks.each do |track| 
+%>
+  <tr>
+    <td><%=h track.track_name %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h track.artist_name %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h track.id %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td> --</td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h track.tempo %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h track.energy %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h track.loudness %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h track.danceability %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+
+
+
+    
+  </tr>
+<% end end%>
+</table>
+
+<br />
+

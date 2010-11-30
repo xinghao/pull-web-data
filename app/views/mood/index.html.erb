@@ -1,0 +1,49 @@
+<h1>View song's mood radio</h1>
+
+<% form_tag '/mood', :method => 'get' do %>
+ <p>
+   Search for a song <br/>
+   <%= text_field_tag :search, params[:search] %>
+   <%= submit_tag "Search", :name => nil %>
+  </p>
+ <% end %>
+ 
+ <h1>Listing p_stats</h1>
+
+<table>
+  <tr>
+    
+    <th align="left">Track</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Artist</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Track_id</th>
+    <th align="left">Popularity</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <th align="left">Mood Radio</th>
+    
+  </tr>
+
+<% 
+if @tracks != nil then
+@tracks.each do |track| 
+%>
+  <tr>
+    <td><%=h track.track_name %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h track.artist_name %></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><%=h track.id %></td>
+    <td></td>
+    <td> &nbsp;&nbsp;&nbsp;</td>
+    <td><a href="/mood/radio/<%=h track.id %>">Radio</a></td>
+
+
+
+    
+  </tr>
+<% end end%>
+</table>
+
+<br />
+
