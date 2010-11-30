@@ -12,7 +12,7 @@ class Track < ActiveRecord::Base
       #sql = "select tracks.id, tracks.name as track_name, artists.name as artist_name from tracks,artists where  tracks.name = '#{search}' and tracks.artist_id = artists.id and tracks.is_valid = 1";
       #@tracks =  Track.find_by_sql(sql)
 
-      @tracks = find(:all, :conditions => ["name = ?", "#{search}"], :include => Artist);
+      @tracks = find(:all, :conditions => ["name = ?", "#{search}"]);
     end
   end
   

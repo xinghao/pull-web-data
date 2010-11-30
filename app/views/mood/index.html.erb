@@ -29,9 +29,9 @@ if @tracks != nil then
 @tracks.each do |track| 
 %>
   <tr>
-    <td><%=h track.track_name %></td>
+    <td><%=h track.name %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
-    <td><%=h track.artist_name %></td>
+    <td><%=h track.artist.name %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
     <td><%=h track.id %></td>
     <td></td>
