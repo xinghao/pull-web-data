@@ -67,6 +67,7 @@
 <% 
 if @tracks != nil then
 @tracks.each do |track| 
+  if (track.track_name != @rawTrack.name)
 %>
   <tr>
     <td><%=h track.track_name %></td>
@@ -90,7 +91,7 @@ if @tracks != nil then
 
     
   </tr>
-<% end end%>
+<% end end end%>
 </table>
 
 <br />

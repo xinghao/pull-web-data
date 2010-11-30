@@ -2,14 +2,15 @@
 
 <% form_tag '/mood', :method => 'get' do %>
  <p>
-   Search for a song <br/>
+   Search for a song <i>(We only do name exactly match)</i> <br/>
    <%= text_field_tag :search, params[:search] %>
    <%= submit_tag "Search", :name => nil %>
   </p>
  <% end %>
- 
- <h1>Listing p_stats</h1>
-
+ <br />
+ <br />
+ <h1>Search Results:</h1>
+<hr/>
 <table>
   <tr>
     
@@ -36,7 +37,7 @@ if @tracks != nil then
     <td> &nbsp;&nbsp;&nbsp;</td>
     <td><%=h track.id %></td>
     <th> &nbsp;&nbsp;&nbsp;</th>
-    <td><%=h track.popularity %></td>
+    <td><%=h track.aggregated_popularity %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
     <td><a href="/mood/radio/<%=h track.id %>">Radio</a></td>
 
