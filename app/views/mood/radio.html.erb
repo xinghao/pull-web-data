@@ -27,7 +27,7 @@
     <td> &nbsp;&nbsp;&nbsp;</td>
     <td><%=h @rawTrack.id %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
-    <td> --</td>
+    <td><%=h @rawTrack.aggregated_popularity %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
     <td><%=h @popular_track.tempo %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
@@ -75,15 +75,15 @@ if @tracks != nil then
     <td> &nbsp;&nbsp;&nbsp;</td>
     <td><%=h track.id %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
-    <td> <% sprintf("%.5f%", track.aggregated_popularity)%></td>
+    <td> <%=h track.popularity%></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
-    <td><%= sprintf("%.5f%", track.tempo) %></td>
+    <td><%= sprintf("%.5f", track.tempo) %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
-    <td><%= sprintf("%.5f%", track.energy) %></td>
+    <td><%= sprintf("%.5f", track.energy) %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
-    <td><%= sprintf("%.5f%", track.loudness) %></td>
+    <td><%= sprintf("%.5f", track.loudness) %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
-    <td><%= sprintf("%.5f%", track.danceability) %></td>
+    <td><%= sprintf("%.5f", track.danceability) %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
 
 

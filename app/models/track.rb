@@ -20,7 +20,7 @@ class Track < ActiveRecord::Base
     if id
       if (popular_track.tempo != nil && popular_track.energy != nil) then
         #sql = "select tracks.id, tracks.name as track_name, artists.name as artist_name, tracks.aggregated_popularity as popularity, tempo, energy, loudness, danceability from tracks,artists, popular_tracks where  tempo <= (#{popular_track.tempo} * 1.15) and tempo >= (#{popular_track.tempo} * 0.85) and energy <= (#{popular_track.energy} * 1.15) and energy >= (#{popular_track.energy} * 0.85) and altnet_id = tracks.id and tracks.artist_id = artists.id";
-        sql = "select tracks.id, tracks.name as track_name, artists.name as artist_name, tracks.aggregated_popularity, tempo, energy, loudness, danceability from tracks,artists, popular_tracks where  tempo <= (#{popular_track.tempo} * 1.004) and tempo >= (#{popular_track.tempo} * 0.996) and energy <= (#{popular_track.energy} * 1.004) and energy >= (#{popular_track.energy} * 0.996) and altnet_id = tracks.id and tracks.is_valid = 1 and tracks.artist_id = artists.id order by tracks.aggregated_popularity desc";
+        sql = "select tracks.id, tracks.name as track_name, artists.name as artist_name, tracks.aggregated_popularity as popularity, tempo, energy, loudness, danceability from tracks,artists, popular_tracks where  tempo <= (#{popular_track.tempo} * 1.004) and tempo >= (#{popular_track.tempo} * 0.996) and energy <= (#{popular_track.energy} * 1.004) and energy >= (#{popular_track.energy} * 0.996) and altnet_id = tracks.id and tracks.is_valid = 1 and tracks.artist_id = artists.id order by tracks.aggregated_popularity desc";
         @tracks =  Track.find_by_sql(sql)
         #puts @sql
       end
