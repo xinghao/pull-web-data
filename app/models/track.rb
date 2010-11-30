@@ -9,10 +9,10 @@ class Track < ActiveRecord::Base
   
   def self.moodSearch(search)
     if search
-      #sql = "select tracks.id, tracks.name as track_name, artists.name as artist_name from tracks,artists where  tracks.name = '#{search}' and tracks.artist_id = artists.id and tracks.is_valid = 1";
+      #sql = "select tracks.id, tracks.name as track_name, artists.name as artist_name, tracks.aggregated_popularity as popularity from tracks,artists where  tracks.name = '#{search}' and tracks.artist_id = artists.id and tracks.is_valid = 1  order by tracks.aggregated_popularity desc";
       #@tracks =  Track.find_by_sql(sql)
 
-      @tracks = find(:all, :conditions => ["name = ?", "#{search}"]);
+      @tracks = find(:all, :conditions => ["name = ?", "#{search}"], :order => "aggregated_popularity desc");
     end
   end
   

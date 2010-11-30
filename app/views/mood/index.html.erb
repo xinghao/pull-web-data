@@ -18,6 +18,7 @@
     <th align="left">Artist</th>
     <th> &nbsp;&nbsp;&nbsp;</th>
     <th align="left">Track_id</th>
+    <th> &nbsp;&nbsp;&nbsp;</th>
     <th align="left">Popularity</th>
     <th> &nbsp;&nbsp;&nbsp;</th>
     <th align="left">Mood Radio</th>
@@ -34,7 +35,8 @@ if @tracks != nil then
     <td><%=h track.artist.name %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
     <td><%=h track.id %></td>
-    <td></td>
+    <th> &nbsp;&nbsp;&nbsp;</th>
+    <td><%=h track.popularity %></td>
     <td> &nbsp;&nbsp;&nbsp;</td>
     <td><a href="/mood/radio/<%=h track.id %>">Radio</a></td>
 
