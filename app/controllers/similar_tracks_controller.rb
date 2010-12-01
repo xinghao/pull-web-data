@@ -15,6 +15,7 @@ class SimilarTracksController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
+    #@remote_ip = request.env["HTTP_X_FORWARDED_FOR"]
     @track = Track.find(params[:id])
     #@similar_tracks = SimilarTrack.find(:all, :conditions =>["altnet_id = ?", params[:id]])
     sql = "select tracks.id, tracks.name as track_name, artists.name as artist_name, score from similar_tracks, tracks,albums,artists where altnet_id = " + params[:id] + " and similar_track_id = tracks.id and  tracks.album_id = albums.id and albums.artist_id = artists.id order by score desc"

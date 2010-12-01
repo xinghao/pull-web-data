@@ -440,4 +440,67 @@ class LastfmDataSourceHandler < DataSource
   #     PopularTracksLastfmTempA.find(:first, :conditions =>[ "artist_id = ? and is_valid = 1 and name = ?",])      
   #   end
   # end
+  
+  def checkArtistPopularWrongData
+   where = @DataSourceType+ " = ?"
+   iOffset = 0
+   # iOffset = 30000
+   # iOffset = 60000
+   # iOffset = 90000
+   # iOffset = 120000
+   iLimit = 10    
+    #PopularPStat.find(:all, :conditions =>[where , 5 ], :offset => iOffset, :limit => iLimit).each do |ps|
+    PopularPStat.find(:all, :conditions =>[where , 1 ]).each do |ps|
+    #PopularPStat.find(:all, :conditions =>["altnet_id = ?" , 1785 ]).each do |ps|
+    #PStat.find(:all, :conditions =>[where , 5 ]).each do |ps|
+      art = Artist.find(:first, :conditions =>["id = ?", ps.altnet_id])
+      puts @DataSourceType + " analyzing(raw data) :" + art.id.to_s
+  
+      begin
+        status = analyzePopularArtistWrongData(art)    
+      rescue Exception => e
+        puts e
+        status = 7
+      end 
+      
+      begin
+        puts "status : "+ status.to_s
+        if status != 0 then
+          ps.lastfm_wrong = status;
+          ps.save
+        end
+      rescue Exception => e
+        puts e
+      end 
+    end #end of iteration    
+    return 0
+
+  end
+  
+  def analyzePopularArtistWrongData art
+    document = Hpricot(art.websource_artist_popular_lastfm.html.to_s)
+    sarts = document.search("p");
+    
+    #puts sarts
+    #RelateMtv.delete_all(:altnet_id => art.id)
+    regex = Regexp.new(/music\/(.*)" id/)
+    matchdata = regex.match(sarts.to_s)
+    
+    
+    if (matchdata != nil)      
+      #insertArtistPopularity(art.id,matchdata[1].gsub(",", "").to_i)
+      match_name =  matchdata[1].gsub("+", " ").gsub("the ", "").gsub("The ", "");
+      #puts match_name;
+      artist_name = art.name.gsub("the ", "").gsub("The ", "");      
+      if (artist_name != match_name and artist_name.length >= match_name.length + 1)
+        return 1
+      else
+        return 0
+      end
+    else
+      puts "no match";
+      return 66
+    end
+  end #end of function
+  
 end

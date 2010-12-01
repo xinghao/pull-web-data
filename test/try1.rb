@@ -11,21 +11,31 @@
 # puts matchdata[1]
 
 #r = RawWebData.new
+#r.getLastfmArtistPopularity("Rufus Featuring Chaka Khan");
 #r.getLastFmSimilarTrackData("Johnny Hallyday", "album_name", "J'Oublierai Ton Nom")
 #r.getPandoraSimilarTrackData("beyonce", "", "halo")
 #r.getLastfmTrackPopularity("beyonce", "", "halo")
 #r.getEchonestTrackPopularity("beyonce", "", "halo")
-track = Track.find(28709)
+#track = Track.find(1)
 lm = LastfmDataSourceHandler.new
+lm.checkArtistPopularWrongData
+#art = Artist.find_by_name("Rufus Featuring Chaka Khan");
+#art = Artist.find_by_name("the rolling stones");
+art = Artist.find_by_name("beyonce");
+lm.analyzePopularArtistWrongData art
+#lm.analyzeTrackPopularRowData
 #lm.getTrackPopularityFromSimilarTracksData
+#lm.analyzePopularTrackRawDataImpl track
 #lm.analyzePopularityFromSimilarTracksDataImp(track)
 #lm.getSimilarTrackWebRawDataImp track
-lm.getPopularTrackWebRawDataImp track
+#lm.getPopularTrackWebRawDataImp track
 #e = EchonestDataSourceHandler.new
 #artist = Artist.find(9391)
 #e.getPopularArtistWebRawDataImp artist
 #e.getPopularTrackWebRawDataImp tar
 #e.getWebRawTrackPopularData(0,10)
+#e.analyzePopularTrackRawDataImpl track
+#e.analyzeTrackPopularRowData
 #lm.getWebRawTrackPopularData(0,10)
 # track = Track.find(1030203)
 # lm = LastfmDataSourceHandler.new
