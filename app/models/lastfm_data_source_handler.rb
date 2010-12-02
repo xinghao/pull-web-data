@@ -489,10 +489,13 @@ class LastfmDataSourceHandler < DataSource
     
     if (matchdata != nil)      
       #insertArtistPopularity(art.id,matchdata[1].gsub(",", "").to_i)
-      match_name =  matchdata[1].gsub("+", " ").gsub("the ", "").gsub("The ", "");
-      #puts match_name;
-      artist_name = art.name.gsub("the ", "").gsub("The ", "");      
-      if (artist_name != match_name and artist_name.length >= match_name.length + 1)
+      match_name =  matchdata[1].gsub("+", " ").gsub("the ", "").gsub("The ", "").gsub("THE ", "");
+      puts "match_name:" + match_name;
+      artist_name = art.name.gsub("the ", "").gsub("The ", "").gsub("THE ", "");
+      puts "orign_name:" + artist_name;
+      if (artist_name != match_name and artist_name.length >= match_name.length + 5)
+        puts "match_length:" + match_name.length.to_s;
+        puts "orign_length:" + artist_name.length.to_s;
         return 1
       else
         return 0
