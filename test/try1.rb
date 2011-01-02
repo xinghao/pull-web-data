@@ -62,7 +62,7 @@ require 'hpricot'
 
 #e = EchonestDataSourceHandler.new
 #e.getWebRawArtistPopularData
-Freebasealbum.find(:all, :conditions =>['wpid = 8166670' ]).each do |album|
+Freebasealbum.find(:all).each do |album|
   puts "handling: "+album.wpid.to_s
   album.artist_name = album.getArtistName()
   album.released = album.getReleaseDate()
@@ -73,4 +73,4 @@ Freebasealbum.find(:all, :conditions =>['wpid = 8166670' ]).each do |album|
   album.save()   
   
 end
-   
+puts "Done..."   

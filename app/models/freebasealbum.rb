@@ -8,7 +8,9 @@ class Freebasealbum < ActiveRecord::Base
   
   
   def getArtistName
-      if (xml = nil) return "";
+      if (xml == nil) 
+        return "";
+      end
       doc = Hpricot.XML(xml);
       ar = doc.search("//param[@name='Artist']").search("//target");
       
@@ -32,7 +34,9 @@ class Freebasealbum < ActiveRecord::Base
   end
   
   def getReleaseDate
-    if (xml = nil) return "";
+      if (xml == nil) 
+        return "";
+      end
       doc = Hpricot.XML(xml);
       ar = doc.search("//param[@name='Released']")
       
@@ -56,7 +60,9 @@ class Freebasealbum < ActiveRecord::Base
   end
 
   def getGenre
-    if (xml = nil) return "";
+      if (xml == nil) 
+        return "";
+      end
       doc = Hpricot.XML(xml);
       ar = doc.search("//param[@name='Genre']").search("//target");
       
