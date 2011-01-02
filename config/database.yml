@@ -1,9 +1,10 @@
 # SQLite version 3.x
 #   gem install sqlite3-ruby (not necessary on OS X Leopard)
+# musicbrainz_20092010
 postgres_development:
   adapter: postgresql
-  database: musicbrainz_20092010
-  host: 192.168.26.79
+  database: wex
+  host: 127.0.0.1
   username: postgres
   password: wa3Ub8ji
   pool: 5
@@ -18,7 +19,7 @@ development:
   host: 127.0.0.1
 #  host: 192.168.26.79
   username: root
-  password: 'Mon Aug 10 23:19:09 CDT 2009'
+ password: 'Mon Aug 10 23:19:09 CDT 2009'
 #  password: bah5ieMoTahphau8vaa5Caep  
   pool: 5
   timeout: 5000

@@ -1,3 +1,4 @@
+require 'hpricot'
 # lm = LastfmDataSourceHandler.new;
 # lm.analyzeArtistPopularRowData
 # e = EchonestDataSourceHandler.new
@@ -17,12 +18,13 @@
 #r.getLastfmTrackPopularity("beyonce", "", "halo")
 #r.getEchonestTrackPopularity("beyonce", "", "halo")
 #track = Track.find(1)
-lm = LastfmDataSourceHandler.new
-lm.checkArtistPopularWrongData
+#lm = LastfmDataSourceHandler.new
+#lm.checkArtistPopularWrongData
 #art = Artist.find_by_name("Rufus Featuring Chaka Khan");
 #art = Artist.find_by_name("the rolling stones");
-art = Artist.find_by_name("beyonce");
-lm.analyzePopularArtistWrongData art
+#art = Artist.find_by_name("beyonce");
+#art=Artist.find(30016);
+#lm.analyzePopularArtistWrongData art
 #lm.analyzeTrackPopularRowData
 #lm.getTrackPopularityFromSimilarTracksData
 #lm.analyzePopularTrackRawDataImpl track
@@ -60,3 +62,15 @@ lm.analyzePopularArtistWrongData art
 
 #e = EchonestDataSourceHandler.new
 #e.getWebRawArtistPopularData
+Freebasealbum.find(:all, :conditions =>['wpid = 8166670' ]).each do |album|
+  puts "handling: "+album.wpid.to_s
+  album.artist_name = album.getArtistName()
+  album.released = album.getReleaseDate()
+  album.genre = album.getGenre()   
+  puts  album.artist_name
+  puts album.released
+  puts album.genre
+  album.save()   
+  
+end
+   
