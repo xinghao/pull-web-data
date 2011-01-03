@@ -5,11 +5,14 @@ class Redirect < ActiveRecord::Base
       redirect =  Redirect.find_by_name_lowercase(external_name.downcase);
       if (redirect == nil)
         redirect = Freebaseartist.find_by_name_lowercase(external_name.downcase);
-      end
-      if (redirect == nil)
-        return nil;
+        if (redirect == nil)
+          return nil;
+        else
+          return redirect.name
+        end
       else
         return redirect.redirects_to;
       end
-    end
+      
+    end # end of function
 end
