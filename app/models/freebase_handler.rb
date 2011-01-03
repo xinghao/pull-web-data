@@ -79,21 +79,21 @@ class FreebaseHandler
       freebase_artist_name = Redirect.getFreebaseName(artist.name);
       if (freebase_artist_name != nil)
         ifound = ifound + 1;
-        puts "  match"
-        # freebase_albums = Freebasealbum.find(:all, :conditions =>["artist_name = ?", freebase_artist_name]);
-        # if (freebase_albums != nil)
-        #   freebase_albums.each do |freebase_album|
-        #     solrAlbumMatch(freebase_album, artist.name, freebase_album.name);
-        #     aliases = Redirect.find(:all, :conditions =>["redirects_to = ?", freebase_album.name]);
-        #     if (aliases != nil)
-        #       aliases.each do |aliase|
-        #         if (aliase.name.downcase != freebase_album.name)
-        #           solrAlbumMatch(freebase_album, artist.name, aliase.name);
-        #         end # end of id
-        #       end # end of artist loop
-        #     end # end of if
-        #   end # end of freebase album loop
-        # end # end of album empty
+#        puts "  match"
+        freebase_albums = Freebasealbum.find(:all, :conditions =>["artist_name = ?", freebase_artist_name]);
+        if (freebase_albums != nil)
+          freebase_albums.each do |freebase_album|
+            solrAlbumMatch(freebase_album, artist.name, freebase_album.name);
+            aliases = Redirect.find(:all, :conditions =>["redirects_to = ?", freebase_album.name]);
+            if (aliases != nil)
+              aliases.each do |aliase|
+                if (aliase.name.downcase != freebase_album.name)
+                  solrAlbumMatch(freebase_album, artist.name, aliase.name);
+                end # end of id
+              end # end of artist loop
+            end # end of if
+          end # end of freebase album loop
+        end # end of album empty
       
       end # end of freebase artist name empty
     end # end of artist loop
