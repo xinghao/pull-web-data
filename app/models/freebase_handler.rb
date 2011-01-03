@@ -74,10 +74,12 @@ class FreebaseHandler
     #1785 beyonce
     ifound = 0;
 #    Artist.find(:all,:conditions =>["id = ?", 1784]).each do |artist|
-    Artist.find(:all).each do |artist|      
+    Artist.find(:all).each do |artist| 
+      print "handling artist id:" + artist.id.to_s     
       freebase_artist_name = Redirect.getFreebaseName(artist.name);
       if (freebase_artist_name != nil)
         ifound = ifound + 1;
+        puts "  match"
         # freebase_albums = Freebasealbum.find(:all, :conditions =>["artist_name = ?", freebase_artist_name]);
         # if (freebase_albums != nil)
         #   freebase_albums.each do |freebase_album|
