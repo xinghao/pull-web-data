@@ -41,26 +41,32 @@ class FreebaseHandler
   def solrAlbumMatch(freebase_album, artist_name, match_name)
       url = solrAlbumSearch(match_name, artist_name);
       puts url;
-      html = open(URI.encode(url));
-      document = Hpricot(html)
-      #ar = document.search("//div[@id='catalogueHead']");
-      ar = document.search("//doc");
-      
-      ifound = 0
-      ar.each do |sart|
-        #puts sart
-        regex = Regexp.new(/<str name="id">Album (.*)<\/str><arr name="name_text">/m)
-        matchdata = regex.match(sart.to_s)
+      begin
+        html = open(URI.encode(url));
+        document = Hpricot(html)
+        #ar = document.search("//div[@id='catalogueHead']");
+        ar = document.search("//doc");
         
-        
-        
-        if matchdata
-          ifound = ifound + 1
-          puts matchdata[1]
-          saveMatch(freebase_album,matchdata[1], match_name)
+        ifound = 0
+        ar.each do |sart|
+          #puts sart
+          regex = Regexp.new(/<str name="id">Album (.*)<\/str><arr name="name_text">/m)
+          matchdata = regex.match(sart.to_s)
+          
+          
+          
+          if matchdata
+            ifound = ifound + 1
+            puts matchdata[1]
+            saveMatch(freebase_album,matchdata[1], match_name)
+          end
+  
         end
-
-      end  
+    rescue Exception => e
+      puts "html grab error"
+      return ""
+    end           
+    
 
   end
   
