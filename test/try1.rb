@@ -62,15 +62,20 @@ require 'hpricot'
 
 #e = EchonestDataSourceHandler.new
 #e.getWebRawArtistPopularData
-Freebasealbum.find(:all).each do |album|
-  puts "handling: "+album.wpid.to_s
-  album.artist_name = album.getArtistName()
-  album.released = album.getReleaseDate()
-  album.genre = album.getGenre()   
-  puts  album.artist_name
-  puts album.released
-  puts album.genre
-  album.save()   
-  
-end
-puts "Done..."   
+
+## freebase --start
+# Freebasealbum.find(:all).each do |album|
+#   puts "handling: "+album.wpid.to_s
+#   album.artist_name = album.getArtistName()
+#   album.released = album.getReleaseDate()
+#   album.genre = album.getGenre()   
+#   puts  album.artist_name
+#   puts album.released
+#   puts album.genre
+#   album.save()   
+#   
+# end
+# puts "Done..."   
+#puts Redirect.getFreebaseName('Beyoncé');
+f = FreebaseHandler.new
+f.albumMatch()
