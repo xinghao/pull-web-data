@@ -99,7 +99,7 @@ class LastfmDataSourceHandler < DataSource
 
           #WebsourceLastfm.delete_all(:altnet_id => artist.id)
           #artist.websource_lastfm.remove 
-          wlf = WebsourceTrackSimilarLastfm.new
+          wlf = WebsourceTrackSimilarLastfmV1.new
           wlf.altnet_id = track.id
           wlf.html = html.to_s
           wlf.url = rw.getLastFmSimilarTrackDataUrl(artist.name, "", track.name)

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  altnet_id: 1
+  wpid: 1
+  distance: 1
+
+two:
+  altnet_id: 1
+  wpid: 1
+  distance: 1

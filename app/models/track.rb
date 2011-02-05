@@ -6,6 +6,7 @@ class Track < ActiveRecord::Base
   has_one :aggregate_similar_tracks_stat, :foreign_key=>"altnet_id"
   has_one :websource_track_popular_echonest, :foreign_key=>"altnet_id"
   has_one :websource_track_popular_lastfm, :foreign_key=>"altnet_id"  
+  has_and_belongs_to_many :similar_tracks, :class_name => "Track", :join_table => "similar_tracks", :association_foreign_key => "similar_track_id"
   
   def self.moodSearch(search)
     if search

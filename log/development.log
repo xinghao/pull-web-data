@@ -3200,3 +3200,423 @@ ActionView::TemplateError (undefined local variable or method `ptrack' for #<Act
     app/views/similar_tracks/index.html.erb:10
     app/controllers/similar_tracks_controller.rb:9:in `index'
 
+
+NameError (uninitialized constant MoodController::Tracks):
+  app/controllers/mood_controller.rb:5:in `index'
+
+
+NameError (undefined local variable or method `sef' for #<Class:0x10332c4f0>):
+  app/models/track.rb:10
+  app/controllers/mood_controller.rb:5:in `index'
+
+
+ActionView::TemplateError (undefined local variable or method `moods_path' for #<ActionView::Base:0x1034d8bf0>) on line #3 of app/views/mood/index.html.erb:
+1: <h1>View song's mood radio</h1>
+2: 
+3: <% form_tag moods_path, :method => 'get' do %>
+4:  <p>
+5:    <%= text_field_tag :search, params[:search] %>
+6:    <%= submit_tag "Search", :name => nil %>
+
+    app/views/mood/index.html.erb:3
+
+
+ActionView::TemplateError (mood_url failed to generate from {:controller=>"mood", :action=>"show"} - you may have ambiguous routes, or you may need to supply additional parameters for this route.  content_url has the following required parameters: ["mood", :id] - are they all satisfied?) on line #3 of app/views/mood/index.html.erb:
+1: <h1>View song's mood radio</h1>
+2: 
+3: <% form_tag mood_path, :method => 'get' do %>
+4:  <p>
+5:    <%= text_field_tag :search, params[:search] %>
+6:    <%= submit_tag "Search", :name => nil %>
+
+    (eval):17:in `mood_path'
+    app/views/mood/index.html.erb:3
+
+
+ActionView::TemplateError (mood_url failed to generate from {:controller=>"mood", :action=>"show"} - you may have ambiguous routes, or you may need to supply additional parameters for this route.  content_url has the following required parameters: ["mood", :id] - are they all satisfied?) on line #3 of app/views/mood/index.html.erb:
+1: <h1>View song's mood radio</h1>
+2: 
+3: <% form_tag mood_path, :method => 'get' do %>
+4:  <p>
+5:    <%= text_field_tag :search, params[:search] %>
+6:    <%= submit_tag "Search", :name => nil %>
+
+    (eval):17:in `mood_path'
+    app/views/mood/index.html.erb:3
+
+
+ActionView::TemplateError (mood_url failed to generate from {:controller=>"mood", :action=>"show"} - you may have ambiguous routes, or you may need to supply additional parameters for this route.  content_url has the following required parameters: ["mood", :id] - are they all satisfied?) on line #3 of app/views/mood/index.html.erb:
+1: <h1>View song's mood radio</h1>
+2: 
+3: <% form_tag mood_url, :method => 'get' do %>
+4:  <p>
+5:    <%= text_field_tag :search, params[:search] %>
+6:    <%= submit_tag "Search", :name => nil %>
+
+    (eval):17:in `mood_url'
+    app/views/mood/index.html.erb:3
+
+
+ActionView::TemplateError (mood_url failed to generate from {:controller=>"mood", :action=>"show"} - you may have ambiguous routes, or you may need to supply additional parameters for this route.  content_url has the following required parameters: ["mood", :id] - are they all satisfied?) on line #3 of app/views/mood/index.html.erb:
+1: <h1>View song's mood radio</h1>
+2: 
+3: <% form_tag mood_url, :method => 'get' do %>
+4:  <p>
+5:    <%= text_field_tag :search, params[:search] %>
+6:    <%= submit_tag "Search", :name => nil %>
+
+    (eval):17:in `mood_url'
+    app/views/mood/index.html.erb:3
+
+
+ActionView::TemplateError (mood_url failed to generate from {:controller=>"mood", :action=>"show"} - you may have ambiguous routes, or you may need to supply additional parameters for this route.  content_url has the following required parameters: ["mood", :id] - are they all satisfied?) on line #3 of app/views/mood/index.html.erb:
+1: <h1>View song's mood radio</h1>
+2: 
+3: <% form_tag mood_url, :method => 'get' do %>
+4:  <p>
+5:    <%= text_field_tag :search, params[:search] %>
+6:    <%= submit_tag "Search", :name => nil %>
+
+    (eval):17:in `mood_url'
+    app/views/mood/index.html.erb:3
+
+
+ActiveRecord::RecordNotFound (Couldn't find Track with ID=search):
+  app/controllers/mood_controller.rb:12:in `show'
+
+
+ActionController::UnknownAction (No action responded to show. Actions: index):
+  
+
+
+ActionView::TemplateError (undefined method `track_name' for #<Track:0x105a2fbb0>) on line #30 of app/views/mood/index.html.erb:
+27: <% @tracks.each do |track| 
+28: %>
+29:   <tr>
+30:     <td><%=h track.track_name %></td>
+31:     <td> &nbsp;&nbsp;&nbsp;</td>
+32:     <td><%=h track.artist_name %></td>
+33:     <td> &nbsp;&nbsp;&nbsp;</td>
+
+    app/views/mood/index.html.erb:30
+    app/views/mood/index.html.erb:27:in `each'
+    app/views/mood/index.html.erb:27
+
+
+NameError (undefined local variable or method `artists' for #<Class:0x106726fa8>):
+  app/models/track.rb:12:in `moodSearch'
+  app/controllers/mood_controller.rb:5:in `index'
+
+
+ActionView::TemplateError (undefined method `track_name' for #<Track:0x10611c0e0>) on line #30 of app/views/mood/index.html.erb:
+27: <% @tracks.each do |track| 
+28: %>
+29:   <tr>
+30:     <td><%=h track.track_name %></td>
+31:     <td> &nbsp;&nbsp;&nbsp;</td>
+32:     <td><%=h track.artist_name %></td>
+33:     <td> &nbsp;&nbsp;&nbsp;</td>
+
+    app/views/mood/index.html.erb:30
+    app/views/mood/index.html.erb:27:in `each'
+    app/views/mood/index.html.erb:27
+
+
+ActionView::TemplateError (You have a nil object when you didn't expect it!
+You might have expected an instance of Array.
+The error occurred while evaluating nil.each) on line #27 of app/views/mood/index.html.erb:
+24:     
+25:   </tr>
+26: 
+27: <% @tracks.each do |track| 
+28: %>
+29:   <tr>
+30:     <td><%=h track.track_name %></td>
+
+    app/views/mood/index.html.erb:27
+
+
+ActionView::TemplateError (undefined method `track_name' for #<Track:0x1035a4ae8>) on line #32 of app/views/mood/index.html.erb:
+29: @tracks.each do |track| 
+30: %>
+31:   <tr>
+32:     <td><%=h track.track_name %></td>
+33:     <td> &nbsp;&nbsp;&nbsp;</td>
+34:     <td><%=h track.artist_name %></td>
+35:     <td> &nbsp;&nbsp;&nbsp;</td>
+
+    app/views/mood/index.html.erb:32
+    app/views/mood/index.html.erb:29:in `each'
+    app/views/mood/index.html.erb:29
+
+
+ActionView::MissingTemplate (Missing template mood/radio.erb in view path app/views):
+  
+
+
+SyntaxError (/Users/xinghao/Documents/rails/pull-web-data/app/models/track.rb:30: syntax error, unexpected $end, expecting kEND):
+  app/controllers/mood_controller.rb:9:in `radio'
+
+
+SyntaxError (/Users/xinghao/Documents/rails/pull-web-data/app/models/track.rb:30: syntax error, unexpected $end, expecting kEND):
+  app/controllers/mood_controller.rb:9:in `radio'
+
+
+SyntaxError (/Users/xinghao/Documents/rails/pull-web-data/app/models/track.rb:30: syntax error, unexpected $end, expecting kEND):
+  app/controllers/mood_controller.rb:9:in `radio'
+
+
+NoMethodError (undefined method `find_by_altnet_id' for #<Class:0x103433060>):
+  app/models/track.rb:21:in `moodRadio'
+  app/controllers/mood_controller.rb:9:in `radio'
+
+
+ActiveRecord::StatementInvalid (Mysql::Error: Unknown column 'tracks.aggregated_popularity' in 'field list': select tracks.id, tracks.name as track_name, artists.name as artist_name, tracks.aggregated_popularity as popularity, tempo, energy, loudness, danceability from tracks,artists, popular_tracks where  tempo <= (130.012 * 1.15) and tempo >= (130.012 * 0.85) and energy <= (0.616658785696 * 1.15) and energy >= (0.616658785696 * 0.85) and altnet_id = tracks.id and tracks.artist_id = artists.id):
+  app/models/track.rb:24:in `moodRadio'
+  app/controllers/mood_controller.rb:9:in `radio'
+
+
+ActiveRecord::StatementInvalid (Mysql::Error: Unknown column 'tracks.aggregated_popularity' in 'field list': select tracks.id, tracks.name as track_name, artists.name as artist_name, tracks.aggregated_popularity as popularity, tempo, energy, loudness, danceability from tracks,artists, popular_tracks where  tempo <= (130.012 * 1.15) and tempo >= (130.012 * 0.85) and energy <= (0.616658785696 * 1.15) and energy >= (0.616658785696 * 0.85) and altnet_id = tracks.id and tracks.artist_id = artists.id):
+  app/models/track.rb:24:in `moodRadio'
+  app/controllers/mood_controller.rb:9:in `radio'
+
+
+NoMethodError (undefined method `tempo' for []:Array):
+  app/models/track.rb:24:in `moodRadio'
+  app/controllers/mood_controller.rb:9:in `radio'
+
+
+ActionController::UnknownAction (No action responded to show. Actions: index and radio):
+  
+
+
+ActiveRecord::StatementInvalid (Mysql::Error: Column 'is_valid' in where clause is ambiguous: select tracks.id, tracks.name as track_name, artists.name as artist_name from tracks,artists where  tracks.name = 'Billionaire' and tracks.artist_id = artists.id and is_valid = 1):
+  app/models/track.rb:13:in `moodSearch'
+  app/controllers/mood_controller.rb:5:in `index'
+
+
+NoMethodError (undefined method `tempo' for [#<Track id: 151034>]:Array):
+  app/models/track.rb:24:in `moodRadio'
+  app/controllers/mood_controller.rb:9:in `radio'
+
+
+NoMethodError (undefined method `tempo' for [#<Track id: 151034>]:Array):
+  app/models/track.rb:23:in `moodRadio'
+  app/controllers/mood_controller.rb:9:in `radio'
+
+
+NoMethodError (undefined method `tempo' for [#<Track id: 151034>]:Array):
+  app/models/track.rb:23:in `moodRadio'
+  app/controllers/mood_controller.rb:9:in `radio'
+
+
+NoMethodError (undefined method `tempo' for [#<Track id: 151034>]:Array):
+  app/models/track.rb:23:in `moodRadio'
+  app/controllers/mood_controller.rb:9:in `radio'
+
+
+NoMethodError (undefined method `tempo' for [#<Track id: 151034>]:Array):
+  app/models/track.rb:23:in `moodRadio'
+  app/controllers/mood_controller.rb:9:in `radio'
+
+
+ActionView::TemplateError (undefined method `track_name' for nil:NilClass) on line #18 of app/views/mood/radio.html.erb:
+15:     
+16:   </tr>
+17:   <tr>
+18:     <td><%=h @popular_track.track_name %></td>
+19:     <td> &nbsp;&nbsp;&nbsp;</td>
+20:     <td><%=h @popular_track.artist_name %></td>
+21:     <td> &nbsp;&nbsp;&nbsp;</td>
+
+    app/views/mood/radio.html.erb:18
+
+
+ActionView::TemplateError (undefined method `track_name' for nil:NilClass) on line #18 of app/views/mood/radio.html.erb:
+15:     
+16:   </tr>
+17:   <tr>
+18:     <td><%=h @popular_track.track_name %></td>
+19:     <td> &nbsp;&nbsp;&nbsp;</td>
+20:     <td><%=h @popular_track.artist_name %></td>
+21:     <td> &nbsp;&nbsp;&nbsp;</td>
+
+    app/views/mood/radio.html.erb:18
+
+
+ActionView::TemplateError (undefined method `track_name' for nil:NilClass) on line #18 of app/views/mood/radio.html.erb:
+15:     
+16:   </tr>
+17:   <tr>
+18:     <td><%=h @popular_track.track_name %></td>
+19:     <td> &nbsp;&nbsp;&nbsp;</td>
+20:     <td><%=h @popular_track.artist_name %></td>
+21:     <td> &nbsp;&nbsp;&nbsp;</td>
+
+    app/views/mood/radio.html.erb:18
+
+
+ActionView::TemplateError (undefined method `track_name' for nil:NilClass) on line #18 of app/views/mood/radio.html.erb:
+15:     
+16:   </tr>
+17:   <tr>
+18:     <td><%=h @popular_track.track_name %></td>
+19:     <td> &nbsp;&nbsp;&nbsp;</td>
+20:     <td><%=h @popular_track.artist_name %></td>
+21:     <td> &nbsp;&nbsp;&nbsp;</td>
+
+    app/views/mood/radio.html.erb:18
+
+
+ActionView::TemplateError (undefined method `track_name' for nil:NilClass) on line #18 of app/views/mood/radio.html.erb:
+15:     
+16:   </tr>
+17:   <tr>
+18:     <td><%=h @popular_track.track_name %></td>
+19:     <td> &nbsp;&nbsp;&nbsp;</td>
+20:     <td><%=h @popular_track.artist_name %></td>
+21:     <td> &nbsp;&nbsp;&nbsp;</td>
+
+    app/views/mood/radio.html.erb:18
+
+
+ActionView::TemplateError (undefined method `track_name' for nil:NilClass) on line #18 of app/views/mood/radio.html.erb:
+15:     
+16:   </tr>
+17:   <tr>
+18:     <td><%=h @popular_track.track_name %></td>
+19:     <td> &nbsp;&nbsp;&nbsp;</td>
+20:     <td><%=h @popular_track.artist_name %></td>
+21:     <td> &nbsp;&nbsp;&nbsp;</td>
+
+    app/views/mood/radio.html.erb:18
+
+
+ActionView::TemplateError (undefined method `track_name' for nil:NilClass) on line #18 of app/views/mood/radio.html.erb:
+15:     
+16:   </tr>
+17:   <tr>
+18:     <td><%=h @rawTrack.track_name %></td>
+19:     <td> &nbsp;&nbsp;&nbsp;</td>
+20:     <td><%=h @rawArtist.artist_name %></td>
+21:     <td> &nbsp;&nbsp;&nbsp;</td>
+
+    app/views/mood/radio.html.erb:18
+
+
+ActionView::TemplateError (undefined method `name' for nil:NilClass) on line #18 of app/views/mood/radio.html.erb:
+15:     
+16:   </tr>
+17:   <tr>
+18:     <td><%=h @rawTrack.name %></td>
+19:     <td> &nbsp;&nbsp;&nbsp;</td>
+20:     <td><%=h @rawArtist.name %></td>
+21:     <td> &nbsp;&nbsp;&nbsp;</td>
+
+    app/views/mood/radio.html.erb:18
+
+
+ActionView::TemplateError (undefined method `name' for nil:NilClass) on line #18 of app/views/mood/radio.html.erb:
+15:     
+16:   </tr>
+17:   <tr>
+18:     <td><%=h @rawTrack.name %></td>
+19:     <td> &nbsp;&nbsp;&nbsp;</td>
+20:     <td><%=h @rawArtist.name %></td>
+21:     <td> &nbsp;&nbsp;&nbsp;</td>
+
+    app/views/mood/radio.html.erb:18
+
+
+ActionView::TemplateError (compile error
+/Users/xinghao/Documents/rails/pull-web-data/app/views/mood/radio.html.erb:89: syntax error, unexpected kENSURE, expecting kEND
+/Users/xinghao/Documents/rails/pull-web-data/app/views/mood/radio.html.erb:91: syntax error, unexpected $end, expecting kEND) on line #89 of app/views/mood/radio.html.erb:
+86: <br />
+
+    app/views/mood/radio.html.erb:91:in `compile!'
+
+
+ActionView::TemplateError (compile error
+/Users/xinghao/Documents/rails/pull-web-data/app/views/mood/radio.html.erb:89: syntax error, unexpected kENSURE, expecting kEND
+/Users/xinghao/Documents/rails/pull-web-data/app/views/mood/radio.html.erb:91: syntax error, unexpected $end, expecting kEND) on line #89 of app/views/mood/radio.html.erb:
+86: <br />
+
+    app/views/mood/radio.html.erb:91:in `compile!'
+
+
+ActionView::TemplateError (undefined method `name' for nil:NilClass) on line #26 of app/views/mood/radio.html.erb:
+23:   <tr>
+24:     <td></td>
+25:     <td> &nbsp;&nbsp;&nbsp;</td>
+26:     <td><%=h @rawArtist.name %></td>
+27:     <td> &nbsp;&nbsp;&nbsp;</td>
+28:     <td><%=h @rawTrack.id %></td>
+29:     <td> &nbsp;&nbsp;&nbsp;</td>
+
+    app/views/mood/radio.html.erb:26
+
+
+ActionView::TemplateError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id) on line #28 of app/views/mood/radio.html.erb:
+25:     <td> &nbsp;&nbsp;&nbsp;</td>
+26:     <td></td>
+27:     <td> &nbsp;&nbsp;&nbsp;</td>
+28:     <td><%=h @rawTrack.id %></td>
+29:     <td> &nbsp;&nbsp;&nbsp;</td>
+30:     <td><%=h @popular_track.tempo %></td>
+31:     <td> &nbsp;&nbsp;&nbsp;</td>
+
+    app/views/mood/radio.html.erb:28
+
+
+ActiveRecord::RecordNotFound (Couldn't find Track with ID=2175662560):
+  app/controllers/mood_controller.rb:10:in `radio'
+
+
+ActionView::TemplateError (compile error
+/Users/xinghao/Documents/rails/pull-web-data/app/views/mood/radio.html.erb:89: syntax error, unexpected kENSURE, expecting kEND
+/Users/xinghao/Documents/rails/pull-web-data/app/views/mood/radio.html.erb:91: syntax error, unexpected $end, expecting kEND) on line #89 of app/views/mood/radio.html.erb:
+86: <br />
+
+    app/views/mood/radio.html.erb:91:in `compile!'
+
+
+ActionView::TemplateError (undefined method `danceability' for nil:NilClass) on line #36 of app/views/mood/radio.html.erb:
+33:     <td> &nbsp;&nbsp;&nbsp;</td>
+34:     <td><%=h @popular_track.loudness %></td>
+35:     <td> &nbsp;&nbsp;&nbsp;</td>
+36:     <td><%=h @poopular_track.danceability %></td>
+37:     <td> &nbsp;&nbsp;&nbsp;</td>    
+38:   </tr>
+39: </table>
+
+    app/views/mood/radio.html.erb:36
+
+
+ActionView::TemplateError (undefined method `danceability' for nil:NilClass) on line #36 of app/views/mood/radio.html.erb:
+33:     <td> &nbsp;&nbsp;&nbsp;</td>
+34:     <td><%=h @popular_track.loudness %></td>
+35:     <td> &nbsp;&nbsp;&nbsp;</td>
+36:     <td><%=h @poopular_track.danceability %></td>
+37:     <td> &nbsp;&nbsp;&nbsp;</td>    
+38:   </tr>
+39: </table>
+
+    app/views/mood/radio.html.erb:36
+
+
+ActionView::TemplateError (undefined method `each' for #<Artist:0x103769838>) on line #62 of app/views/mood/radio.html.erb:
+59: 
+60: <% 
+61: if @tracks != nil then
+62: @tracks.each do |track| 
+63: %>
+64:   <tr>
+65:     <td><%=h track.track_name %></td>
+
+    app/views/mood/radio.html.erb:62
+
+
+NoMethodError (undefined method `tempo' for "151034":String):
+  app/models/track.rb:21:in `moodRadio'
+  app/controllers/mood_controller.rb:13:in `radio'
+
