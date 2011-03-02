@@ -1,32 +1,7 @@
 <p>
   <b>Client Ip:</b>
-  <% #puts @remote_ip %>
+  <% puts @remote_ip %>
   
-  <b>Track:</b>
-  <%=h @track.name %>
-</p>
 
-<p>
-  <b>Similar Tracks</b>
- <table>
-  <tr>
-    <th>Track</th>
-    <th> &nbsp;&nbsp;&nbsp;</th>
-    <th>Artist</th>
-  </tr>
-
-<% @similar_tracks.each do |ptrack| 
-
-%>
-  <tr>
-    <td><%=h ptrack.track_name %></td>
-    <td> &nbsp;&nbsp;&nbsp;</td>
-    <td><%=h ptrack.artist_name %></td>
-
-
-    
-  </tr>
-<% end %>
-</table>
 
 </p>
