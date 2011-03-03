@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  code: 1
+  name: MyString
+  description: MyString
+  is_valid: 1
+
+two:
+  code: 1
+  name: MyString
+  description: MyString
+  is_valid: 1

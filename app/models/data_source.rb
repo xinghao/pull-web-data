@@ -399,7 +399,7 @@ class DataSource
     end
     #puts "match!"
     if @DataSourceType == "lastfm"
-      rm = SimilarTrackLastfm.new 
+      rm = SimilarTracksLastfmV1.new 
     elsif @DataSourceType == "mtv"
       rm = SimilarTrackMtv.new
     end 

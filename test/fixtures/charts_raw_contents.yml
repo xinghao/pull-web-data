@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  chart_id: 1
+  date_version: MyString
+  status: 1
+  content: MyText
+  url: MyString
+  description: MyString
+  is_valid: 1
+
+two:
+  chart_id: 1
+  date_version: MyString
+  status: 1
+  content: MyText
+  url: MyString
+  description: MyString
+  is_valid: 1

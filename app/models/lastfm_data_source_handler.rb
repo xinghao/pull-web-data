@@ -159,7 +159,7 @@ class LastfmDataSourceHandler < DataSource
   end #end of function 
 
   def analyzeSimilarTrackRawDataImp track
-    websource = WebsourceTrackSimilarTemplastLastfm.find(:first, :conditions =>["altnet_id = ?", track.id], :order => "id desc")
+    websource = WebsourceTrackSimilarLastfmV1.find(:first, :conditions =>["altnet_id = ?", track.id], :order => "id desc")
     #websource = WebsourceTrackSimilarLastfm.find(:first, :conditions =>["altnet_id = ?", track.id], :order => "id desc")
     #puts websource.html
     document = Hpricot(websource.html.to_s)

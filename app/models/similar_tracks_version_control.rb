@@ -27,6 +27,8 @@
 ## 2: no similar tracks and we do not why because they are old data
 ## 3: name no match on lastfm
 ## 4: match on lastfm but no similar tracks
+
+#12 : find similar tracks
  
 # 100: not do brackets fixed yet
 # 101: match other songs with similar tracks
@@ -87,4 +89,29 @@ class SimilarTracksVersionControl < ActiveRecord::Base
    end #--end of album iteration 
   end
 
+  def analyzeSimilarTracks()    
+    SimilarTracksVersionControl.find(:all, :order=>"track_id", :conditions =>["status = ?" , 5], :limit => 1).each do |ps|
+      puts ps.track_id.to_s;
+        track = Track.find(ps.track_id);
+        
+        puts  " analyzing(raw data) :" + ps.id.to_s + "-" + track.id.to_s
+    
+        begin
+          lm = LastfmDataSourceHandler.new;
+          status = lm.analyzeSimilarTrackRawDataImp(track)    
+        rescue Exception => e
+          puts e
+          status = 7
+        end 
+        
+        begin
+          puts "status : "+ status.to_s
+          SimilarTracksVersionControl.updateStatus(track.id, status, 0);
+          
+        rescue Exception => e
+          puts e
+        end 
+        break;
+    end
+  end
 end

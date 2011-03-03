@@ -80,4 +80,5 @@ require 'hpricot'
 # f = FreebaseHandler.new
 # f.albumMatch()
 sc = SimilarTracksVersionControl.new;
-sc.getSimilarTracks();
+#sc.getSimilarTracks();
+sc.analyzeSimilarTracks();
