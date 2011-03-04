@@ -81,4 +81,4 @@ require 'hpricot'
 # f.albumMatch()
 sc = SimilarTracksVersionControl.new;
 #sc.getSimilarTracks();
-sc.analyzeSimilarTracks();
+sc.aggregateSimilarTracks();

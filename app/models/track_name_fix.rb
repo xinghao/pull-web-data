@@ -4,21 +4,29 @@ class TrackNameFix
   def batchScanTrackNameBracketsFix()
     bracketsCount = 0;
     isRedo = false;
-    Tracks.find(:all).each do |track|
-      strSource = track.name; 
+    SimilarTracksVersionControl.find(:all, :conditions => ["version = ? and status < ? and has_similar_tracks = ?" , 1, 100, 0]).each do |strack|
+      strSource = strack.name; 
       strRep = strSource.gsub(/\s*\([^)]*\)/, '');
+      strRep = strRep.gsub(/\s*\[[^)]*\]/, '');
       if (strSource.downcase != strRep.downcase)
         bracketsCount = bracketsCount + 1;
-        TrackBracketFixStat.existOrNewFix(track, strRep.downcase, isRedo)        
+        #TrackBracketFixStat.existOrNewFix(strack, strRep.downcase, isRedo)
+        #SimilarTracksVersionControl.updateStatusAndNoBracketsName(strack.track_id, 100, strRep.downcase);
+        strack.status = status;
+        strack.track_name_no_brackets = nameWithoutBrackets;
+        strack.save;      
+   
       end              
     end
   end
   
   
   def batchTrackNameBracketsFixByMatchOtherTrackName()
-    TrackBracketFixStat.find(:all, :conditions =>["status = ?" , 0 ]).each do |fix|
+    SimilarTracksVersionControl.find(:all, :conditions =>["status = ?" , 100 ]).each do |fix|
       status = fixTrackNameBracketsFixByMatchOtherTrackName(fix);
-      TrackBracketFixStat.updateFixStatus(fix.track_id, status);
+      fix.status = status;     
+      fix.save;      
+
     end
   end
     
@@ -26,7 +34,7 @@ class TrackNameFix
     
   def fixTrackNameBracketsFixByMatchOtherTrackName(fix)
     
-    tracks = Tracks.find_by_artist_id(fix.artist_id);
+    tracks = Tracks.find_by_artist_id(fix.track_artist_id);
     status = 0;
     if (tracks != nil)
       tracks.each do |track|

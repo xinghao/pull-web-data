@@ -49,13 +49,14 @@ class SimilarTracksVersionControl < ActiveRecord::Base
       fix.track_name = track.name;
       fix.track_artist_id = track.artist_id;
       fix.track_name_no_brackets = nameWithoutBrackets;
-      fix.status = 0;
+      fix.status = 100;
       fix.has_similar_tracks = 0;
       fix.version = version
       fix.save;
       return false;
     elsif (isRedo)
-      fix.status = 0
+      fix.track_name_no_brackets = nameWithoutBrackets;
+      fix.status = 100
       fix.has_similar_tracks = 0;
       fix.version = version            
       fix.save;    
@@ -90,7 +91,8 @@ class SimilarTracksVersionControl < ActiveRecord::Base
   end
 
   def analyzeSimilarTracks()    
-    SimilarTracksVersionControl.find(:all, :order=>"track_id", :conditions =>["status = ?" , 5], :limit => 1).each do |ps|
+    #SimilarTracksVersionControl.find(:all, :order=>"track_id", :conditions =>["status = ?" , 5], :limit => 1).each do |ps|
+    SimilarTracksVersionControl.find(:all, :order=>"track_id", :conditions =>["status = ?" , 5]).each do |ps|
       puts ps.track_id.to_s;
         track = Track.find(ps.track_id);
         
@@ -111,7 +113,51 @@ class SimilarTracksVersionControl < ActiveRecord::Base
         rescue Exception => e
           puts e
         end 
-        break;
+        
     end
   end
+  
+  
+  def aggregateSimilarTracks 
+   SimilarTracksVersionControl.find(:all, :order=>"track_id", :conditions =>["status = ?" , 12]).each do |ps|   
+     # if (!alreadyHandled(track, "similar tracks"))
+         h = Hash.new
+         
+        puts "Aggregator :" + ps.track_id.to_s
+        # LASTFM
+        relateLastfms = SimilarTracksLastfmV1.find(:all, :select => 'DISTINCT  similar_track_id, score', :conditions =>["altnet_id = ?", ps.track_id])
+        a = Aggregator.new;
+        a.startSingleDataSourceTrack(relateLastfms, h, "lastfm")     
+        #MTV
+        # relateMtvs = SimilarTrackMtv.find(:all, :select => 'DISTINCT  similar_track_id, score', :conditions =>["altnet_id = ?", ps.track_id])
+        # startSingleDataSourceTrack(relateMtvs, h, "mtv")
+        
+        icount = 0
+        h.each_pair do |sid, sas|
+           sa = SimilarTrack.new
+           sa.track_id = ps.track_id
+#           sa.similar_artist_id = sid
+           sa.similar_track_id = sid
+           sa.score = sas.getScore
+           sa.appearance_times = sas.getScore.to_i
+           sa.save
+          #puts sid.to_s + ":"+ sas.getScore.to_s
+          icount = icount+1  
+        end
+        
+        puts "total:" + icount.to_s
+        if (icount == 0)
+          status = 4
+          SimilarTracksVersionControl.updateStatus(ps.track_id, status, 0);
+        else
+          status = 1
+          SimilarTracksVersionControl.updateStatus(ps.track_id, status, 1);
+        end
+        
+        puts status.to_s
+     #   updateAstatus(track, status, "similar tracks")
+
+     # end   #end of if  
+    end
+  end  
 end
