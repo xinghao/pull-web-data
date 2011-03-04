@@ -3,14 +3,15 @@ class TrackNameFix
   def batchScanTrackNameBracketsFix()
     bracketsCount = 0;
     isRedo = false;
-    SimilarTracksVersionControl.find(:all, :conditions => ["version = ? and status = ?" , 1, 100], :limit => 1).each do |strack|
-      strSource = strack.name; 
+    SimilarTracksVersionControl.find(:all, :conditions => ["version = ? and status < ?" , 1, 100]).each do |strack|
+      puts "track_id:" + strack.track_id.to_s();
+      strSource = strack.track_name; 
       strRep = strSource.gsub(/\s*\([^)]*\)/, '');
       strRep = strRep.gsub(/\s*\[[^)]*\]/, '');
       
-      strack.track_name_no_brackets = nameWithoutBrackets;
+      strack.track_name_no_brackets = strRep;
       
-      if (strSource.downcase != strRep.downcase && strSource.has_similar_tracks = 0)
+      if (strSource.downcase != strRep.downcase && strack.has_similar_tracks = 0)
         bracketsCount = bracketsCount + 1;
         strack.status = 100;
       end #end of if
@@ -33,7 +34,7 @@ class TrackNameFix
 
   def fixTrackNameBracketsFixByMatchOtherTrackName(fix)
     
-    scs = SimilarTracksVersionControl.find(:all, :order => "similar_track_count desc", :limit => 1, :conditions => "(track_name = ? or track_name_no_brackets = ?) and track_artist_id = ? and track_id != ? and status < ?", fix.track_name_no_brackets, fix.track_name_no_brackets, fix.track_artist_id, fix.track_id, 100)
+    scs = SimilarTracksVersionControl.find(:all, :order => "similar_track_count desc", :limit => 1, :conditions => ["(track_name = ? or track_name_no_brackets = ?) and track_artist_id = ? and track_id != ? and status < ?", fix.track_name_no_brackets, fix.track_name_no_brackets, fix.track_artist_id, fix.track_id, 100])
     status = 0;
     if (scs != nil and !scs.empty?)
       sc = scs.first;

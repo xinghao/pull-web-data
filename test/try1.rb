@@ -79,6 +79,13 @@ require 'hpricot'
 #puts Redirect.getFreebaseName('Beyoncé');
 # f = FreebaseHandler.new
 # f.albumMatch()
-sc = SimilarTracksVersionControl.new;
-#sc.getSimilarTracks();
-sc.aggregateSimilarTracks();
+# sc = SimilarTracksVersionControl.new;
+# #sc.getSimilarTracks();
+# sc.aggregateSimilarTracks();
+
+fix = TrackNameFix.new();
+fix.batchScanTrackNameBracketsFix();
+#fix.batchTrackNameBracketsFixByMatchOtherTrackName();
+#fix.batchTrackNameBracketsFixByScrapingGeting();
+#fix.batchTrackNameBracketsFixByScrapingAnalyzing();
+#fix.batchTrackNameBracketsFixByScrapingAggregating();

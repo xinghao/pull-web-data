@@ -183,7 +183,7 @@ execute 'insert into temp_sc1(track_id, similar_tracks_count) select track_id, c
 execute 'insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <    1790000 and track_id >=   1780000 group by track_id;'
 execute 'insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <    1800000 and track_id >=   1790000 group by track_id;'    
  
-    #execute 'update similar_tracks_version_controls c, temp_sc1 s set c.similar_tracks_count = s.similar_tracks_count where s.track_id = c.track_id;'
+    #execute 'update similar_tracks_version_controls c, temp_sc1 s set c.similar_track_count = s.similar_tracks_count where s.track_id = c.track_id;'
     
   end
 

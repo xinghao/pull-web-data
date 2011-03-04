@@ -34,10 +34,10 @@
 #  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  180000 and track_id >= 1700000;
 
 
-# update similar_tracks_version_controls c, temp_sc1 s set c.similar_tracks_count = s.similar_tracks_count where s.track_id = c.track_id
-
+# update similar_tracks_version_controls c, temp_sc1 s set c.similar_tracks_count = s.similar_tracks_count where s.track_id = c.track_id;
+# update similar_tracks_version_controls set similar_track_count = 0 where similar_track_count is null;
 #select count(*) from similar_tracks_version_controls where has_similar_tracks = 0 and similar_tracks_count > 0
-#select count(*) from similar_tracks_version_controls where has_similar_tracks = 1 and similar_tracks_count = 0
+#select count(*) from similar_tracks_version_controls where has_similar_tracks = 1 and similar_track_count = 0
 
 
 
