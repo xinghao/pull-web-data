@@ -13,6 +13,34 @@
 # insert into temp_st1(track_id) select distinct(track_id) from temp_st;
 #  drop table temp_st;
 
+# craete table temp_sc1 (track_id int(11), similar_tracks_count int(11));
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  100000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  200000 and track_id >= 100000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  300000 and track_id >= 200000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  400000 and track_id >= 300000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  500000 and track_id >= 400000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  600000 and track_id >= 500000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  700000 and track_id >= 600000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  800000 and track_id >= 700000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  900000 and track_id >= 800000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  1000000 and track_id >= 900000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  1100000 and track_id >= 1000000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  1200000 and track_id >= 1100000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  1300000 and track_id >= 1200000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  1400000 and track_id >= 1300000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  1500000 and track_id >= 1400000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  1600000 and track_id >= 1500000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  1700000 and track_id >= 1600000;
+#  insert into temp_sc1(track_id, similar_tracks_count) select track_id, count(distinct similar_track_id) from similar_tracks where track_id <  180000 and track_id >= 1700000;
+
+
+# update similar_tracks_version_controls c, temp_sc1 s set c.similar_tracks_count = s.similar_tracks_count where s.track_id = c.track_id
+
+#select count(*) from similar_tracks_version_controls where has_similar_tracks = 0 and similar_tracks_count > 0
+#select count(*) from similar_tracks_version_controls where has_similar_tracks = 1 and similar_tracks_count = 0
+
+
+
 # update similar_tracks_version_controls set status = 2
 # update similar_tracks_version_controls c, temp_st1 s set status = 1, has_similar_tracks = 1 where s.track_id = c.track_id
 
@@ -31,11 +59,11 @@
 #12 : find similar tracks
  
 # 100: not do brackets fixed yet
-# 101: match other songs with similar tracks
-# 102: match other songs without similar tracks
-# 103: no match on lastfm
-# 104: match on lastfm but no similar tracks
-# 105: match on lastfm with similar tracks
+# 151: match other songs with similar tracks
+# 152: match other songs without similar tracks
+# 153: no match ready to scrape
+# 154: match on lastfm but no similar tracks
+# 155: match on lastfm with similar tracks
 
 
 class SimilarTracksVersionControl < ActiveRecord::Base
@@ -74,25 +102,28 @@ class SimilarTracksVersionControl < ActiveRecord::Base
     fix.save;      
   end
   
-  
-  def getSimilarTracks()
-    SimilarTracksVersionControl.find(:all, :conditions =>["status = ?" , 0 ]).each do |newTrack|
+  #normal base => 0, status = 0
+  #nobracketfix base => 100, status = 153
+  def getSimilarTracks(base, status)
+    SimilarTracksVersionControl.find(:all, :conditions =>["status = ?" , status ]).each do |newTrack|
         #newTrack = SimilarTracksVersionControl.find(:first, :conditions =>["status = ?" , 0 ]);
         track = Track.find(newTrack.track_id);
         puts " processing(similar track raw data) :" + track.id.to_s
 
         lf = LastfmDataSourceHandler.new
-        status = lf.getSimilarTrackWebRawDataImp(track)
+        pstatus = lf.getSimilarTrackWebRawDataImp(track) + base;
         #status = 9
         puts "status : "+ status.to_s
-        SimilarTracksVersionControl.updateStatus(track.id, status, 0);
+        SimilarTracksVersionControl.updateStatus(track.id, pstatus, 0);
 
    end #--end of album iteration 
   end
 
-  def analyzeSimilarTracks()    
+  #normal base => 0, status = 5
+  #nobracketfix base => 100, status = 105
+  def analyzeSimilarTracks(base, pstatus)    
     #SimilarTracksVersionControl.find(:all, :order=>"track_id", :conditions =>["status = ?" , 5], :limit => 1).each do |ps|
-    SimilarTracksVersionControl.find(:all, :order=>"track_id", :conditions =>["status = ?" , 5]).each do |ps|
+    SimilarTracksVersionControl.find(:all, :order=>"track_id", :conditions =>["status = ?" , pstatus]).each do |ps|
       puts ps.track_id.to_s;
         track = Track.find(ps.track_id);
         
@@ -100,10 +131,10 @@ class SimilarTracksVersionControl < ActiveRecord::Base
     
         begin
           lm = LastfmDataSourceHandler.new;
-          status = lm.analyzeSimilarTrackRawDataImp(track)    
+          status = lm.analyzeSimilarTrackRawDataImp(track) + base;
         rescue Exception => e
           puts e
-          status = 7
+          status = 7 + base;
         end 
         
         begin
@@ -117,9 +148,10 @@ class SimilarTracksVersionControl < ActiveRecord::Base
     end
   end
   
-  
-  def aggregateSimilarTracks 
-   SimilarTracksVersionControl.find(:all, :order=>"track_id", :conditions =>["status = ?" , 12]).each do |ps|   
+  #normal base => 0, status = 5
+  #nobracketfix base => 100, status = 112  
+  def aggregateSimilarTracks(base, pstatus) 
+   SimilarTracksVersionControl.find(:all, :order=>"track_id", :conditions =>["status = ?" , pstatus]).each do |ps|   
      # if (!alreadyHandled(track, "similar tracks"))
          h = Hash.new
          
@@ -147,10 +179,10 @@ class SimilarTracksVersionControl < ActiveRecord::Base
         
         puts "total:" + icount.to_s
         if (icount == 0)
-          status = 4
+          status = 4 + base;
           SimilarTracksVersionControl.updateStatus(ps.track_id, status, 0);
         else
-          status = 1
+          status = 1 + base;
           SimilarTracksVersionControl.updateStatus(ps.track_id, status, 1);
         end
         
