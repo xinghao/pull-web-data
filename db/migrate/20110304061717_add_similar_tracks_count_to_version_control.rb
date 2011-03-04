@@ -1,6 +1,6 @@
 class AddSimilarTracksCountToVersionControl < ActiveRecord::Migration
   def self.up
-      add_column :charts_raw_contents, :similar_track_count, :integer
+      add_column :similar_tracks_version_controls, :similar_track_count, :integer
   end
 
   def self.down
