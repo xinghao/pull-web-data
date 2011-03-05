@@ -25,7 +25,8 @@ class TrackNameFix
   
   #run this second
   def batchTrackNameBracketsFixByMatchOtherTrackName()
-    SimilarTracksVersionControl.find(:all, :conditions =>["status = ?" , 100 ]).each do |fix|
+    SimilarTracksVersionControl.find(:all, :conditions =>["status = ?" , 100 ], :limit => 1).each do |fix|
+      puts "handling:" + fix.track_id.to_s;
       status = fixTrackNameBracketsFixByMatchOtherTrackName(fix);
     end
   end
@@ -39,19 +40,21 @@ class TrackNameFix
     if (scs != nil and !scs.empty?)
       sc = scs.first;
       
+      puts "matched track_id:" + sc.track_id.to_s();
       #do need scrape for this case.
       if (sc.has_similar_tracks == 0)
+        fix.no_bracket_track_id = sc.track_id;
         fix.status = 152;
         fix.save();
         return 152;        
       end
         
-      sts = SimilarTrack.find_by_track_id(sc.id);
+      sts = SimilarTrack.find(:all, :conditions => ["track_id = ?", sc.track_id]);
       if (sts != nil and !sts.empty?)
-        SimilarTrack.delete_all(:track_id => fix.track_id);
+        SimilarTrackNobracketsPatch.delete_all(:track_id => fix.track_id);
         sts.each do |st|
-          st_patch = SimilarTrack.new;
-          st_patch.track_id = st.track_id;
+          st_patch = SimilarTrackNobracketsPatch.new;
+          st_patch.track_id = fix.track_id;
           st_patch.similar_track_id = st.similar_track_id;
           st_patch.version = st.version;
           st_patch.score = st.score;
@@ -63,6 +66,7 @@ class TrackNameFix
         fix.status = 151;
         fix.similar_track_count = sc.similar_track_count;
         fix.has_similar_tracks  = sc.has_similar_tracks;
+        fix.no_bracket_track_id = sc.track_id;
         fix.save();
         return 151;        
 
