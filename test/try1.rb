@@ -84,8 +84,8 @@ require 'hpricot'
 # sc.aggregateSimilarTracks();
 
 fix = TrackNameFix.new();
-fix.batchScanTrackNameBracketsFix();
-#fix.batchTrackNameBracketsFixByMatchOtherTrackName();
+#fix.batchScanTrackNameBracketsFix();
+fix.batchTrackNameBracketsFixByMatchOtherTrackName();
 #fix.batchTrackNameBracketsFixByScrapingGeting();
 #fix.batchTrackNameBracketsFixByScrapingAnalyzing();
 #fix.batchTrackNameBracketsFixByScrapingAggregating();
