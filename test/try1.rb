@@ -85,7 +85,7 @@ require 'hpricot'
 
 fix = TrackNameFix.new();
 #fix.batchScanTrackNameBracketsFix();
-fix.batchTrackNameBracketsFixByMatchOtherTrackName();
-#fix.batchTrackNameBracketsFixByScrapingGeting();
+#fix.batchTrackNameBracketsFixByMatchOtherTrackName();
+fix.batchTrackNameBracketsFixByScrapingGeting();
 #fix.batchTrackNameBracketsFixByScrapingAnalyzing();
 #fix.batchTrackNameBracketsFixByScrapingAggregating();

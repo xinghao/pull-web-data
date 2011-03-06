@@ -73,7 +73,7 @@ class LastfmDataSourceHandler < DataSource
   
   
   
-  def getSimilarTrackWebRawDataImp track
+  def getSimilarTrackWebRawDataImp track, match_name
         rw = RawWebData.new
         
         begin
@@ -86,8 +86,9 @@ class LastfmDataSourceHandler < DataSource
             return 11
           end
 
+          match_name = track.name if match_name.nil?
           
-          retStr = rw.getLastFmSimilarTrackData(artist.name, "", track.name)
+          retStr = rw.getLastFmSimilarTrackData(artist.name, "", match_name)
           
           html = ""
           if (retStr.empty?)
@@ -102,7 +103,7 @@ class LastfmDataSourceHandler < DataSource
           wlf = WebsourceTrackSimilarLastfmV1.new
           wlf.altnet_id = track.id
           wlf.html = html.to_s
-          wlf.url = rw.getLastFmSimilarTrackDataUrl(artist.name, "", track.name)
+          wlf.url = rw.getLastFmSimilarTrackDataUrl(artist.name, "", match_name)
           #wlf.url = ""
           wlf.save
           

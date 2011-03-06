@@ -25,7 +25,7 @@ class TrackNameFix
   
   #run this second
   def batchTrackNameBracketsFixByMatchOtherTrackName()
-    SimilarTracksVersionControl.find(:all, :conditions =>["status = ?" , 100 ], :limit => 1).each do |fix|
+    SimilarTracksVersionControl.find(:all, :conditions =>["status = ?" , 100 ]).each do |fix|
       puts "handling:" + fix.track_id.to_s;
       status = fixTrackNameBracketsFixByMatchOtherTrackName(fix);
     end

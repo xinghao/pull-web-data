@@ -62,7 +62,7 @@
 # 151: match other songs with similar tracks
 # 152: match other songs without similar tracks
 # 153: no match ready to scrape
-# 154: match on lastfm but no similar tracks
+# 102: match on lastfm but no similar tracks
 # 155: match on lastfm with similar tracks
 
 
@@ -105,15 +105,19 @@ class SimilarTracksVersionControl < ActiveRecord::Base
   #normal base => 0, status = 0
   #nobracketfix base => 100, status = 153
   def getSimilarTracks(base, status)
-    SimilarTracksVersionControl.find(:all, :conditions =>["status = ?" , status ]).each do |newTrack|
+    SimilarTracksVersionControl.find(:all, :conditions =>["status = ?" , status]).each do |newTrack|
         #newTrack = SimilarTracksVersionControl.find(:first, :conditions =>["status = ?" , 0 ]);
         track = Track.find(newTrack.track_id);
         puts " processing(similar track raw data) :" + track.id.to_s
 
+        match_name = track.name;
+        if (base == 100)
+          match_name = newTrack.track_name_no_brackets;
+        end
         lf = LastfmDataSourceHandler.new
-        pstatus = lf.getSimilarTrackWebRawDataImp(track) + base;
+        pstatus = lf.getSimilarTrackWebRawDataImp(track, match_name) + base;
         #status = 9
-        puts "status : "+ status.to_s
+        puts "status : "+ pstatus.to_s
         SimilarTracksVersionControl.updateStatus(track.id, pstatus, 0);
 
    end #--end of album iteration 
