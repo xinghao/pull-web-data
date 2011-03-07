@@ -89,4 +89,5 @@ fix = TrackNameFix.new();
 #fix.batchTrackNameBracketsFixByScrapingGeting();
 ##fix.batchTrackNameBracketsFixByScrapingAnalyzing();
 ##fix.batchTrackNameBracketsFixByScrapingAggregating();
-fix.scanSameNameWithDifferentSimilarTrackCount();
+#fix.scanSameNameWithDifferentSimilarTrackCount();
+fix.fixSameNameWithDifferentSimilarTrackCount();

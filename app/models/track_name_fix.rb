@@ -115,7 +115,7 @@ class TrackNameFix
   
   def scanSameNameWithDifferentSimilarTrackCount()
     problemCount = 0;
-    SimilarTracksVersionControl.find(:all, :conditions => ["version = ? and status = ? and similar_track_count > ? " , 1, 1, 0]).each do |strack|
+    SimilarTracksVersionControl.find(:all, :conditions => ["version = ? and status = ? and similar_track_count > ?" , 1, 1, 0]).each do |strack|
       puts "track_id:" + strack.track_id.to_s();
       
 
@@ -140,6 +140,39 @@ class TrackNameFix
   
   end
   
+
+  def fixSameNameWithDifferentSimilarTrackCount()
+    problemCount = 0;
+    SimilarTracksVersionControl.find(:all, :conditions => ["version = ? and status = ? and similar_track_count > ?" , 1, 200, 0], :limit => 1).each do |strack|
+      puts "track_id:" + strack.track_id.to_s();
+      
+      sts = SimilarTrack.find(:all, :conditions => ["track_id = ?", strack.same_name_with_different_similar_track_count_fix]);
+      if (sts != nil and !sts.empty?)
+        SimilarTrack.delete_all(:track_id => strack.track_id);
+        sts.each do |st|
+          st_patch = SimilarTrack.new;
+          st_patch.track_id = strack.track_id;
+          st_patch.similar_track_id = st.similar_track_id;
+          st_patch.version = st.version;
+          st_patch.score = st.score;
+          st_patch.appearance_times = st.appearance_times;
+          st_patch.track_popularity = st.track_popularity;
+          st_patch.save
+        end # end of loop
+
+        strack.status = 251;
+        strack.similar_track_count = SimilarTrack.find(:all, :conditions => ["track_id = ?", strack.track_id]).length;
+        strack.has_similar_tracks  = 1;
+        strack.save();
+        problemCount = problemCount + 1;  
+     end
+
+      
+                
+    end #end of loop
+    puts "total needs fix:" + problemCount.to_s();
+  
+  end
 
   # def fixTrackNameBracketsFixByMatchOtherTrackName(fix)
   #   
