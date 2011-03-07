@@ -48,6 +48,10 @@
 # update similar_tracks_version_controls set status = 0 where track_id > 1650568;
 # alter table websource_track_similar_lastfm_v1s modify html mediumtext;
 
+
+
+#insert into similar_tracks(track_id, similar_artist_id, similar_album_id, similar_track_id, version, score, appearance_times, track_popularity, created_at, updated_at) select track_id, similar_artist_id, similar_album_id, similar_track_id, version, score, appearance_times, track_popularity, created_at, updated_at from similar_track_nobrackets_patches
+
 # status
 # 0: not handled yet
 # 5: scrape successful
@@ -65,6 +69,7 @@
 # 102: match on lastfm but no similar tracks
 # 155: match on lastfm with similar tracks
 
+# 200: ready to do same name with different similar tracks count fix
 
 class SimilarTracksVersionControl < ActiveRecord::Base
   
@@ -195,5 +200,6 @@ class SimilarTracksVersionControl < ActiveRecord::Base
 
      # end   #end of if  
     end
-  end  
+  end
+    
 end

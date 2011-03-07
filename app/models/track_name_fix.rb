@@ -98,6 +98,49 @@ class TrackNameFix
       st = SimilarTracksVersionControl.new();
       st.analyzeSimilarTracks(100, 105);
   end  
+  
+  
+  
+  
+  
+# > We have many "Blue Suede Shoes" songs by "Elvis Presley".
+# >
+# > Most have many similar songs and seems that one does not.
+# >
+# > http://www.kazaa.com/#/Elvis-Presley/Elvis-'56/Blue-Suede-Shoes
+# > <http://www.kazaa.com/#/Elvis-Presley/Elvis-%2756/Blue-Suede-Shoes>
+# > This one has only a few songs.
+# >
+# > The other versions have many similar songs.
+  
+  def scanSameNameWithDifferentSimilarTrackCount()
+    problemCount = 0;
+    SimilarTracksVersionControl.find(:all, :conditions => ["version = ? and status = ? and similar_track_count > ? " , 1, 1, 0]).each do |strack|
+      puts "track_id:" + strack.track_id.to_s();
+      
+
+      scs = SimilarTracksVersionControl.find(:all, :order => "similar_track_count desc", :limit => 1, :conditions => ["track_name = ?  and track_artist_id = ? and track_id != ? and status = ? and similar_track_count > ?", strack.track_name, strack.track_artist_id, strack.track_id, 1, 0]);
+      status = 0;
+      if (scs != nil and !scs.empty?)
+        sc = scs.first;
+        puts "matched track_id:" + sc.track_id.to_s();
+        if (strack.similar_track_count < sc.similar_track_count)
+          strack.same_name_with_different_similar_track_count_fix = sc.track_id;
+          strack.status = 200;
+          strack.save();
+          puts "need fix:" + strack.similar_track_count.to_s + " < " + sc.similar_track_count.to_s;
+          problemCount = problemCount + 1;
+        end
+
+      end
+      
+                
+    end #end of loop
+    puts "total needs fix:" + problemCount.to_s();
+  
+  end
+  
+
   # def fixTrackNameBracketsFixByMatchOtherTrackName(fix)
   #   
   #   tracks = Tracks.find_by_artist_id(fix.track_artist_id);
