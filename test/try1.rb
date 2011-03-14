@@ -1,4 +1,3 @@
-require 'hpricot'
 # lm = LastfmDataSourceHandler.new;
 # lm.analyzeArtistPopularRowData
 # e = EchonestDataSourceHandler.new
@@ -87,7 +86,7 @@ fix = TrackNameFix.new();
 #fix.batchScanTrackNameBracketsFix();
 #fix.batchTrackNameBracketsFixByMatchOtherTrackName();
 #fix.batchTrackNameBracketsFixByScrapingGeting();
-##fix.batchTrackNameBracketsFixByScrapingAnalyzing();
-##fix.batchTrackNameBracketsFixByScrapingAggregating();
+#fix.batchTrackNameBracketsFixByScrapingAnalyzing();
+fix.batchTrackNameBracketsFixByScrapingAggregating();
 #fix.scanSameNameWithDifferentSimilarTrackCount();
-fix.fixSameNameWithDifferentSimilarTrackCount();
+#fix.fixSameNameWithDifferentSimilarTrackCount();

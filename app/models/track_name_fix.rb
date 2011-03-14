@@ -96,9 +96,8 @@ class TrackNameFix
   #run this five
   def batchTrackNameBracketsFixByScrapingAggregating()
       st = SimilarTracksVersionControl.new();
-      st.analyzeSimilarTracks(100, 105);
+      st.aggregateSimilarTracks(100, 112);
   end  
-  
   
   
   
@@ -143,7 +142,7 @@ class TrackNameFix
 
   def fixSameNameWithDifferentSimilarTrackCount()
     problemCount = 0;
-    SimilarTracksVersionControl.find(:all, :conditions => ["version = ? and status = ? and similar_track_count > ?" , 1, 200, 0], :limit => 1).each do |strack|
+    SimilarTracksVersionControl.find(:all, :conditions => ["version = ? and status = ? and similar_track_count > ?" , 1, 200, 0]).each do |strack|
       puts "track_id:" + strack.track_id.to_s();
       
       sts = SimilarTrack.find(:all, :conditions => ["track_id = ?", strack.same_name_with_different_similar_track_count_fix]);
